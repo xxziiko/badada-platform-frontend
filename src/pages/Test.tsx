@@ -1,6 +1,8 @@
 import React from 'react';
 
-import Header from '@components/Header';
+import DefaultButton from '@components/atoms/DefaultButton';
+import LargeButton from '@components/atoms/LargeButton';
+
 import { useStore } from '@shared/store';
 
 export default function Test() {
@@ -8,9 +10,9 @@ export default function Test() {
 
   return (
     <div>
-      hihi
-      <Header />
-      <div className='hi'>test</div>
+      <DefaultButton />
+      <br />
+      <LargeButton />
     </div>
   );
 }
