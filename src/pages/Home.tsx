@@ -1,9 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-function Home() {
-  return <HomeWrapper>Test badada</HomeWrapper>;
-}
+function Home() {}
 
 const HomeWrapper = styled.div`
   display: flex;
