@@ -6,6 +6,7 @@ import Logo from '@components/atoms/Logo';
 import PrevButton from '@components/atoms/PrevButton';
 
 import { useStore } from '@shared/store';
+import ReviewTag from '@components/atoms/ReviewTag';
 
 export default function Test() {
   const { selectContent, setSelectContent } = useStore();
@@ -19,6 +20,8 @@ export default function Test() {
       <Logo />
       <br />
       <PrevButton />
+      <br />
+      <ReviewTag />
     </div>
   );
 }

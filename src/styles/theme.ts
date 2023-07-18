@@ -5,8 +5,9 @@ import { DefaultTheme } from 'styled-components';
 const colors = {
   primary: '#2B7CB7',
   secondary: '#34C5EF',
-  white: '#ffffff',
-  gray: 'AFAFAF',
+  white: '#FFFFFF',
+  gray: '#AFAFAF',
+  darkgray: '#6C6C6C',
   black: '#000000',
 };
 
