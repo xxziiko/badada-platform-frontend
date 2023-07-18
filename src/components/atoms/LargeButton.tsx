@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  text: string;
+  text?: string;
 }
 
 export default function LargeButton({ text = 'Large Button' }: Props) {
