@@ -1,20 +1,31 @@
+import { useStore } from '@shared/store';
 import styled from 'styled-components';
 import ReviewButton from '@components/atoms/ReviewButton';
 import DefaultButton from '@components/atoms/DefaultButton';
 import ReviewTagBox from '@components/organisms/ReviewTagBox';
 
 export default function ReviewModal() {
+  const { isBadClicked, setIsBadClicked, setIsGoodClicked } = useStore();
+
+  const handleOnClickBadButton = () => {
+    setIsBadClicked();
+  };
+
+  const handleOnClickGoodButton = () => {
+    setIsGoodClicked();
+  };
+
   return (
     <Modal>
       <ModalInner>
         <Title>콘텐츠는 마음에 드셨나요?</Title>
 
         <Buttons>
-          <ReviewButton icon='img/goodIcon.png' text='좋았어요!' />
-          <ReviewButton icon='img/badIcon.png' text='별로예요.' />
+          <ReviewButton text='좋았어요!' icon='good' onClick={handleOnClickGoodButton} />
+          <ReviewButton text='별로예요.' icon='bad' onClick={handleOnClickBadButton} />
         </Buttons>
 
-        <ReviewTagBox />
+        {isBadClicked && <ReviewTagBox />}
 
         <Input placeholder='추가적인 피드백을 작성해주시면 재미있는 콘텐츠 제작에 많은 도움이 됩니다!' />
 
@@ -27,7 +38,6 @@ export default function ReviewModal() {
 const Modal = styled.div`
   display: flex;
   width: 333px;
-  height: 417px;
   padding: 40px 20px;
   flex-direction: column;
   align-items: center;
