@@ -1,0 +1,8 @@
+{
+  "semi": true,
+  "printWidth": 120,
+  "jsxSingleQuote": true,
+  "singleQuote": true,
+  "htmlWhitespaceSensitivity": "css",
+  "endOfLine": "lf"
+}
