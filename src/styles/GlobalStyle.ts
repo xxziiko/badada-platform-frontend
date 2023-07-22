@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         background-color: #ffffff;
+        font-family: Pretendard;
     }
     a{
         color : inherit;

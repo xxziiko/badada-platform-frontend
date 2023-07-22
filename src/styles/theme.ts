@@ -9,6 +9,14 @@ const colors = {
   gray: '#AFAFAF',
   darkgray: '#6C6C6C',
   black: '#000000',
+  lightblue: '#CCEAFF',
+  cornflowerblue: '#4DACF1',
+  lavenderpink: '#EFCCFF',
+  mintCream: '#D3FFCC',
+  purpleheart: '#A94DF1',
+  olivedrab: '#549F31',
+  darkMatter: '#353535',
+  navy: '#21608D',
 };
 
 const fontSize = {

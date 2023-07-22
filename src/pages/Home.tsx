@@ -8,6 +8,11 @@ import LargeButton from '@components/atoms/LargeButton';
 import Logo from '@components/atoms/Logo';
 import PrevButton from '@components/atoms/PrevButton';
 import ReviewTag from '@components/atoms/ReviewTag';
+import Tag from '@components/atoms/Tag';
+import Graph from '@components/atoms/Graph';
+import Banner from '@components/organisms/Banner';
+import WorstSea from '@components/atoms/WorstSea';
+import SummaryBox from '@components/organisms/SummaryBox';
 
 export default function Home() {
   const { selectContent, setSelectContent } = useStore();
