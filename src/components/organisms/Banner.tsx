@@ -34,7 +34,7 @@ const BannerWrapper = styled.div`
     justify-content: center;
     width: 393px;
     height: 145px;
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.colors.softAqua};
     .bannerInstagramText {
       color: ${({ theme }) => theme.colors.darkMatter};
       text-align: center;
