@@ -4,6 +4,10 @@ interface Props {
   idx: number;
 }
 
+const StateOfProgressBar = ({ idx }: Props) => {
+  return <Bar color='secondary' width={`${idx * 7.69}%`} />;
+};
+
 export default function ProgressBar({ idx }: Props) {
   return (
     <Box>
@@ -11,7 +15,9 @@ export default function ProgressBar({ idx }: Props) {
         <Text>Q{idx}</Text>
       </TitleBox>
 
-      <Bar />
+      <Bar width='333px'>
+        <StateOfProgressBar idx={idx} />
+      </Bar>
     </Box>
   );
 }
@@ -31,11 +37,11 @@ const TitleBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  border-bottom: 3px solid #34c5ef;
+  border-bottom: 3px solid ${({ theme }) => theme.colors.secondary};
 `;
 
 const Text = styled.p`
-  color: #34c5ef;
+  color: ${({ theme }) => theme.colors.secondary};
   font-family: Pretendard;
   font-size: 24px;
   font-style: normal;
@@ -43,11 +49,15 @@ const Text = styled.p`
   line-height: normal;
 `;
 
-const Bar = styled.div`
-  width: 333px;
+const Bar = styled.div<{ width: string }>`
+  width: ${({ width }) => width};
   height: 16px;
   align-self: stretch;
   border-radius: 20px;
-  background: rgba(145, 205, 248, 0.3);
+  background: ${({ theme, color }) => (color === 'secondary' ? theme.colors.secondary : 'rgba(145, 205, 248, 0.3)')};
   box-shadow: 1px 1px 4px 0px rgba(145, 205, 248, 0.3) inset;
+  transition-property: all;
+  transition-duration: 0.8s;
+  transition-delay: 2ms;
+  transition-timing-function: linear;
 `;
