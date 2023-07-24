@@ -12,6 +12,7 @@ const colors = {
   lightblue: '#CCEAFF',
   cornflowerblue: '#4DACF1',
   lavenderpink: '#EFCCFF',
+  softAqua: '#ECF7FF',
   mintCream: '#D3FFCC',
   purpleheart: '#A94DF1',
   olivedrab: '#549F31',
