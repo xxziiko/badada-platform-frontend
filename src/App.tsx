@@ -6,6 +6,7 @@ import GlobalStyle from '@styles/GlobalStyle';
 import theme from '@styles/theme';
 
 import Home from '@pages/Home';
+import Result from '@pages/Result';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <GlobalStyle />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/result' element={<Result />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

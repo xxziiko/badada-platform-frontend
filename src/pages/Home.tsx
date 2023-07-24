@@ -13,6 +13,7 @@ import Graph from '@components/atoms/Graph';
 import Banner from '@components/organisms/Banner';
 import WorstSea from '@components/atoms/WorstSea';
 import SummaryBox from '@components/organisms/SummaryBox';
+import ResultCard from '@components/organisms/ResultCard';
 
 export default function Home() {
   const { selectContent, setSelectContent } = useStore();
