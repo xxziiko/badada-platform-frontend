@@ -1,0 +1,56 @@
+import React from 'react';
+import styled from 'styled-components';
+
+import LargeButton from '@components/atoms/LargeButton';
+import PrevButton from '@components/atoms/PrevButton';
+import ProgressBar from '@components/atoms/ProgressBar';
+
+interface Props {
+  data: { id: number; question?: string; answer: { id: number; content: string }[] };
+  onSelect: Function;
+  onPrevButtonClick?: Function;
+}
+
+export default function TestTemplate({ data, onSelect, onPrevButtonClick }: Props) {
+  const index = data.id;
+  return (
+    <TestTemplateWrapper>
+      <ProgressBar idx={data.id} />
+      <QuestionWrapper>{data?.question}</QuestionWrapper>
+      <div>
+        {data?.answer?.map((element) => (
+          <div className='selectButton-wrapper'>
+            <LargeButton key={element.id} text={element.content} onClick={() => onSelect()} />
+          </div>
+        ))}
+      </div>
+      {index !== 1 && (
+        <PrevButton
+          onClick={() => {
+            if (onPrevButtonClick) {
+              onPrevButtonClick();
+            }
+          }}
+        />
+      )}
+    </TestTemplateWrapper>
+  );
+}
+
+const TestTemplateWrapper = styled.div`
+  height: 100%;
+  border: 1px solid gray;
+
+  .selectButton-wrapper {
+    margin-bottom: 10px;
+  }
+`;
+
+// TODO: text , 있을 시에 <br/> 태그 추가하는 convert 함수?
+const QuestionWrapper = styled.h2`
+  display: flex;
+  align-items: center;
+  height: 320px;
+  font-size: 26px;
+  font-weight: 600;
+`;

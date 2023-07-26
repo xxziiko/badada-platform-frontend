@@ -5,9 +5,11 @@ import DefaultButton from '@components/atoms/DefaultButton';
 import Banner from '@components/organisms/Banner';
 import Logo from '@components/atoms/Logo';
 
+// TODO: 영서가 담당하면 좋을듯
+
 export default function Result() {
   return (
-    <ResultWrapper>
+    <ResultPage>
       <div className='resultSeaImg' />
       <div className='resultCardWrapper'>
         <ResultCard
@@ -36,24 +38,29 @@ export default function Result() {
       <div className='logoWrapper'>
         <Logo />
       </div>
-    </ResultWrapper>
+    </ResultPage>
   );
 }
 
-const ResultWrapper = styled.div`
+const ResultPage = styled.div`
+  // TODO: alignCenter 변수화? - scss mixin
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 393px;
-  height: 100%;
+  width: ${({ theme }) => theme.templateSize.width};
+  height: ${({ theme }) => theme.templateSize.height};
+
   .resultSeaImg {
     position: absolute;
-    width: 393px;
+    width: 100%;
     height: 308px;
+    // TODO: background image도 api 통해 받아오게 됨
     background:
       url('/img/resultSeaImg.png'),
-      lightgray 50% / cover no-repeat;
+      lightgray 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   .resultCardWrapper {
     margin-top: 160px;

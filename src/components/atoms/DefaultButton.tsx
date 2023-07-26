@@ -3,10 +3,26 @@ import styled from 'styled-components';
 
 interface Props {
   text?: string;
+  onClick?: Function;
 }
 
-export default function DefaultButton({ text = 'Default Button' }: Props) {
-  return <Button type='button'>{text}</Button>;
+export default function DefaultButton({ text = 'Default Button', onClick }: Props) {
+  const handleOnClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
+  return (
+    <Button
+      type='button'
+      onClick={() => {
+        handleOnClick();
+      }}
+    >
+      {text}
+    </Button>
+  );
 }
 
 const Button = styled.button`

@@ -1,12 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function PrevButton() {
+interface Props {
+  onClick: Function;
+}
+
+export default function PrevButton({ onClick }: Props) {
   return (
     <PrevButtonWrapper>
       {/* TODO: icon 적용 */}
-      <span>&lt;</span>
-      <span>이전</span>
+      <button type='button' onClick={() => onClick()}>
+        <span>&lt;</span>
+        <span>이전</span>
+      </button>
     </PrevButtonWrapper>
   );
 }

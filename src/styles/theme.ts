@@ -1,6 +1,12 @@
 import { DefaultTheme } from 'styled-components';
 
-// TODO: custom 필요
+const templateSize = {
+  // FIXME: Iphone 14 pro 기준
+  // TODO: 반응형 추가
+  width: '393px',
+  minWidth: '393px',
+  minHeight: '852px',
+};
 
 const colors = {
   primary: '#2B7CB7',
@@ -21,6 +27,7 @@ const colors = {
 };
 
 const fontSize = {
+  h1: '60px',
   title: 20,
   subTitle: 16,
   text: 14,
@@ -34,6 +41,7 @@ export type ColorsTypes = typeof colors;
 export type FontSizeTypes = typeof fontSize;
 
 const theme: DefaultTheme = {
+  templateSize,
   colors,
   fontSize,
   shadow,
