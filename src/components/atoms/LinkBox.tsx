@@ -9,13 +9,13 @@ export default function LinkBox() {
     <LinkBoxWrapper>
       <span className='sharedFriend'>공유하고 같이갈 친구 찾으러 가자</span>
       <div className='LinkItemWrapper'>
-        <div className='LinkImgWrapper'>
+        <div className='sharedIconWrapper'>
           <LinkImg />
         </div>
-        <div className='LinkCopyWrapper'>
+        <div className='sharedIconWrapper'>
           <LinkCopy />
         </div>
-        <div className='LinkKakaoWrapper'>
+        <div className='sharedIconWrapper'>
           <LinkKakao />
         </div>
       </div>
@@ -40,13 +40,7 @@ const LinkBoxWrapper = styled.div`
     justify-content: space-between;
     width: 196px;
     margin-top: 20px;
-    .LinkImgWrapper {
-      cursor: pointer;
-    }
-    .LinkCopyWrapper {
-      cursor: pointer;
-    }
-    .LinkKakaoWrapper {
+    .sharedIconWrapper {
       cursor: pointer;
     }
   }

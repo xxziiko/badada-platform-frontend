@@ -56,7 +56,7 @@ const BannerWrapper = styled.div`
     justify-content: center;
     align-items: flex-end;
     width: 393px;
-    height: 145px;
+    height: 155px;
     background:
       url('/img/campaignImg.png'),
       lightgray 50% / cover no-repeat;
