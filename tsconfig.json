@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "svg.d.ts"],
+  "include": ["src", "svg.d.ts", "src/shared/ErrorBoundary.tsx"],
   "extends": "./tsconfig.paths.json"
 }

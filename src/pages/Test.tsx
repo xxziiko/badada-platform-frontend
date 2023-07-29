@@ -40,6 +40,9 @@ const data = [
   },
 ];
 
+// FIXME: key error 확인
+// TODO: classname 컨벤션정하기 (camel vs kebab)
+
 export default function Test() {
   const [currentStep, setCurrentStep] = useState(0);
 

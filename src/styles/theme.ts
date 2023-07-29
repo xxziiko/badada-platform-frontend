@@ -11,6 +11,7 @@ const templateSize = {
 const colors = {
   primary: '#2B7CB7',
   secondary: '#34C5EF',
+  error: '#D54463',
   white: '#FFFFFF',
   gray: '#AFAFAF',
   darkgray: '#6C6C6C',

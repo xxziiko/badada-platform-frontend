@@ -32,6 +32,7 @@ export default function DefaultButton({ text = 'Default Button', onClick, btnSty
   );
 }
 
+// FIXME: 안쓰이는 거 지우기, console error 확인
 const Button = styled.button<{ btnStyle?: btnStyleObject }>`
   display: flex;
   align-items: center;
