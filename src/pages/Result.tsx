@@ -1,17 +1,38 @@
 import React from 'react';
-import ResultCard from '@components/organisms/ResultCard';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import ResultCard from '@components/organisms/ResultCard';
 import DefaultButton from '@components/atoms/DefaultButton';
 import Banner from '@components/organisms/Banner';
 import Logo from '@components/atoms/Logo';
+import html2canvas from 'html2canvas';
 
 // TODO: 영서가 담당하면 좋을듯
 
 export default function Result() {
+  const navigate = useNavigate();
+
+  // 데이터를 worstSea로 변경
+  const handleWorstSea = () => {};
+  const handleMoveToAllSea = () => {};
+  const handleReStart = () => {
+    navigate('/');
+  };
+  const handleImgCopy = () => {
+    const element = document.getElementById('page-to-save'); // 'page-to-save'를 캡처할 요소의 실제 ID로 대체하세요.
+    if (element) {
+      html2canvas(element).then((canvas) => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL();
+        link.download = 'sea-result.png'; // 원하는 파일명으로 'page-screenshot.png'를 대체하세요.
+        link.click();
+      });
+    }
+  };
   return (
-    <ResultPage>
+    <ResultPage resultSeaImg='/img/resultSeaImg.png'>
       <div className='resultSeaImg' />
-      <div className='resultCardWrapper'>
+      <div className='resultCardWrapper' id='page-to-save'>
         <ResultCard
           seaContent={{
             seaName: '고래불 해변',
@@ -27,10 +48,21 @@ export default function Result() {
             '창의적이고 상상력이 풍부한 특징을 가지고 있습니다. 월정리 해변은 독특한 지형과 잔잔한 파도를 가진 해안선을 가지고 있어, 이러한 환경에서 자신의 창의적인 아이디어를 발휘하고 새로운 경험을 만들어갈 수 있을 것입니다.',
             '새로운 경험과 자유로움을 추구하는 특징을 가지고 있습니다. 월정리 해변은 아름다운 풍경과 다양한 액티비티를 즐길 수 있는 장소로, 이러한 환경에서 자유로움과 자연과의 교감을 느끼며 자신의 에너지를 발산할 수 있을 것입니다.',
           ]}
+          totalPerson={100}
+          percent={63}
+          handleWorstSea={handleWorstSea}
+          handleImgCopy={handleImgCopy}
+        />
+      </div>
+      <div className='allSeaBtn'>
+        <DefaultButton
+          text='바다 찾기 다시하기'
+          btnStyle={{ btnBackGroudColor: 'white', btnTextColor: 'darkMatter' }}
+          onClick={handleReStart}
         />
       </div>
       <div className='reStartBtn'>
-        <DefaultButton text='바다 찾기 다시하기' />
+        <DefaultButton text='전체 바다 보러가기' onClick={handleMoveToAllSea} />
       </div>
       <div className='bannerWrapper'>
         <Banner />
@@ -42,7 +74,7 @@ export default function Result() {
   );
 }
 
-const ResultPage = styled.div`
+const ResultPage = styled.div<{ resultSeaImg?: string }>`
   // TODO: alignCenter 변수화? - scss mixin
   position: relative;
   display: flex;
@@ -56,18 +88,19 @@ const ResultPage = styled.div`
     width: 100%;
     height: 308px;
     // TODO: background image도 api 통해 받아오게 됨
-    background:
-      url('/img/resultSeaImg.png'),
-      lightgray 50%;
+    background: ${({ resultSeaImg }) => (resultSeaImg ? `url(${resultSeaImg}), lightgray 50%` : 'lightgray 50%')};
     background-size: cover;
     background-repeat: no-repeat;
   }
   .resultCardWrapper {
     margin-top: 160px;
-    z-index: 2;
+    z-index: 10;
+  }
+  .allSeaBtn {
+    margin: 40px 0 0 0;
   }
   .reStartBtn {
-    margin: 40px 0 40px 0;
+    margin: 20px 0 40px 0;
   }
   .bannerWrapper {
     margin-bottom: 80px;

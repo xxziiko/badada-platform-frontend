@@ -3,15 +3,22 @@ import styled from 'styled-components';
 
 interface Props {
   text?: string;
+  handleWorstSea: Function;
 }
 
-export default function WorstSea({ text = '서포리 해변' }: Props) {
+export default function WorstSea({ text = '서포리 해변', handleWorstSea }: Props) {
   return (
     <WorstSeaWrapper>
       <span className='WorstSeaTitle'>최악의 바다</span>
       <img src='/img/worstSea.png' alt='worstSeaImg' className='worstSeaImg' />
       <span className='worstSeaName'>{text}</span>
-      <button className='worstSeaBtn' type='button'>
+      <button
+        className='worstSeaBtn'
+        type='button'
+        onClick={() => {
+          handleWorstSea();
+        }}
+      >
         자세히 보기
       </button>
     </WorstSeaWrapper>

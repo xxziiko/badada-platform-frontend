@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Banner() {
+  const handleMoveToCampaign = () => {
+    window.open('https://earthplogging.com/', '_blank');
+  };
+
   return (
     <BannerWrapper>
       <div className='bannerInstagram'>
@@ -17,7 +21,7 @@ export default function Banner() {
         </span>
       </div>
       <div className='bannerCampaign'>
-        <button className='bannerCampaignBtn' type='button'>
+        <button className='bannerCampaignBtn' type='button' onClick={handleMoveToCampaign}>
           캠페인 참여하기
         </button>
       </div>
@@ -56,7 +60,7 @@ const BannerWrapper = styled.div`
     justify-content: center;
     align-items: flex-end;
     width: 393px;
-    height: 145px;
+    height: 155px;
     background:
       url('/img/campaignImg.png'),
       lightgray 50% / cover no-repeat;
