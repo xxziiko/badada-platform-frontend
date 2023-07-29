@@ -5,8 +5,10 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '@styles/GlobalStyle';
 import theme from '@styles/theme';
 
-import Home from '@pages/Home';
+import Main from '@pages/Main';
+import Test from '@pages/Test';
 import Result from '@pages/Result';
+import Process from '@pages/Process';
 
 function App() {
   return (
@@ -14,8 +16,10 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Main />} />
+          <Route path='/test' element={<Test />} />
           <Route path='/result' element={<Result />} />
+          <Route path='/process' element={<Process />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

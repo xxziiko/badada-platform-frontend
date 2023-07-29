@@ -2,12 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  text?: string;
+  text?: string | React.ReactElement;
+  onClick: Function;
 }
 
-export default function LargeButton({ text = 'Large Button' }: Props) {
+export default function LargeButton({ text = 'Large Button', onClick }: Props) {
+  const handleOnClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
   return (
-    <Button type='button'>
+    <Button type='button' onClick={() => handleOnClick()}>
       <ButtonContent>{text}</ButtonContent>
     </Button>
   );
@@ -18,7 +24,7 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0 40px;
-  width: 300px;
+  width: 100%;
   height: 100px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.primary};

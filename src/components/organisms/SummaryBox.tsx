@@ -3,19 +3,26 @@ import WorstSea from '@components/atoms/WorstSea';
 import React from 'react';
 import styled from 'styled-components';
 
-export default function SummaryBox() {
+interface Props {
+  totalPerson?: number;
+  percent?: number;
+  handleWorstSea: Function;
+}
+
+export default function SummaryBox({ totalPerson = 100, percent = 63, handleWorstSea }: Props) {
   return (
     <SummaryBoxWrapper>
       <Graph
-        percentage={75 * (80 / 100)}
+        percentageGraph={75 * (percent / 100)}
         size={80}
         strokeWidth={20}
         color='#34C5EF'
-        text='63%'
+        percent={percent}
+        totalPerson={totalPerson}
         textColor='#353535'
         fontSize={16}
       />
-      <WorstSea />
+      <WorstSea handleWorstSea={handleWorstSea} />
     </SummaryBoxWrapper>
   );
 }

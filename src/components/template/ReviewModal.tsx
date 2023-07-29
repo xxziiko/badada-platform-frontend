@@ -1,11 +1,11 @@
-import { useStore } from '@shared/store';
 import styled from 'styled-components';
+import { useReview } from '@shared/store';
 import ReviewButton from '@components/atoms/ReviewButton';
 import DefaultButton from '@components/atoms/DefaultButton';
 import ReviewTagBox from '@components/organisms/ReviewTagBox';
 
 export default function ReviewModal() {
-  const { isBadClicked, setIsBadClicked, setIsGoodClicked } = useStore();
+  const { isBadClicked, setIsBadClicked, setIsGoodClicked } = useReview();
 
   const handleOnClickBadButton = () => {
     setIsBadClicked();
