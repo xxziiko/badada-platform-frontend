@@ -9,7 +9,7 @@ import html2canvas from 'html2canvas';
 import DefaultTemplate from '@components/template/DefaultTemplate';
 
 // FIXME: key error 확인
-// TODO: DefaultTemplate 적용 관련 확인 부탁함다
+// TODO: DefaultTemplate, Defaultbutton 적용 관련 확인 부탁함다
 
 export default function Result() {
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ export default function Result() {
         <div className='allSeaBtn'>
           <DefaultButton
             text='바다 찾기 다시하기'
-            btnStyle={{ btnBackGroundColor: 'white', btnTextColor: 'darkMatter' }}
+            style={{ backgroundColor: 'white', color: 'darkMatter', border: '1px solid #E4E4E4' }}
             onClick={handleReStart}
           />
         </div>
@@ -101,9 +101,11 @@ const ResultPage = styled.div<{ resultSeaImg?: string }>`
     z-index: 10;
   }
   .allSeaBtn {
+    width: 333px;
     margin: 40px 0 0 0;
   }
   .reStartBtn {
+    width: 333px;
     margin: 20px 0 40px 0;
   }
   .bannerWrapper {
