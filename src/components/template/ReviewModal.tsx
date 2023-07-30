@@ -82,5 +82,6 @@ const Input = styled.textarea`
   border-radius: 4px;
   border: 1px solid #e4e4e4;
   background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => theme.shadow.inputs};
   resize: none;
 `;

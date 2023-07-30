@@ -39,7 +39,6 @@ export default function TestTemplate({ data, onSelect, onPrevButtonClick }: Prop
 
 const TestTemplateWrapper = styled.div`
   height: 100%;
-  border: 1px solid gray;
 
   .selectButton-wrapper {
     margin-bottom: 10px;

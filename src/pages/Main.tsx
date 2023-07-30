@@ -25,8 +25,6 @@ export default function Main() {
           바다다 테스트를 이미 여러 사람들이 참여했어요! <br /> 여름 시즌을 맞이해 여러분의 데이터를 활용하여 딱 맞는
           바다를 알려드릴게요
         </p>
-
-        {/* TODO: logo style custom -> style 객체 props로 넘겨줄 수 있도록 interface 확장 필요 가능성 ? 왜냐면 항상 fix된 위치 */}
       </MainPage>
     </ImageBackground>
   );

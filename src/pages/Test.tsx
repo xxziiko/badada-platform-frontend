@@ -80,7 +80,6 @@ const TestPage = styled.section`
   width: ${({ theme }) => theme.templateSize.width};
   height: 100%;
   min-height: ${({ theme }) => theme.templateSize.minHeight};
-  border: 1px solid black;
 
   .logo-wrapper {
     display: flex;
