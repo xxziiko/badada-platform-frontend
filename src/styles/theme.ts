@@ -1,9 +1,10 @@
 import { DefaultTheme } from 'styled-components';
 
-const templateSize = {
+const pageStyles = {
   width: '393px',
   minWidth: '393px',
   minHeight: '852px',
+  padding: '40px 30px',
 };
 
 const colors = {
@@ -41,7 +42,7 @@ export type ColorsTypes = typeof colors;
 export type FontSizeTypes = typeof fontSize;
 
 const theme: DefaultTheme = {
-  templateSize,
+  pageStyles,
   colors,
   fontSize,
   shadow,

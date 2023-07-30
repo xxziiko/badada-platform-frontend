@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
-import Logo from '@components/atoms/Logo';
+import DefaultTemplate from '@components/template/DefaultTemplate';
 import TestTemplate from '@components/template/TestTemplate';
 
 const data = [
@@ -40,9 +39,6 @@ const data = [
   },
 ];
 
-// FIXME: key error 확인
-// TODO: classname 컨벤션정하기 (camel vs kebab)
-
 export default function Test() {
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -54,7 +50,7 @@ export default function Test() {
   };
 
   return (
-    <TestPage>
+    <DefaultTemplate includeLogo>
       <TestTemplate
         data={data[currentStep]}
         onSelect={() => {
@@ -64,25 +60,6 @@ export default function Test() {
           setCurrentStep(currentStep - 1);
         }}
       />
-      <div className='logo-wrapper'>
-        <Logo />
-      </div>
-    </TestPage>
+    </DefaultTemplate>
   );
 }
-
-// TODO: page template을 만들어서 width, height, logo까지?
-const TestPage = styled.section`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 40px 30px;
-  width: ${({ theme }) => theme.templateSize.width};
-  height: 100%;
-  min-height: ${({ theme }) => theme.templateSize.minHeight};
-
-  .logo-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-`;

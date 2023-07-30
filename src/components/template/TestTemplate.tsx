@@ -19,8 +19,8 @@ export default function TestTemplate({ data, onSelect, onPrevButtonClick }: Prop
       <QuestionWrapper>{data?.question}</QuestionWrapper>
       <div>
         {data?.answer?.map((element) => (
-          <div className='selectButton-wrapper'>
-            <LargeButton key={element.id} text={element.content} onClick={() => onSelect()} />
+          <div className='selectButton-wrapper' key={element.id}>
+            <LargeButton text={element.content} onClick={() => onSelect()} />
           </div>
         ))}
       </div>
