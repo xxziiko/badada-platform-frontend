@@ -8,6 +8,7 @@ import Logo from '@components/atoms/Logo';
 import html2canvas from 'html2canvas';
 
 // TODO: 영서가 담당하면 좋을듯
+// FIXME: key error 확인
 
 export default function Result() {
   const navigate = useNavigate();
