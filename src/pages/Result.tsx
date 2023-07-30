@@ -60,7 +60,7 @@ export default function Result() {
         <div className='allSeaBtn'>
           <DefaultButton
             text='바다 찾기 다시하기'
-            btnStyle={{ btnBackGroudColor: 'white', btnTextColor: 'darkMatter' }}
+            btnStyle={{ btnBackGroundColor: 'white', btnTextColor: 'darkMatter' }}
             onClick={handleReStart}
           />
         </div>

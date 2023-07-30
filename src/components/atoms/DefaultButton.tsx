@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 type btnStyleObject = {
-  btnBackGroudColor?: string;
+  btnBackGroundColor?: string;
   btnTextColor?: string;
 };
 
@@ -40,10 +40,10 @@ const Button = styled.button<{ btnStyle?: btnStyleObject }>`
   justify-content: center;
   width: 333px;
   height: 60px;
-  border: ${({ theme, btnStyle }) => (btnStyle?.btnBackGroudColor === 'white' ? '1px solid #EFEFEF' : 'none')};
+  border: ${({ theme, btnStyle }) => (btnStyle?.btnBackGroundColor === 'white' ? '1px solid #EFEFEF' : 'none')};
   border-radius: 8px;
   background-color: ${({ theme, btnStyle }) =>
-    btnStyle?.btnBackGroudColor ? theme.colors[btnStyle?.btnBackGroudColor] : theme.colors.primary};
+    btnStyle?.btnBackGroundColor ? theme.colors[btnStyle?.btnBackGroundColor] : theme.colors.primary};
   color: ${({ theme, btnStyle }) =>
     btnStyle?.btnTextColor ? theme.colors[btnStyle?.btnTextColor] : theme.colors.white};
   font-size: 18px;
