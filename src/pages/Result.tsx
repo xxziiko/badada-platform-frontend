@@ -6,7 +6,7 @@ import DefaultButton from '@components/atoms/DefaultButton';
 import Banner from '@components/organisms/Banner';
 import Logo from '@components/atoms/Logo';
 import html2canvas from 'html2canvas';
-import DefaultTemplate from '@components/layouts/DefaultTemplate';
+import PageLayout from '@components/layouts/PageLayout';
 
 import { colors } from '@styles/theme';
 
@@ -34,7 +34,7 @@ export default function Result() {
     }
   };
   return (
-    <DefaultTemplate includeLogo={false} customStyles={false}>
+    <PageLayout includeLogo={false} customStyles={false}>
       <ResultPage resultSeaImg='/img/resultSeaImg.png'>
         <div className='resultSeaImg' />
         <div className='resultCardWrapper' id='page-to-save'>
@@ -76,7 +76,7 @@ export default function Result() {
           <Logo />
         </div>
       </ResultPage>
-    </DefaultTemplate>
+    </PageLayout>
   );
 }
 

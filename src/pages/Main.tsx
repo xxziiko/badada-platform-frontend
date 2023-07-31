@@ -4,13 +4,13 @@ import styled from 'styled-components';
 
 import DefaultButton from '@components/atoms/DefaultButton';
 import ImageBackground from '@components/template/ImageBackground';
-import DefaultTemplate from '@components/layouts/DefaultTemplate';
+import PageLayout from '@components/layouts/PageLayout';
 
 export default function Main() {
   const navigate = useNavigate();
 
   return (
-    <DefaultTemplate customStyles={false}>
+    <PageLayout customStyles={false}>
       <ImageBackground>
         <MainPage>
           <MainText>
@@ -27,7 +27,7 @@ export default function Main() {
           </MainSubText>
         </MainPage>
       </ImageBackground>
-    </DefaultTemplate>
+    </PageLayout>
   );
 }
 
