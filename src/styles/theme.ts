@@ -1,11 +1,10 @@
 import { DefaultTheme } from 'styled-components';
 
-const templateSize = {
-  // FIXME: Iphone 14 pro 기준
-  // TODO: 반응형 추가
+const pageStyles = {
   width: '393px',
   minWidth: '393px',
   minHeight: '852px',
+  padding: '40px 30px',
 };
 
 const colors = {
@@ -35,14 +34,15 @@ const fontSize = {
 };
 
 const shadow = {
-  default: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+  default: '0px 2px 4px 0px rgba(0, 0, 0, 0.15)',
+  input: '0px 0px 4px 0px rgba(0, 0, 0, 0.15',
 };
 
 export type ColorsTypes = typeof colors;
 export type FontSizeTypes = typeof fontSize;
 
 const theme: DefaultTheme = {
-  templateSize,
+  pageStyles,
   colors,
   fontSize,
   shadow,

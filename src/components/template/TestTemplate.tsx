@@ -19,8 +19,8 @@ export default function TestTemplate({ data, onSelect, onPrevButtonClick }: Prop
       <QuestionWrapper>{data?.question}</QuestionWrapper>
       <div>
         {data?.answer?.map((element) => (
-          <div className='selectButton-wrapper'>
-            <LargeButton key={element.id} text={element.content} onClick={() => onSelect()} />
+          <div className='selectButton-wrapper' key={element.id}>
+            <LargeButton text={element.content} onClick={() => onSelect()} />
           </div>
         ))}
       </div>
@@ -39,7 +39,6 @@ export default function TestTemplate({ data, onSelect, onPrevButtonClick }: Prop
 
 const TestTemplateWrapper = styled.div`
   height: 100%;
-  border: 1px solid gray;
 
   .selectButton-wrapper {
     margin-bottom: 10px;
