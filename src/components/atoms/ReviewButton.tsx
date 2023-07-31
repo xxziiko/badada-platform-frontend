@@ -26,11 +26,14 @@ export default function ReviewButton({ text, icon, onClick }: Props) {
 }
 
 const Button = styled.button`
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
   cursor: pointer;
 `;
 
 const ButtonIcon = styled.div`
-  width: 55px;
+  width: 45px;
   padding: 5px;
 `;
 
