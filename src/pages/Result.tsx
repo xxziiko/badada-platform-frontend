@@ -6,7 +6,7 @@ import DefaultButton from '@components/atoms/DefaultButton';
 import Banner from '@components/organisms/Banner';
 import Logo from '@components/atoms/Logo';
 import html2canvas from 'html2canvas';
-import DefaultTemplate from '@components/template/DefaultTemplate';
+import DefaultTemplate from '@components/layouts/DefaultTemplate';
 
 import { colors } from '@styles/theme';
 

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import DefaultButton from '@components/atoms/DefaultButton';
 import ImageBackground from '@components/template/ImageBackground';
-import DefaultTemplate from '@components/template/DefaultTemplate';
+import DefaultTemplate from '@components/layouts/DefaultTemplate';
 
 export default function Main() {
   const navigate = useNavigate();

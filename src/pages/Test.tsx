@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import DefaultTemplate from '@components/template/DefaultTemplate';
+import DefaultTemplate from '@components/layouts/DefaultTemplate';
 import TestTemplate from '@components/template/TestTemplate';
 
 const data = [
