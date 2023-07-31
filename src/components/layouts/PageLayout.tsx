@@ -8,7 +8,7 @@ interface Props {
   customStyles?: boolean;
 }
 
-export default function DefaultTemplate({ children, includeLogo = true, customStyles = true }: Props) {
+export default function PageLayout({ children, includeLogo = true, customStyles = true }: Props) {
   return (
     <TemplateContainer>
       <TemplateWrapper>

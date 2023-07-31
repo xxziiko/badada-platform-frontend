@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ImageBackground from '@components/template/ImageBackground';
-import DefaultTemplate from '@components/template/DefaultTemplate';
+import DefaultTemplate from '@components/layouts/PageLayout';
 
 export default function Process() {
   return (

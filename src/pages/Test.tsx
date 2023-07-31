@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import DefaultTemplate from '@components/template/DefaultTemplate';
+import PageLayout from '@components/layouts/PageLayout';
 import TestTemplate from '@components/template/TestTemplate';
 
 const data = [
@@ -50,7 +50,7 @@ export default function Test() {
   };
 
   return (
-    <DefaultTemplate includeLogo>
+    <PageLayout includeLogo>
       <TestTemplate
         data={data[currentStep]}
         onSelect={() => {
@@ -60,6 +60,6 @@ export default function Test() {
           setCurrentStep(currentStep - 1);
         }}
       />
-    </DefaultTemplate>
+    </PageLayout>
   );
 }

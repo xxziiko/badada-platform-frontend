@@ -6,7 +6,9 @@ import DefaultButton from '@components/atoms/DefaultButton';
 import Banner from '@components/organisms/Banner';
 import Logo from '@components/atoms/Logo';
 import html2canvas from 'html2canvas';
-import DefaultTemplate from '@components/template/DefaultTemplate';
+import PageLayout from '@components/layouts/PageLayout';
+
+import { colors } from '@styles/theme';
 
 // FIXME: key error 확인
 // TODO: DefaultTemplate, Defaultbutton 적용 관련 확인 부탁함다
@@ -32,7 +34,7 @@ export default function Result() {
     }
   };
   return (
-    <DefaultTemplate includeLogo={false} customStyles={false}>
+    <PageLayout includeLogo={false} customStyles={false}>
       <ResultPage resultSeaImg='/img/resultSeaImg.png'>
         <div className='resultSeaImg' />
         <div className='resultCardWrapper' id='page-to-save'>
@@ -60,7 +62,7 @@ export default function Result() {
         <div className='allSeaBtn'>
           <DefaultButton
             text='바다 찾기 다시하기'
-            style={{ backgroundColor: 'white', color: 'darkMatter', border: '1px solid #E4E4E4' }}
+            style={{ backgroundColor: `${colors.white}`, color: `${colors.darkMatter}`, border: '1px solid #E4E4E4' }}
             onClick={handleReStart}
           />
         </div>
@@ -74,7 +76,7 @@ export default function Result() {
           <Logo />
         </div>
       </ResultPage>
-    </DefaultTemplate>
+    </PageLayout>
   );
 }
 
