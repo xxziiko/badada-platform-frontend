@@ -1,13 +1,13 @@
 import { DefaultTheme } from 'styled-components';
 
-const pageStyles = {
+export const pageStyles = {
   width: '393px',
   minWidth: '393px',
   minHeight: '852px',
   padding: '40px 30px',
 };
 
-const colors = {
+export const colors = {
   primary: '#2B7CB7',
   secondary: '#34C5EF',
   error: '#D54463',
@@ -26,14 +26,14 @@ const colors = {
   navy: '#21608D',
 };
 
-const fontSize = {
+export const fontSize = {
   h1: '60px',
   title: 20,
   subTitle: 16,
   text: 14,
 };
 
-const shadow = {
+export const shadow = {
   default: '0px 2px 4px 0px rgba(0, 0, 0, 0.15)',
   input: '0px 0px 4px 0px rgba(0, 0, 0, 0.15',
 };

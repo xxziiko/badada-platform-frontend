@@ -8,6 +8,8 @@ import Logo from '@components/atoms/Logo';
 import html2canvas from 'html2canvas';
 import DefaultTemplate from '@components/template/DefaultTemplate';
 
+import { colors } from '@styles/theme';
+
 // FIXME: key error 확인
 // TODO: DefaultTemplate, Defaultbutton 적용 관련 확인 부탁함다
 
@@ -60,7 +62,7 @@ export default function Result() {
         <div className='allSeaBtn'>
           <DefaultButton
             text='바다 찾기 다시하기'
-            style={{ backgroundColor: 'white', color: 'darkMatter', border: '1px solid #E4E4E4' }}
+            style={{ backgroundColor: `${colors.white}`, color: `${colors.darkMatter}`, border: '1px solid #E4E4E4' }}
             onClick={handleReStart}
           />
         </div>
