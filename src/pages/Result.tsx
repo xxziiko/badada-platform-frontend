@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import ResultCard from '@components/organisms/ResultCard';
@@ -7,6 +7,8 @@ import Banner from '@components/organisms/Banner';
 import Logo from '@components/atoms/Logo';
 import html2canvas from 'html2canvas';
 import PageLayout from '@components/layouts/PageLayout';
+import TotalSeaModal from '@components/template/TotalSeaModal';
+import ReviewModal from '@components/template/ReviewModal';
 
 import { colors } from '@styles/theme';
 
@@ -14,11 +16,16 @@ import { colors } from '@styles/theme';
 // TODO: DefaultTemplate, Defaultbutton 적용 관련 확인 부탁함다
 
 export default function Result() {
+  const [openTotalSeaModal, setOpenTotalSeaModal] = useState(false);
+  const [openReviewModal, setOpenReviewModal] = useState(false);
   const navigate = useNavigate();
 
   // 데이터를 worstSea로 변경
   const handleWorstSea = () => {};
-  const handleMoveToAllSea = () => {};
+  const handleMoveToAllSea = () => {
+    setOpenTotalSeaModal(!openTotalSeaModal);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   const handleReStart = () => {
     navigate('/');
   };
@@ -33,9 +40,15 @@ export default function Result() {
       });
     }
   };
+
+  const handleReviewModal = () => {
+    setOpenReviewModal(!openReviewModal);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <PageLayout includeLogo={false} customStyles={false}>
-      <ResultPage resultSeaImg='/img/resultSeaImg.png'>
+      <ResultPage $resultSeaImg='/img/resultSeaImg.png'>
         <div className='resultSeaImg' />
         <div className='resultCardWrapper' id='page-to-save'>
           <ResultCard
@@ -76,11 +89,14 @@ export default function Result() {
           <Logo />
         </div>
       </ResultPage>
+
+      {openTotalSeaModal && <TotalSeaModal onClose={handleMoveToAllSea} />}
+      {/* {openReviewModal && <ReviewModal onClose={handleReviewModal} />} */}
     </PageLayout>
   );
 }
 
-const ResultPage = styled.div<{ resultSeaImg?: string }>`
+const ResultPage = styled.div<{ $resultSeaImg?: string }>`
   // TODO: alignCenter 변수화? - scss mixin
   position: relative;
   display: flex;
@@ -94,7 +110,7 @@ const ResultPage = styled.div<{ resultSeaImg?: string }>`
     width: 100%;
     height: 308px;
     // TODO: background image도 api 통해 받아오게 됨
-    background: ${({ resultSeaImg }) => (resultSeaImg ? `url(${resultSeaImg}), lightgray 50%` : 'lightgray 50%')};
+    background: ${({ $resultSeaImg }) => ($resultSeaImg ? `url(${$resultSeaImg}), lightgray 50%` : 'lightgray 50%')};
     background-size: cover;
     background-repeat: no-repeat;
   }
