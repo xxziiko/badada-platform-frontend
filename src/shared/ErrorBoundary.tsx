@@ -11,6 +11,7 @@ interface ErrorBoundaryState {
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
+    // TODO: 요청인터셉터
     super(props);
     this.state = {
       hasError: false,

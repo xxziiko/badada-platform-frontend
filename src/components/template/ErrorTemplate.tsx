@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import Logo from '@components/atoms/Logo';
 import DefaultButton from '@components/atoms/DefaultButton';
+import { colors } from '@styles/theme';
 
 export default function ErrorTemplate() {
   const navigate = useNavigate();
@@ -21,7 +22,11 @@ export default function ErrorTemplate() {
         </p>
 
         <ButtonBox>
-          <DefaultButton text='처음으로 돌아가기' onClick={() => navigate('/')} />
+          <DefaultButton
+            text='처음으로 돌아가기'
+            onClick={() => navigate('/')}
+            style={{ backgroundColor: `${colors.error}` }}
+          />
 
           <button type='button' className='textButton'>
             제보하기

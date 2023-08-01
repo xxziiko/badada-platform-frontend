@@ -1,18 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type btnStyleObject = {
-  btnBackGroudColor?: string;
-  btnTextColor?: string;
-};
-
 interface Props {
   text?: string;
   onClick?: Function;
-  btnStyle?: btnStyleObject;
+  style?: React.CSSProperties;
 }
 
-export default function DefaultButton({ text = 'Default Button', onClick, btnStyle }: Props) {
+export default function DefaultButton({ text = 'Default Button', onClick, style }: Props) {
   const handleOnClick = () => {
     if (onClick) {
       onClick();
@@ -22,7 +17,7 @@ export default function DefaultButton({ text = 'Default Button', onClick, btnSty
   return (
     <Button
       type='button'
-      btnStyle={btnStyle}
+      style={style}
       onClick={() => {
         handleOnClick();
       }}
@@ -32,19 +27,16 @@ export default function DefaultButton({ text = 'Default Button', onClick, btnSty
   );
 }
 
-// FIXME: 안쓰이는 거 지우기, console error 확인
-const Button = styled.button<{ btnStyle?: btnStyleObject }>`
+const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 333px;
+  width: 100%;
   height: 60px;
-  border: ${({ theme, btnStyle }) => (btnStyle?.btnBackGroudColor === 'white' ? '1px solid #EFEFEF' : 'none')};
+  border: none;
   border-radius: 8px;
-  background-color: ${({ theme, btnStyle }) =>
-    btnStyle?.btnBackGroudColor ? theme.colors[btnStyle?.btnBackGroudColor] : theme.colors.primary};
-  color: ${({ theme, btnStyle }) =>
-    btnStyle?.btnTextColor ? theme.colors[btnStyle?.btnTextColor] : theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
   font-size: 18px;
   font-weight: 600;
   box-shadow: ${({ theme }) => theme.shadow.default};

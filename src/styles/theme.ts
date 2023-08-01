@@ -1,14 +1,13 @@
 import { DefaultTheme } from 'styled-components';
 
-const templateSize = {
-  // FIXME: Iphone 14 pro 기준
-  // TODO: 반응형 추가
+export const pageStyles = {
   width: '393px',
   minWidth: '393px',
   minHeight: '852px',
+  padding: '40px 30px',
 };
 
-const colors = {
+export const colors = {
   primary: '#2B7CB7',
   secondary: '#34C5EF',
   error: '#D54463',
@@ -16,7 +15,7 @@ const colors = {
   gray: '#AFAFAF',
   darkgray: '#6C6C6C',
   black: '#000000',
-  lightblue: '#CCEAFF',
+  lightblue: 'rgba(145, 205, 248, 0.25);',
   cornflowerblue: '#4DACF1',
   lavenderpink: '#EFCCFF',
   softAqua: '#ECF7FF',
@@ -27,22 +26,23 @@ const colors = {
   navy: '#21608D',
 };
 
-const fontSize = {
+export const fontSize = {
   h1: '60px',
   title: 20,
   subTitle: 16,
   text: 14,
 };
 
-const shadow = {
-  default: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+export const shadow = {
+  default: '0px 2px 4px 0px rgba(0, 0, 0, 0.15)',
+  input: '0px 0px 4px 0px rgba(0, 0, 0, 0.15',
 };
 
 export type ColorsTypes = typeof colors;
 export type FontSizeTypes = typeof fontSize;
 
 const theme: DefaultTheme = {
-  templateSize,
+  pageStyles,
   colors,
   fontSize,
   shadow,

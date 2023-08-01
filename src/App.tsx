@@ -9,8 +9,6 @@ import Main from '@pages/Main';
 import Test from '@pages/Test';
 import Result from '@pages/Result';
 import Process from '@pages/Process';
-import KakaoShare from '@pages/KakaoShare';
-import Error from '@pages/Error';
 
 function App() {
   return (
@@ -22,8 +20,6 @@ function App() {
           <Route path='/test' element={<Test />} />
           <Route path='/result' element={<Result />} />
           <Route path='/process' element={<Process />} />
-          <Route path='/kakao-share' element={<KakaoShare />} />
-          <Route path='/error' element={<Error />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
