@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import ResultCard from '@components/organisms/ResultCard';
 import DefaultButton from '@components/atoms/DefaultButton';
 import Banner from '@components/organisms/Banner';
 import Logo from '@components/atoms/Logo';
-import html2canvas from 'html2canvas';
+import domtoimage from 'dom-to-image';
+import Toast from '@components/atoms/ Toast';
 
 // TODO: 영서가 담당하면 좋을듯
 // FIXME: key error 확인
 
 export default function Result() {
   const navigate = useNavigate();
+  const [isImgCapture, setIsImgCapture] = useState(false);
+  const [isLinkCopy, setIsLinkCopy] = useState(false);
 
   // 데이터를 worstSea로 변경
   const handleWorstSea = () => {};
@@ -20,20 +23,52 @@ export default function Result() {
     navigate('/');
   };
   const handleImgCopy = () => {
-    const element = document.getElementById('page-to-save'); // 'page-to-save'를 캡처할 요소의 실제 ID로 대체하세요.
+    const element = document.getElementById('page-to-save'); // 캡처할 요소의 ID로 대체하세요.
     if (element) {
-      html2canvas(element).then((canvas) => {
+      domtoimage.toPng(element).then((dataUrl) => {
         const link = document.createElement('a');
-        link.href = canvas.toDataURL();
-        link.download = 'sea-result.png'; // 원하는 파일명으로 'page-screenshot.png'를 대체하세요.
+        link.href = dataUrl;
+        link.download = 'result-sea.png'; // 원하는 파일명으로 대체하세요.
         link.click();
+        setIsImgCapture(true);
       });
     }
+    setTimeout(() => {
+      setIsImgCapture(false);
+    }, 4000);
   };
+
+  const copyToClipboard = (text: string) => {
+    // Create a temporary textarea element
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+
+    // Select and copy the text
+    textarea.select();
+    document.execCommand('copy');
+
+    // Remove the temporary textarea
+    document.body.removeChild(textarea);
+  };
+
+  const handleLinkCopy = () => {
+    // 현재 페이지의 URL 가져오기
+    const currentUrl = window.location.href;
+
+    // 클립보드에 URL 복사하기
+    copyToClipboard(currentUrl);
+
+    setIsLinkCopy(true);
+    setTimeout(() => {
+      setIsLinkCopy(false);
+    }, 2000);
+  };
+
   return (
     <ResultPage resultSeaImg='/img/resultSeaImg.png'>
-      <div className='resultSeaImg' />
-      <div className='resultCardWrapper' id='page-to-save'>
+      <div className='result-sea-img' />
+      <div className='result-card-wrapper' id='page-to-save'>
         <ResultCard
           seaContent={{
             seaName: '고래불 해변',
@@ -53,24 +88,35 @@ export default function Result() {
           percent={63}
           handleWorstSea={handleWorstSea}
           handleImgCopy={handleImgCopy}
+          handleLinkCopy={handleLinkCopy}
         />
       </div>
-      <div className='allSeaBtn'>
+      <div className='all-sea-btn'>
         <DefaultButton
           text='바다 찾기 다시하기'
           btnStyle={{ btnBackGroudColor: 'white', btnTextColor: 'darkMatter' }}
           onClick={handleReStart}
         />
       </div>
-      <div className='reStartBtn'>
+      <div className='re-start-btn'>
         <DefaultButton text='전체 바다 보러가기' onClick={handleMoveToAllSea} />
       </div>
-      <div className='bannerWrapper'>
+      <div className='banner-wrapper'>
         <Banner />
       </div>
-      <div className='logoWrapper'>
+      <div className='logo-wrapper'>
         <Logo />
       </div>
+      {isImgCapture && (
+        <div className='img-capture'>
+          <Toast text='이미지가 캡쳐되었습니다.' />
+        </div>
+      )}
+      {isLinkCopy && (
+        <div className='link-copy'>
+          <Toast text='링크가 복사되었습니다.' />
+        </div>
+      )}
     </ResultPage>
   );
 }
@@ -84,7 +130,7 @@ const ResultPage = styled.div<{ resultSeaImg?: string }>`
   width: ${({ theme }) => theme.templateSize.width};
   height: ${({ theme }) => theme.templateSize.height};
 
-  .resultSeaImg {
+  .result-sea-img {
     position: absolute;
     width: 100%;
     height: 308px;
@@ -93,20 +139,30 @@ const ResultPage = styled.div<{ resultSeaImg?: string }>`
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .resultCardWrapper {
+  .result-card-wrapper {
     margin-top: 160px;
     z-index: 10;
   }
-  .allSeaBtn {
+  .all-sea-btn {
     margin: 40px 0 0 0;
   }
-  .reStartBtn {
+  .re-start-btn {
     margin: 20px 0 40px 0;
   }
-  .bannerWrapper {
+  .banner-wrapper {
     margin-bottom: 80px;
   }
-  .logoWrapper {
+  .logo-wrapper {
     margin-bottom: 40px;
+  }
+  .img-capture {
+    position: fixed;
+    bottom: 40px;
+    z-index: 20;
+  }
+  .link-copy {
+    position: fixed;
+    bottom: 40px;
+    z-index: 20;
   }
 `;

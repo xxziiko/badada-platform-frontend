@@ -6,37 +6,39 @@ import styled from 'styled-components';
 
 interface Props {
   handleImgCopy: Function;
+  handleLinkCopy: Function;
 }
 
-export default function LinkBox({ handleImgCopy }: Props) {
-  const copyToClipboard = (text: string) => {
-    // Create a temporary textarea element
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    document.body.appendChild(textarea);
-
-    // Select and copy the text
-    textarea.select();
-    document.execCommand('copy');
-
-    // Remove the temporary textarea
-    document.body.removeChild(textarea);
+export default function LinkBox({ handleImgCopy, handleLinkCopy }: Props) {
+  const handleKakao = () => {
+    window.Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '제 바다를 소개할게요. 당신도 나와 같은 바다라면 같이 여행 갈래요?',
+        description: '#바다여행 #바다추천 #성향테스트',
+        imageUrl: 'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+        link: {
+          mobileWebUrl: 'http://localhost:3000',
+          webUrl: 'http://localhost:3000',
+        },
+      },
+      buttons: [
+        {
+          title: '바다 테스트 하러가기',
+          link: {
+            mobileWebUrl: 'http://localhost:3000',
+            webUrl: 'http://localhost:3000',
+          },
+        },
+      ],
+    });
   };
-
-  const handleLinkCopy = () => {
-    // 현재 페이지의 URL 가져오기
-    const currentUrl = window.location.href;
-
-    // 클립보드에 URL 복사하기
-    copyToClipboard(currentUrl);
-  };
-
   return (
     <LinkBoxWrapper>
-      <span className='sharedFriend'>공유하고 같이갈 친구 찾으러 가자</span>
-      <div className='LinkItemWrapper'>
+      <span className='shared-friend'>공유하고 같이갈 친구 찾으러 가자</span>
+      <div className='link-item-wrapper'>
         <button
-          className='sharedIconWrapper'
+          className='shared-icon-wrapper'
           type='button'
           onClick={() => {
             handleImgCopy();
@@ -44,10 +46,22 @@ export default function LinkBox({ handleImgCopy }: Props) {
         >
           <LinkImg />
         </button>
-        <button className='sharedIconWrapper' type='button' onClick={handleLinkCopy}>
+        <button
+          className='shared-Icon-wrapper'
+          type='button'
+          onClick={() => {
+            handleLinkCopy();
+          }}
+        >
           <LinkCopy />
         </button>
-        <button className='sharedIconWrapper' type='button'>
+        <button
+          className='shared-Icon-wrapper'
+          type='button'
+          onClick={() => {
+            handleKakao();
+          }}
+        >
           <LinkKakao />
         </button>
       </div>
@@ -59,7 +73,7 @@ const LinkBoxWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .sharedFriend {
+  .shared-friend {
     color: ${({ theme }) => theme.colors.darkMatter};
     text-align: center;
     font-size: 18px;
@@ -67,7 +81,7 @@ const LinkBoxWrapper = styled.div`
     font-weight: 600;
     line-height: normal;
   }
-  .LinkItemWrapper {
+  .link-item-wrapper {
     display: flex;
     justify-content: space-between;
     width: 196px;
