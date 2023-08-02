@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import domtoimage from 'dom-to-image';
@@ -20,16 +20,18 @@ import { colors } from '@styles/theme';
 export default function Result() {
   const [openTotalSeaModal, setOpenTotalSeaModal] = useState(false);
   const [openReviewModal, setOpenReviewModal] = useState(false);
-  const navigate = useNavigate();
   const [isImgCapture, setIsImgCapture] = useState(false);
   const [isLinkCopy, setIsLinkCopy] = useState(false);
+  const navigate = useNavigate();
 
-  // 데이터를 worstSea로 변경
+  const modalRef = useRef<HTMLDivElement>(null);
+
   const handleWorstSea = () => {};
+
   const handleMoveToAllSea = () => {
     setOpenTotalSeaModal(!openTotalSeaModal);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
   const handleReStart = () => {
     navigate('/');
   };
@@ -77,7 +79,6 @@ export default function Result() {
 
   const handleReviewModal = () => {
     setOpenReviewModal(!openReviewModal);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -134,8 +135,12 @@ export default function Result() {
           </div>
         )}
       </ResultPage>
-      {openTotalSeaModal && <TotalSeaModal onClose={handleMoveToAllSea} />}
-      {/* {openReviewModal && <ReviewModal onClose={handleReviewModal} />} */}
+      {openTotalSeaModal && (
+        <div ref={modalRef}>
+          <TotalSeaModal onClose={handleMoveToAllSea} />
+        </div>
+      )}
+      {openReviewModal && <ReviewModal onClose={handleReviewModal} />}
     </PageLayout>
   );
 }
