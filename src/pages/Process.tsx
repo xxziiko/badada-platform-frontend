@@ -1,16 +1,35 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+
 import ImageBackground from '@components/template/ImageBackground';
 import DefaultTemplate from '@components/layouts/PageLayout';
 
 export default function Process() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (navigate) {
+      setTimeout(() => {
+        navigate('/result');
+      }, 1800);
+    }
+  }, [navigate]);
+
   return (
     <DefaultTemplate customStyles={false}>
       <ImageBackground>
         <ProcessPage>
           <h1>
             결과 <br />
-            분석 중...
+            <div>
+              분석 중
+              <ProcessDotsWrapper>
+                <ProcessDots />
+                <ProcessDots />
+                <ProcessDots />
+              </ProcessDotsWrapper>
+            </div>
           </h1>
           <p>
             당신의 성향을 분석하여 <br />
@@ -36,6 +55,10 @@ const ProcessPage = styled.div`
     color: ${({ theme }) => theme.colors.white};
     font-size: ${({ theme }) => theme.fontSize.h1};
     font-weight: 700;
+    & > div {
+      display: flex;
+      align-items: center;
+    }
   }
 
   p {
@@ -46,5 +69,28 @@ const ProcessPage = styled.div`
     span {
       color: ${({ theme }) => theme.colors.primary};
     }
+  }
+`;
+
+const ProcessDotsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  width: 50px;
+`;
+
+const ProcessDots = styled.div`
+  width: 10px;
+  height: 10px;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 50%;
+  animation: ${({ theme }) => css`
+    ${theme.animation.bounceUp} 0.6s linear
+  `};
+  &:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+  &:last-child {
+    animation-delay: 1.2s;
   }
 `;
