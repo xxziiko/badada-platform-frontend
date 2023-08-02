@@ -6,16 +6,16 @@ import PrevButton from '@components/atoms/PrevButton';
 import ProgressBar from '@components/atoms/ProgressBar';
 
 interface Props {
+  step: number;
   data: { id: number; question?: string; answer: { id: number; content: string }[] };
   onSelect: Function;
   onPrevButtonClick?: Function;
 }
 
-export default function TestTemplate({ data, onSelect, onPrevButtonClick }: Props) {
-  const index = data.id;
+export default function TestTemplate({ step, data, onSelect, onPrevButtonClick }: Props) {
   return (
     <TestTemplateWrapper>
-      <ProgressBar idx={data.id} />
+      <ProgressBar idx={step} />
       <QuestionWrapper>{data?.question}</QuestionWrapper>
       <div>
         {data?.answer?.map((element) => (
@@ -24,7 +24,7 @@ export default function TestTemplate({ data, onSelect, onPrevButtonClick }: Prop
           </div>
         ))}
       </div>
-      {index !== 1 && (
+      {step !== 1 && (
         <PrevButton
           onClick={() => {
             if (onPrevButtonClick) {

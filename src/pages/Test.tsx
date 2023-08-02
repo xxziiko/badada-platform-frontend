@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import PageLayout from '@components/layouts/PageLayout';
 import TestTemplate from '@components/template/TestTemplate';
+import { callGetQnaApi } from '@api/apis';
 
 const data = [
   {
@@ -45,14 +46,23 @@ export default function Test() {
   const navigate = useNavigate();
 
   const handleOnSelect = () => {
-    if (currentStep === data.length - 1) return navigate('/process');
+    if (currentStep === data.length - 1) {
+      setTimeout(() => {
+        navigate('/process');
+      }, 200);
+    }
     return setCurrentStep(currentStep + 1);
   };
+
+  useEffect(() => {
+    callGetQnaApi();
+  }, []);
 
   return (
     <PageLayout includeLogo>
       <TestTemplate
-        data={data[currentStep]}
+        step={currentStep}
+        data={currentStep === data.length ? data[currentStep - 1] : data[currentStep]}
         onSelect={() => {
           handleOnSelect();
         }}

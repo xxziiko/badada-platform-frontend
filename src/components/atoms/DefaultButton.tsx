@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  text?: string;
+  text?: string | React.ReactElement;
   onClick?: Function;
   style?: React.CSSProperties;
 }
 
 export default function DefaultButton({ text = 'Default Button', onClick, style }: Props) {
+  const [isClicked, setIsClicked] = useState(false);
+
   const handleOnClick = () => {
     if (onClick) {
       onClick();
@@ -18,16 +20,18 @@ export default function DefaultButton({ text = 'Default Button', onClick, style 
     <Button
       type='button'
       style={style}
+      $isClicked={isClicked}
       onClick={() => {
         handleOnClick();
       }}
+      onMouseDown={() => setIsClicked(!isClicked)}
     >
-      {text}
+      <ButtonContent>{text}</ButtonContent>
     </Button>
   );
 }
 
-const Button = styled.button`
+const Button = styled.button<{ $isClicked: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,9 +39,14 @@ const Button = styled.button`
   height: 60px;
   border: none;
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ $isClicked, theme }) => ($isClicked ? '#56A7E1' : theme.colors.primary)};
   color: ${({ theme }) => theme.colors.white};
   font-size: 18px;
   font-weight: 600;
   box-shadow: ${({ theme }) => theme.shadow.default};
+`;
+
+const ButtonContent = styled.span`
+  width: 100%;
+  word-wrap: break-word;
 `;

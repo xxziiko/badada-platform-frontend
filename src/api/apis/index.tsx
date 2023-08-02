@@ -4,3 +4,7 @@ export const postFeedback = (body: any) => {
   const url = `${BASE_URL}/feedback`;
   return Instance.post(url, body);
 };
+
+export const callGetQnaApi = () => {
+  return Instance.get(`/qna/`);
+};
