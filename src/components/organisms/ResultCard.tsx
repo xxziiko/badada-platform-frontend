@@ -18,6 +18,7 @@ interface Props {
   percent?: number;
   handleWorstSea: Function;
   handleImgCopy: Function;
+  handleLinkCopy: Function;
 }
 
 export default function ResultCard({
@@ -28,50 +29,51 @@ export default function ResultCard({
   percent,
   handleWorstSea,
   handleImgCopy,
+  handleLinkCopy,
 }: Props) {
   return (
     <ResultCardWrapper>
-      <div className='seaContentWrapper'>
-        <span className='yourSea'>당신의 바다는</span>
-        <span className='seaName'>{seaContent?.seaName}</span>
-        <div className='tagWrapper'>
+      <div className='sea-content-wrapper'>
+        <span className='your-sea'>당신의 바다는</span>
+        <span className='sea-name'>{seaContent?.seaName}</span>
+        <div className='tag-wrapper'>
           {tagText?.map((tagData, tagIndex) => {
             return <Tag text={tagData} tagIndex={tagIndex} />;
           })}
         </div>
-        <div className='seaContentListWrapper'>
+        <div className='sea-content-list-wrapper'>
           {seaContent?.seaContent?.map((seaContentData, seaContentIndex) => {
             return (
-              <div className='seaContentListItem'>
-                <div className='blueCircleWrapper'>
+              <div className='sea-content-list-item'>
+                <div className='blue-circle-wrapper'>
                   <BlueCircle />
                 </div>
-                <div className='seaContentItemWrapper'>{seaContentData}</div>
+                <div className='sea-content-item-wrapper'>{seaContentData}</div>
               </div>
             );
           })}
         </div>
       </div>
-      <div className='recommendWrapper'>
-        <span className='recommendTitle'>당신에게 추천하는 이유</span>
-        <div className='recommendListWrapper'>
+      <div className='recommend-wrapper'>
+        <span className='recommend-title'>당신에게 추천하는 이유</span>
+        <div className='recommend-list-wrapper'>
           {recommendationReason?.map((recommendData, recommendIndex) => {
             return (
-              <div className='seaContentListItem'>
-                <div className='blueCircleWrapper'>
+              <div className='sea-content-list-item'>
+                <div className='blue-circle-wrapper'>
                   <BlueCircle />
                 </div>
-                <div className='seaContentItemWrapper'>{recommendData}</div>
+                <div className='sea-content-item-wrapper'>{recommendData}</div>
               </div>
             );
           })}
         </div>
       </div>
-      <div className='summaryBoxWrapper'>
+      <div className='summary-box-wrapper'>
         <SummaryBox totalPerson={totalPerson} percent={percent} handleWorstSea={handleWorstSea} />
       </div>
-      <div className='linkBoxWrapper'>
-        <LinkBox handleImgCopy={handleImgCopy} />
+      <div className='link-box-wrapper'>
+        <LinkBox handleImgCopy={handleImgCopy} handleLinkCopy={handleLinkCopy} />
       </div>
     </ResultCardWrapper>
   );
@@ -84,11 +86,11 @@ const ResultCardWrapper = styled.div`
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 2px 4px 2px rgba(145, 205, 248, 0.2);
-  .seaContentWrapper {
+  .sea-content-wrapper {
     display: flex;
     flex-direction: column;
     margin: 20px 20px 40px 20px;
-    .yourSea {
+    .your-sea {
       color: ${({ theme }) => theme.colors.secondary};
       text-align: center;
       font-size: 14px;
@@ -96,7 +98,7 @@ const ResultCardWrapper = styled.div`
       font-weight: 700;
       line-height: normal;
     }
-    .seaName {
+    .sea-name {
       color: ${({ theme }) => theme.colors.darkMatter};
       text-align: center;
       font-size: 32px;
@@ -104,22 +106,20 @@ const ResultCardWrapper = styled.div`
       font-weight: 700;
       line-height: normal;
     }
-    .tagWrapper {
+    .tag-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
       margin-top: 10px;
     }
-    .seaContentListWrapper {
+    .sea-content-list-wrapper {
       margin-top: 20px;
-      .seaContentListItem {
+      .sea-content-list-item {
         display: flex;
         justify-content: space-between;
         width: 293px;
         margin-bottom: 10px;
-        .blueCircleWrapper {
-        }
-        .seaContentItemWrapper {
+        .sea-content-item-wrapper {
           width: 281px;
           color: ${({ theme }) => theme.colors.darkgray};
           font-size: 14px;
@@ -130,12 +130,12 @@ const ResultCardWrapper = styled.div`
       }
     }
   }
-  .recommendWrapper {
+  .recommend-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 20px 40px 20px;
-    .recommendTitle {
+    .recommend-title {
       color: ${({ theme }) => theme.colors.darkMatter};
       text-align: center;
       font-size: 18px;
@@ -143,16 +143,16 @@ const ResultCardWrapper = styled.div`
       font-weight: 600;
       line-height: normal;
     }
-    .recommendListWrapper {
+    .recommend-list-wrapper {
       margin-top: 20px;
-      .seaContentListItem {
+      .sea-content-list-item {
         display: flex;
         justify-content: space-between;
         width: 293px;
         margin-bottom: 10px;
         .blueCircleWrapper {
         }
-        .seaContentItemWrapper {
+        .sea-content-item-wrapper {
           width: 281px;
           color: ${({ theme }) => theme.colors.darkgray};
           font-size: 14px;
@@ -163,12 +163,12 @@ const ResultCardWrapper = styled.div`
       }
     }
   }
-  .summaryBoxWrapper {
+  .summary-box-wrapper {
     display: flex;
     justify-content: center;
     margin: 0 20px 40px 20px;
   }
-  .linkBoxWrapper {
+  .link-box-wrapper {
     display: flex;
     justify-content: center;
     margin: 0 20px 40px 20px;

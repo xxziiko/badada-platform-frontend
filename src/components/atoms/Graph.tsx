@@ -28,7 +28,7 @@ export default function Graph({
 
   return (
     <GrapWrapper>
-      <span className='graphTitle'>내 유형 순위</span>
+      <span className='graph-title'>내 유형 순위</span>
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
         {/* 외부 원 */}
         <circle
@@ -36,7 +36,7 @@ export default function Graph({
           cy={radius}
           r={radius - strokeWidth / 2}
           fill='none'
-          stroke='white' // 외부 원의 테두리 색상 (선택 사항)
+          stroke='rgba(145, 205, 248, 0.3)' // 외부 원의 테두리 색상 (선택 사항)
           strokeWidth={strokeWidth}
         />
 
@@ -63,8 +63,8 @@ export default function Graph({
           {percent}%
         </text>
       </svg>
-      <span className='graphSubTitle'>총 {totalPerson}명 중</span>
-      <span className='graphPercentage'>{percent}%</span>
+      <span className='graph-sub-title'>총 {totalPerson}명 중</span>
+      <span className='graph-percentage'>{percent}%</span>
     </GrapWrapper>
   );
 }
@@ -74,7 +74,7 @@ const GrapWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 90px;
-  .graphTitle {
+  .graph-title {
     margin-bottom: 24px;
     font-size: 18px;
     font-style: normal;
@@ -82,7 +82,7 @@ const GrapWrapper = styled.div`
     line-height: normal;
     color: ${({ theme }) => theme.colors.darkMatter};
   }
-  .graphSubTitle {
+  .graph-sub-title {
     margin-top: 16px;
     color: ${({ theme }) => theme.colors.darkMatter};
     font-size: 13px;
@@ -90,7 +90,7 @@ const GrapWrapper = styled.div`
     font-weight: 600;
     line-height: normal;
   }
-  .graphPercentage {
+  .graph-percentage {
     margin-top: 4px;
     color: ${({ theme }) => theme.colors.secondary};
     font-size: 16px;
