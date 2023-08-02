@@ -1,20 +1,13 @@
 import axios from 'axios';
 
-export const BASE_URL = 'http://43.201.71.59:30088';
-
-// TODO: AxiosInstance라고 이름 수정하면 어떨까?
-
-const Instance = axios.create({
-  baseURL: BASE_URL,
+const AxiosInstance = axios.create({
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
-    Referer: 'http://43.201.71.59:30088',
-    Origin: 'http://43.201.71.59:30088',
   },
 });
 
-Instance.interceptors.request.use(
+AxiosInstance.interceptors.request.use(
   async (config) => {
     return config;
   },
@@ -23,13 +16,12 @@ Instance.interceptors.request.use(
   },
 );
 
-Instance.interceptors.response.use(
+AxiosInstance.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
     if (!error.response) {
-      // console.log('err', error.data.message);
       console.log(error);
       window.location.href = '/error';
     }
@@ -38,4 +30,4 @@ Instance.interceptors.response.use(
   },
 );
 
-export default Instance;
+export default AxiosInstance;
