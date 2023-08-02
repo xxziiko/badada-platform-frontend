@@ -28,9 +28,13 @@ Instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log(error);
-    // if (!error.response) window.location.href = '/error';
-    // return Promise.reject(error.response);
+    if (!error.response) {
+      // console.log('err', error.data.message);
+      console.log(error);
+      window.location.href = '/error';
+    }
+
+    return Promise.reject(error.response);
   },
 );
 

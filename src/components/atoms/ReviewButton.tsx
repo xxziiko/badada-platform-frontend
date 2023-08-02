@@ -33,7 +33,7 @@ const Button = styled.button`
 `;
 
 const ButtonIcon = styled.div`
-  width: 45px;
+  width: 55px;
   padding: 5px;
 `;
 
