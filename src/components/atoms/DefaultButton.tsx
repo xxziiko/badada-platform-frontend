@@ -20,7 +20,7 @@ export default function DefaultButton({ text = 'Default Button', onClick, style 
     <Button
       type='button'
       style={style}
-      isClicked={isClicked}
+      $isClicked={isClicked}
       onClick={() => {
         handleOnClick();
       }}
@@ -31,7 +31,7 @@ export default function DefaultButton({ text = 'Default Button', onClick, style 
   );
 }
 
-const Button = styled.button<{ isClicked: boolean }>`
+const Button = styled.button<{ $isClicked: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +39,7 @@ const Button = styled.button<{ isClicked: boolean }>`
   height: 60px;
   border: none;
   border-radius: 8px;
-  background-color: ${({ isClicked, theme }) => (isClicked ? '#56A7E1' : theme.colors.primary)};
+  background-color: ${({ $isClicked, theme }) => ($isClicked ? '#56A7E1' : theme.colors.primary)};
   color: ${({ theme }) => theme.colors.white};
   font-size: 18px;
   font-weight: 600;
