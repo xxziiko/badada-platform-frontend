@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components';
+import { DefaultTheme, keyframes } from 'styled-components';
 
 export const pageStyles = {
   width: '393px',
@@ -35,7 +35,13 @@ export const fontSize = {
 
 export const shadow = {
   default: '0px 2px 4px 0px rgba(0, 0, 0, 0.15)',
+  page: '0px 0px 8px 4px rgba(0, 0, 0, 0.05)',
   input: '0px 0px 4px 0px rgba(0, 0, 0, 0.15',
+};
+
+export const animation = {
+  fadeIn: keyframes`from { opacity: 0 } to { opacity: 1 }`,
+  slideInFromBottom: keyframes`from { transform: translateY(10%) }to { transform: translateY(0) }`,
 };
 
 export type ColorsTypes = typeof colors;
@@ -46,6 +52,7 @@ const theme: DefaultTheme = {
   colors,
   fontSize,
   shadow,
+  animation,
 };
 
 export default theme;

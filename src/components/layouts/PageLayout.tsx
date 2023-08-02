@@ -1,6 +1,6 @@
 import Logo from '@components/atoms/Logo';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface Props {
   children: React.ReactNode;
@@ -32,6 +32,10 @@ const TemplateWrapper = styled.div`
   position: relative;
   width: ${({ theme }) => theme.pageStyles.width};
   min-height: ${({ theme }) => theme.pageStyles.minHeight};
+  box-shadow: ${({ theme }) => theme.shadow.page};
+  animation: ${({ theme }) => css`
+    ${theme.animation.fadeIn} 1s, ${theme.animation.slideInFromBottom} 0.6s
+  `};
 `;
 
 const ChildrenWrapper = styled.div<{ $customStyles: boolean }>`
