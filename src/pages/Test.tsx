@@ -55,7 +55,7 @@ export default function Test() {
   };
 
   useEffect(() => {
-    callGetQnaApi();
+    // callGetQnaApi();
   }, []);
 
   return (

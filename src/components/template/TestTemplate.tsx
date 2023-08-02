@@ -24,7 +24,7 @@ export default function TestTemplate({ step, data, onSelect, onPrevButtonClick }
           </div>
         ))}
       </div>
-      {step !== 1 && (
+      {step !== 0 && (
         <PrevButton
           onClick={() => {
             if (onPrevButtonClick) {

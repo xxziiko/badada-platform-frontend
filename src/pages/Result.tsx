@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import domtoimage from 'dom-to-image';
+
 import ResultCard from '@components/organisms/ResultCard';
 import DefaultButton from '@components/atoms/DefaultButton';
 import Banner from '@components/organisms/Banner';
 import Logo from '@components/atoms/Logo';
-import domtoimage from 'dom-to-image';
 import Toast from '@components/atoms/ Toast';
 import PageLayout from '@components/layouts/PageLayout';
 import TotalSeaModal from '@components/template/TotalSeaModal';
@@ -82,7 +83,7 @@ export default function Result() {
   return (
     <PageLayout includeLogo={false} customStyles={false}>
       <ResultPage $resultSeaImg='/img/resultSeaImg.png'>
-        <div className='result-se-img' />
+        <div className='result-sea-img' />
         <div className='result-card-wrapper' id='page-to-save'>
           <ResultCard
             seaContent={{
@@ -149,9 +150,13 @@ const ResultPage = styled.div<{ $resultSeaImg?: string }>`
   height: ${({ theme }) => theme.pageStyles.height};
   .result-sea-img {
     position: absolute;
+
     width: 100%;
+
     height: 308px;
+    background-color: black;
     // TODO: background image도 api 통해 받아오게 됨
+
     background: ${({ $resultSeaImg }) => ($resultSeaImg ? `url(${$resultSeaImg}), lightgray 50%` : 'lightgray 50%')};
     background-size: cover;
     background-repeat: no-repeat;
