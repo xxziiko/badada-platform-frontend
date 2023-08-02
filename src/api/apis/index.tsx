@@ -1,4 +1,4 @@
-import Instance, { BASE_URL } from '@api/Instance';
+import AxiosInstance from '@api/Instance';
 import { AxiosResponse } from 'axios';
 
 interface RankData {
@@ -7,15 +7,13 @@ interface RankData {
 }
 
 export const postFeedback = (body: any) => {
-  const url = `${BASE_URL}/feedback`;
-  return Instance.post(url, body);
+  return AxiosInstance.post('/feedback/', body);
 };
 
 export const callGetQnaApi = () => {
-  return Instance.get(`/qna/`);
+  return AxiosInstance.get('/qna/');
 };
 
 export const getRank = (): Promise<AxiosResponse<RankData>> => {
-  const url = `${BASE_URL}/rank`;
-  return Instance.get<RankData>(url);
+  return AxiosInstance.get<RankData>('/rank/');
 };
