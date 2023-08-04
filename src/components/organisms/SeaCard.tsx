@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Tag from '@components/atoms/Tag';
+import MedalIcon from '@components/atoms/MedalIcon';
 
 interface Props {
   imgurl?: string;
@@ -15,21 +16,7 @@ export default function SeaCard({ seaName, per, imgurl, onClick }: Props) {
       <ContentBox>
         <div className='layout'>
           <div className='titleLayout'>
-            <Icon $imgurl='/img/numbering-first.png'>
-              <p className='number'>1</p>
-            </Icon>
-
-            {/* <Icon iconUrl='/img/numbering-second.png'>
-              <p className='number'>2</p>
-            </Icon>
-
-            <Icon iconUrl='/img/numbering-third.png'>
-              <p className='number'>3</p>
-            </Icon>
-
-            <Icon iconUrl='/img/numbering-img.png'>
-              <p className='number'>{number}</p>
-            </Icon> */}
+            <MedalIcon index={1} />
 
             <p className='text'>{seaName}</p>
           </div>
@@ -61,25 +48,6 @@ const Image = styled.div<{ $imgurl?: string }>`
   height: 150px;
   background: cover no-repeat center/100% url(${(props) => props.$imgurl});
   border-radius: 8px 8px 0 0;
-`;
-
-const Icon = styled.div<{ $imgurl?: string }>`
-  width: 24px;
-  height: 24px;
-  background: center/100% url(${(props) => props.$imgurl});
-
-  .number {
-    position: relative;
-    top: 5px;
-    left: 9.5px;
-    font-size: 11px;
-    color: ${({ theme }) => theme.colors.white};
-    font-family: Audiowide;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
 `;
 
 const ContentBox = styled.div`
