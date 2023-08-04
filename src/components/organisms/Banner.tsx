@@ -30,13 +30,13 @@ export default function Banner() {
 }
 
 const BannerWrapper = styled.div`
-  width: 393px;
+  width: 100%;
   height: 300px;
   .banner-instagram {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 393px;
+    width: 100%;
     height: 145px;
     background: ${({ theme }) => theme.colors.softAqua};
     .banner-instagram-text {
@@ -59,7 +59,7 @@ const BannerWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    width: 393px;
+    width: 100%;
     height: 155px;
     background:
       url('/img/campaignImg.png'),

@@ -42,6 +42,10 @@ const TemplateWrapper = styled.div<{ $customStyles: boolean }>`
       : css`
           ${theme.animation.fadeIn} 1s
         `};
+
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    width: 100vw;
+  }
 `;
 
 const ChildrenWrapper = styled.div<{ $customStyles: boolean }>`

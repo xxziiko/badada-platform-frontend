@@ -22,6 +22,7 @@ export default function Result() {
   const [openReviewModal, setOpenReviewModal] = useState(false);
   const [isImgCapture, setIsImgCapture] = useState(false);
   const [isLinkCopy, setIsLinkCopy] = useState(false);
+  const [isScrolledHalf, setIsScrolledHalf] = useState(false);
   const navigate = useNavigate();
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -81,6 +82,29 @@ export default function Result() {
     setOpenReviewModal(!openReviewModal);
   };
 
+  const handleScroll = () => {
+    const position = window.scrollY;
+
+    // 화면 전체의 3/1 지점
+    const halfHeight = window.innerHeight / 3;
+
+    // 스크롤이 화면 전체 높이의 절반을 넘어서면 isScrolledHalf 값을 true로 변경합니다.
+    if (position > halfHeight && !isScrolledHalf) {
+      setOpenReviewModal(true);
+      setIsScrolledHalf(true);
+    }
+  };
+
+  useEffect(() => {
+    // 스크롤 이벤트 리스너 등록
+    window.addEventListener('scroll', handleScroll);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 해제
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isScrolledHalf]);
+
   return (
     <PageLayout includeLogo={false} customStyles={false}>
       <ResultPage $resultSeaImg='/img/resultSeaImg.png'>
@@ -106,17 +130,12 @@ export default function Result() {
             handleWorstSea={handleWorstSea}
             handleImgCopy={handleImgCopy}
             handleLinkCopy={handleLinkCopy}
-          />
-        </div>
-        <div className='all-sea-btn'>
-          <DefaultButton
-            text='바다 찾기 다시하기'
-            style={{ backgroundColor: `${colors.white}`, color: `${colors.darkMatter}`, border: '1px solid #E4E4E4' }}
-            onClick={handleReStart}
+            handleMoveToAllSea={handleMoveToAllSea}
+            score={{ total: 100, score: 26, scoreIndex: 1 }}
           />
         </div>
         <div className='re-start-btn'>
-          <DefaultButton text='전체 바다 보러가기' onClick={handleMoveToAllSea} />
+          <DefaultButton text='바다 찾기 다시하기' onClick={handleReStart} />
         </div>
         <div className='banner-wrapper'>
           <Banner />
@@ -153,11 +172,12 @@ const ResultPage = styled.div<{ $resultSeaImg?: string }>`
   align-items: center;
   width: ${({ theme }) => theme.pageStyles.width};
   height: ${({ theme }) => theme.pageStyles.height};
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    width: 100vw;
+  }
   .result-sea-img {
     position: absolute;
-
     width: 100%;
-
     height: 308px;
     background-color: black;
     // TODO: background image도 api 통해 받아오게 됨
@@ -181,6 +201,7 @@ const ResultPage = styled.div<{ $resultSeaImg?: string }>`
     margin: 20px 0 40px 0;
   }
   .banner-wrapper {
+    width: 100%;
     margin-bottom: 80px;
   }
   .logo-wrapper {

@@ -38,7 +38,7 @@ export default function ReviewModal({ onClose }: Props) {
 
   return (
     <Modal onClose={onClose}>
-      <ModalInner>
+      <ModalInner onClick={(e) => e.stopPropagation()}>
         <Title>콘텐츠는 마음에 드셨나요?</Title>
 
         <Buttons>

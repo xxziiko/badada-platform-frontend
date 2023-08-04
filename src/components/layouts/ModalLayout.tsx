@@ -32,6 +32,9 @@ export default function ModalLayout({ children, onClose, headerBackground }: Pro
 }
 
 const Background = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -43,8 +46,6 @@ const Background = styled.div`
 
 const Layout = styled.div`
   position: absolute;
-  top: 5%;
-  left: 28.5%;
   display: flex;
   flex-direction: column;
   align-items: center;

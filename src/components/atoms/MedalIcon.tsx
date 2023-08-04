@@ -34,13 +34,12 @@ const Icon = styled.div<{ $imgurl?: string; $width?: number; $fontSize?: number 
   width: ${(props) => props.$width}px;
   height: ${(props) => props.$width}px;
   background: center/100% url(${(props) => props.$imgurl});
-
   .number {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-bottom: 1px;
+    padding-bottom: 10px;
     padding-right: 1px;
     color: ${({ theme }) => theme.colors.white};
     font-family: Audiowide;
