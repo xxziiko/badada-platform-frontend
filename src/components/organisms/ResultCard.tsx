@@ -9,6 +9,11 @@ type seaObject = {
   seaName?: string;
   seaContent?: string[];
 };
+type scoreObject = {
+  total: number;
+  score: number;
+  scoreIndex: number;
+};
 
 interface Props {
   seaContent?: seaObject;
@@ -19,6 +24,8 @@ interface Props {
   handleWorstSea: Function;
   handleImgCopy: Function;
   handleLinkCopy: Function;
+  handleMoveToAllSea: Function;
+  score: scoreObject;
 }
 
 export default function ResultCard({
@@ -30,6 +37,8 @@ export default function ResultCard({
   handleWorstSea,
   handleImgCopy,
   handleLinkCopy,
+  handleMoveToAllSea,
+  score,
 }: Props) {
   return (
     <ResultCardWrapper>
@@ -70,7 +79,13 @@ export default function ResultCard({
         </div>
       </div>
       <div className='summary-box-wrapper'>
-        <SummaryBox totalPerson={totalPerson} percent={percent} handleWorstSea={handleWorstSea} />
+        <SummaryBox
+          totalPerson={totalPerson}
+          percent={percent}
+          handleWorstSea={handleWorstSea}
+          handleMoveToAllSea={handleMoveToAllSea}
+          score={score}
+        />
       </div>
       <div className='link-box-wrapper'>
         <LinkBox handleImgCopy={handleImgCopy} handleLinkCopy={handleLinkCopy} />

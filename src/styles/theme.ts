@@ -45,6 +45,10 @@ export const animation = {
   bounceUp: keyframes`0% { transform: translateY(0) } 50% { transform: translateY(-20px) } 100% { transform: translateY(0) }`,
 };
 
+export const media = {
+  mobile: '400px',
+};
+
 export type ColorsTypes = typeof colors;
 export type FontSizeTypes = typeof fontSize;
 
@@ -54,6 +58,7 @@ const theme: DefaultTheme = {
   fontSize,
   shadow,
   animation,
+  media,
 };
 
 export default theme;
