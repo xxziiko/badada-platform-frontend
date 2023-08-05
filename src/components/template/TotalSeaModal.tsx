@@ -4,7 +4,7 @@ import SeaCard from '@components/organisms/SeaCard';
 import Modal from '../layouts/ModalLayout';
 import { useNavigate } from 'react-router-dom';
 import { colors } from '@styles/theme';
-import { getRank } from '@api/apis';
+import { callGetRankApi } from '@api/apis';
 
 interface Props {
   onClose: Function;
@@ -27,7 +27,7 @@ export default function TotalSeaModal({ onClose }: Props) {
   };
 
   useEffect(() => {
-    getRank()
+    callGetRankApi()
       .then((response: any) => {
         const { data } = response;
         // console.log('Rank data:', data);
