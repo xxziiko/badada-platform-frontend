@@ -6,7 +6,7 @@ import DefaultButton from '@components/atoms/DefaultButton';
 import ReviewTagBox from '@components/organisms/ReviewTagBox';
 import Modal from '@components/layouts/ModalLayout';
 
-import { postFeedback } from '@api/apis';
+import { callPostFeedbackApi } from '@api/apis';
 
 interface Props {
   onClose: Function;
@@ -77,7 +77,7 @@ export default function ReviewModal({ onClose }: Props) {
 
     // console.log('postBody', postBody);
 
-    postFeedback(postBody).then(
+    callPostFeedbackApi(postBody).then(
       (res) => {
         onClose();
         console.log('res', res.data);

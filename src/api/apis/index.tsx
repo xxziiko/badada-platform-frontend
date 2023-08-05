@@ -13,12 +13,12 @@ export const callGetQnaApi = () => {
 };
 
 // callGetRankApi
-export const getRank = (): Promise<AxiosResponse<Data>> => {
+export const callGetRankApi = (): Promise<AxiosResponse<Data>> => {
   return AxiosInstance.get<Data>('/rank/');
 };
 
 // callPostFeedbackApi
-export const postFeedback = (body: any) => {
+export const callPostFeedbackApi = (body: any) => {
   // console.log('body', body);
   return AxiosInstance.post('/feedback/', body);
 };
