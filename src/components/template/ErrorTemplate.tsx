@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { styled } from 'styled-components';
-import Logo from '@components/atoms/Logo';
-import DefaultButton from '@components/atoms/DefaultButton';
 import { colors } from '@styles/theme';
+
+import { styled } from 'styled-components';
+import DefaultButton from '@components/atoms/DefaultButton';
 
 export default function ErrorTemplate() {
   const navigate = useNavigate();
@@ -33,7 +33,6 @@ export default function ErrorTemplate() {
           </button>
         </ButtonBox>
       </Section>
-      <Logo />
     </LayoutBox>
   );
 }
@@ -43,7 +42,7 @@ const LayoutBox = styled.div`
   flex-direction: column;
   align-items: center;
   padding-bottom: 40px;
-  height: 852px;
+  height: 100%;
   flex: 1 0 0;
 `;
 

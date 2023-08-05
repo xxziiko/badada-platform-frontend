@@ -4,27 +4,32 @@ import styled from 'styled-components';
 import LargeButton from '@components/atoms/LargeButton';
 import PrevButton from '@components/atoms/PrevButton';
 import ProgressBar from '@components/atoms/ProgressBar';
+// import DefaultButton from '@components/atoms/DefaultButton';
 
 interface Props {
-  step: number;
-  data: { id: number; question?: string; answer: { id: number; content: string }[] };
+  index: number;
+  data: { id: number; content?: string; answer: { id: number; content: string }[] };
   onSelect: Function;
   onPrevButtonClick?: Function;
 }
 
-export default function TestTemplate({ step, data, onSelect, onPrevButtonClick }: Props) {
+export default function TestTemplate({ index, data, onSelect, onPrevButtonClick }: Props) {
   return (
     <TestTemplateWrapper>
-      <ProgressBar idx={step} />
-      <QuestionWrapper>{data?.question}</QuestionWrapper>
+      <ProgressBar idx={index + 1} />
+      <QuestionTextWrapper>
+        <QuestionText dangerouslySetInnerHTML={{ __html: data?.content ? (data.content as string) : '' }} />
+      </QuestionTextWrapper>
       <div>
-        {data?.answer?.map((element) => (
-          <div className='selectButton-wrapper' key={element.id}>
-            <LargeButton text={element.content} onClick={() => onSelect()} />
-          </div>
-        ))}
+        {data?.answer &&
+          data.answer.map((element) => (
+            <div className='selectButton-wrapper' key={element.id}>
+              <LargeButton text={element?.content} onClick={() => onSelect(index, element.id)} />
+              {/* <DefaultButton text={element?.content} onClick={() => onSelect()} /> */}
+            </div>
+          ))}
       </div>
-      {step !== 0 && (
+      {index !== 0 && (
         <PrevButton
           onClick={() => {
             if (onPrevButtonClick) {
@@ -45,11 +50,18 @@ const TestTemplateWrapper = styled.div`
   }
 `;
 
-// TODO: text , 있을 시에 <br/> 태그 추가하는 convert 함수?
-const QuestionWrapper = styled.h2`
+const QuestionTextWrapper = styled.div`
   display: flex;
   align-items: center;
+  /* height: 230px; */
   height: 320px;
+`;
+
+const QuestionText = styled.h2`
   font-size: 26px;
   font-weight: 600;
+  line-height: 32px;
+  span {
+    color: ${({ theme }) => theme.colors.secondary};
+  }
 `;

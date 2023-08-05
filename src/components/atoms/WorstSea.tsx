@@ -8,7 +8,11 @@ interface Props {
 
 export default function WorstSea({ worstSea, handleWorstSea }: Props) {
   return (
-    <WorstSeaWrapper>
+    <WorstSeaWrapper
+      onClick={() => {
+        handleWorstSea();
+      }}
+    >
       <span className='WorstSeaTitle'>최악의 바다</span>
       <img
         src={`https://d27aaiwdisjvn.cloudfront.net/${worstSea?.worstSeaMbti}`}
@@ -16,13 +20,7 @@ export default function WorstSea({ worstSea, handleWorstSea }: Props) {
         className='worstSeaImg'
       />
       <span className='worstSeaName'>{worstSea.worstSeaText}</span>
-      <button
-        className='worstSeaBtn'
-        type='button'
-        onClick={() => {
-          handleWorstSea();
-        }}
-      >
+      <button className='worstSeaBtn' type='button'>
         자세히 보기
       </button>
     </WorstSeaWrapper>
@@ -34,6 +32,7 @@ const WorstSeaWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 90px;
+  cursor: pointer;
   .WorstSeaTitle {
     color: ${({ theme }) => theme.colors.darkMatter};
     font-size: 18px;
@@ -64,6 +63,5 @@ const WorstSeaWrapper = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    cursor: pointer;
   }
 `;

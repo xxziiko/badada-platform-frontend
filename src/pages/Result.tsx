@@ -10,7 +10,7 @@ import Toast from '@components/atoms/ Toast';
 import PageLayout from '@components/layouts/PageLayout';
 import TotalSeaModal from '@components/template/TotalSeaModal';
 import ReviewModal from '@components/template/ReviewModal';
-// import { resultStore } from '@shared/store';
+import { resultStore } from '@shared/store';
 
 import { colors } from '@styles/theme';
 import { callGetSeaApi } from '@api/apis';
@@ -43,7 +43,7 @@ export default function Result() {
     bad_beach: ['', ''],
     mbti: '',
   });
-  // const { result } = resultStore();
+  const { result } = resultStore();
   const navigate = useNavigate();
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -70,13 +70,6 @@ export default function Result() {
   const handleImgCopy = () => {
     const element = document.getElementById('page-to-save'); // 캡처할 요소의 ID로 대체하세요.
     if (element) {
-      // 스타일 옵션을 설정하여 margin-top을 0으로 설정합니다.
-      const options = {
-        style: {
-          'margin-top': '0',
-        },
-      };
-
       domtoimage.toPng(element).then((dataUrl) => {
         const link = document.createElement('a');
         link.href = dataUrl;
@@ -143,17 +136,18 @@ export default function Result() {
     };
   }, [isScrolledHalf]);
 
-  // useEffect(() => {
-  //   if (result) {
-  //     setSeaData(result);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (result) {
+      console.log(result);
+      setSeaData((prevSeaData) => ({ ...prevSeaData, ...result }));
+    }
+  }, []);
 
   return (
     <PageLayout includeLogo={false} customStyles={false}>
       <ResultPage $resultSeaImg={`https://d27aaiwdisjvn.cloudfront.net/${seaData?.mbti}`}>
         <div className='result-sea-img' />
-        <div className='result-card-wrapper' id='page-to-save'>
+        <div className='result-card-wrapper'>
           <ResultCard
             seaContent={{
               seaName: seaData?.beach,
