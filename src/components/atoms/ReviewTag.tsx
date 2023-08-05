@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 interface Props {
+  id: number;
   text?: string;
   onClick?: Function;
 }
 
-export default function ReviewTag({ text = '결과가 마음에 들어요', onClick }: Props) {
+export default function ReviewTag({ text = '결과가 마음에 들어요', onClick, id }: Props) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
   const handleOnClick = () => {
     setIsClicked(!isClicked);
-    if (onClick) onClick();
+    if (onClick) onClick(id);
   };
 
   return (

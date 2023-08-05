@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { useReview } from '@shared/store';
 import ReviewButton from '@components/atoms/ReviewButton';
@@ -5,12 +6,24 @@ import DefaultButton from '@components/atoms/DefaultButton';
 import ReviewTagBox from '@components/organisms/ReviewTagBox';
 import Modal from '@components/layouts/ModalLayout';
 
+import { postFeedback } from '@api/apis';
+
 interface Props {
   onClose: Function;
 }
 
+interface Body {
+  feedback: string;
+  choice: (number | string)[];
+}
+
 export default function ReviewModal({ onClose }: Props) {
   const { isBadClicked, isGoodClicked, setIsBadClicked, setIsGoodClicked } = useReview();
+  const [input, setInput] = useState('');
+  const [body, setBody] = useState<Body>({
+    feedback: '',
+    choice: [],
+  });
 
   const badTextList = [
     { id: 0, text: '결과가 마음에 안들어요' },
@@ -28,12 +41,53 @@ export default function ReviewModal({ onClose }: Props) {
     { id: 4, text: '잘 모르겠어요' },
   ];
 
-  const handleOnClickBadButton = () => {
+  const handleClickBadButton = () => {
     setIsBadClicked();
+    setInput('');
+    setBody({
+      feedback: 'bad',
+      choice: [],
+    });
   };
 
-  const handleOnClickGoodButton = () => {
+  const handleClickGoodButton = () => {
     setIsGoodClicked();
+    setInput('');
+    setBody({
+      feedback: 'good',
+      choice: [],
+    });
+  };
+
+  const handleSubmitFeedback = (text: string) => {
+    const postBody = {
+      feedback: body.feedback,
+      choice: [...body.choice, text],
+    };
+
+    postFeedback(postBody);
+  };
+
+  const setArray = (id: number | string) => {
+    const array: (number | string)[] = [...body.choice];
+    const index = array.indexOf(id);
+
+    if (index !== -1) {
+      array.splice(index, 1);
+      return array;
+    }
+    array.push(id);
+
+    return array;
+  };
+
+  const handleClickTag = (id: number | string) => {
+    const choice = setArray(id);
+
+    setBody({
+      ...body,
+      choice,
+    });
   };
 
   return (
@@ -42,17 +96,21 @@ export default function ReviewModal({ onClose }: Props) {
         <Title>콘텐츠는 마음에 드셨나요?</Title>
 
         <Buttons>
-          <ReviewButton text='좋았어요!' icon='good' onClick={handleOnClickGoodButton} />
-          <ReviewButton text='별로예요.' icon='bad' onClick={handleOnClickBadButton} />
+          <ReviewButton text='좋았어요!' icon='good' onClick={handleClickGoodButton} />
+          <ReviewButton text='별로예요.' icon='bad' onClick={handleClickBadButton} />
         </Buttons>
 
-        {isGoodClicked && <ReviewTagBox data={goodTextList} />}
+        {isGoodClicked && <ReviewTagBox data={goodTextList} onClick={handleClickTag} />}
 
-        {isBadClicked && <ReviewTagBox data={badTextList} />}
+        {isBadClicked && <ReviewTagBox data={badTextList} onClick={handleClickTag} />}
 
-        <Input placeholder='추가적인 피드백을 작성해주시면 재미있는 콘텐츠 제작에 많은 도움이 됩니다!' />
+        <Input
+          placeholder='추가적인 피드백을 작성해주시면 재미있는 콘텐츠 제작에 많은 도움이 됩니다!'
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
 
-        <DefaultButton text='평가 보내기' />
+        <DefaultButton text='평가 보내기' onClick={() => handleSubmitFeedback(input)} />
       </ModalInner>
     </Modal>
   );

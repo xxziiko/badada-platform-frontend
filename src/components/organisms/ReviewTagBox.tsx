@@ -8,13 +8,14 @@ type TextData = {
 
 interface Props {
   data: TextData[];
+  onClick: Function;
 }
 
-export default function ReviewTagBox({ data }: Props) {
+export default function ReviewTagBox({ data, onClick }: Props) {
   return (
     <TagBox>
       {data.map((value) => (
-        <ReviewTag text={value.text} key={value.id} />
+        <ReviewTag text={value.text} key={value.id} onClick={onClick} id={value.id} />
       ))}
     </TagBox>
   );

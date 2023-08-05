@@ -59,6 +59,8 @@ const Layout = styled.div`
 
   .content {
     width: 100%;
+    max-height: 650px;
+    overflow: auto;
   }
 `;
 

@@ -15,7 +15,7 @@ export const colors = {
   gray: '#AFAFAF',
   darkgray: '#6C6C6C',
   black: '#000000',
-  lightblue: 'rgba(145, 205, 248, 0.25);',
+  lightblue: '#e3f1fb',
   cornflowerblue: '#4DACF1',
   lavenderpink: '#EFCCFF',
   softAqua: '#ECF7FF',

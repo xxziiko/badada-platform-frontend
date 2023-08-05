@@ -2,31 +2,41 @@ import styled from 'styled-components';
 import Tag from '@components/atoms/Tag';
 import MedalIcon from '@components/atoms/MedalIcon';
 
+type Data = {
+  beach: string;
+  beach_cat: string[];
+  mbti: string;
+  mbti_cnt: number;
+  total_user_cnt: number;
+};
+
 interface Props {
-  imgurl?: string;
-  seaName: string;
   per: number;
   onClick: Function;
+  list: Data;
+  index: number;
 }
 
-export default function SeaCard({ seaName, per, imgurl, onClick }: Props) {
+export default function SeaCard({ list, per, onClick, index }: Props) {
+  const imgUrl = (mbti: string) => {
+    const url = `https://d27aaiwdisjvn.cloudfront.net/${mbti}`;
+    return url;
+  };
+
   return (
-    <Card onClick={() => onClick}>
-      <Image $imgurl={imgurl} />
+    <Card onClick={() => onClick(list.mbti)}>
+      <Image src={imgUrl(list?.mbti)} alt='Sea' />
       <ContentBox>
         <div className='layout'>
           <div className='titleLayout'>
-            <MedalIcon index={1} />
+            <MedalIcon index={index + 1} />
 
-            <p className='text'>{seaName}</p>
+            <p className='text'>{list?.beach}</p>
           </div>
           <p className='persentage'>{per}%</p>
         </div>
 
-        <div>
-          <Tag tagIndex={1} />
-          <Tag tagIndex={2} />
-        </div>
+        <div>{list?.beach_cat.map((value: string) => <Tag tagIndex={1} text={value} />)}</div>
       </ContentBox>
     </Card>
   );
@@ -37,16 +47,16 @@ const Card = styled.div`
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 2px 4px 2px rgba(145, 205, 248, 0.2);
+  z-index: 0;
+  cursor: pointer;
 `;
 
-const Image = styled.div<{ $imgurl?: string }>`
+const Image = styled.img<{ $imgurl?: () => string }>`
   align-self: stretch;
   height: 150px;
-  background: cover no-repeat center/100% url(${(props) => props.$imgurl});
   border-radius: 8px 8px 0 0;
 `;
 
