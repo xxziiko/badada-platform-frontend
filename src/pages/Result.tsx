@@ -70,6 +70,13 @@ export default function Result() {
   const handleImgCopy = () => {
     const element = document.getElementById('page-to-save'); // 캡처할 요소의 ID로 대체하세요.
     if (element) {
+      // 스타일 옵션을 설정하여 margin-top을 0으로 설정합니다.
+      const options = {
+        style: {
+          'margin-top': '0',
+        },
+      };
+
       domtoimage.toPng(element).then((dataUrl) => {
         const link = document.createElement('a');
         link.href = dataUrl;
