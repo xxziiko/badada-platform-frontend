@@ -3,7 +3,7 @@ import { DefaultTheme, keyframes } from 'styled-components';
 export const pageStyles = {
   width: '393px',
   minWidth: '393px',
-  minHeight: '852px',
+  minHeight: '950px',
   padding: '40px 30px',
 };
 
@@ -41,7 +41,7 @@ export const shadow = {
 
 export const animation = {
   fadeIn: keyframes`from { opacity: 0 } to { opacity: 1 }`,
-  slideInFromBottom: keyframes`from { transform: translateY(10%) } to { transform: translateY(0) }`,
+  slideInFromBottom: keyframes`from { transform: translateY(40px) } to { transform: translateY(0) }`,
   bounceUp: keyframes`0% { transform: translateY(0) } 50% { transform: translateY(-20px) } 100% { transform: translateY(0) }`,
 };
 
