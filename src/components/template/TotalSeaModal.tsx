@@ -31,7 +31,7 @@ export default function TotalSeaModal({ onClose }: Props) {
       .then((response: any) => {
         const { data } = response;
         // console.log('Rank data:', data);
-        const copy = data.slice();
+        const copy = data.slice().sort((a: Data, b: Data) => b.mbti_cnt - a.mbti_cnt);
         setCardData(copy);
       })
       .catch((error) => {
@@ -41,55 +41,20 @@ export default function TotalSeaModal({ onClose }: Props) {
 
   return (
     <Modal onClose={onClose} headerBackground={colors.lightblue}>
-      <HeaderBox>
-        <p className='header'>전체 바다 순위</p>
-        <p className='text'>실시간 바다의 순위를 확인해보세요!</p>
-      </HeaderBox>
-
       <CardBox>
-        {cardData?.map((list: Data, idx) => (
-          <SeaCard key={list?.mbti} list={list} per={30} onClick={goToResult} index={idx} />
+        {cardData?.map((list: Data, idx: number) => (
+          <SeaCard key={list?.mbti} list={list} onClick={goToResult} index={idx} />
         ))}
       </CardBox>
     </Modal>
   );
 }
 
-const HeaderBox = styled.div`
-  position: sticky;
-  top: 0;
-  display: flex;
-  padding: 0 30px 40px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  background-color: ${({ theme }) => theme.colors.lightblue};
-  z-index: 999;
-
-  .header {
-    color: #21608d;
-    font-family: Pretendard;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-  }
-
-  .text {
-    color: #91cdf8;
-    font-family: Pretendard;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-  }
-`;
-
 const CardBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 80%;
+  height: 100%;
   padding: 30px;
   gap: 20px;
   align-self: stretch;

@@ -4,7 +4,7 @@ interface Props {
   idx: number;
 }
 
-const StateOfProgressBar = ({ idx }: Props) => {
+const StateOfProgressBar = ({ idx }: { idx: number }) => {
   return <Bar color='secondary' width={`${idx * 7.69}%`} />;
 };
 

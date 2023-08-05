@@ -5,9 +5,10 @@ interface Props {
   text?: string | React.ReactElement;
   onClick?: Function;
   style?: React.CSSProperties;
+  disable?: boolean;
 }
 
-export default function DefaultButton({ text = 'Default Button', onClick, style }: Props) {
+export default function DefaultButton({ text = 'Default Button', onClick, style, disable = false }: Props) {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleOnClick = () => {
@@ -20,6 +21,7 @@ export default function DefaultButton({ text = 'Default Button', onClick, style 
     <Button
       type='button'
       style={style}
+      disabled={disable}
       $isClicked={isClicked}
       onClick={() => {
         handleOnClick();

@@ -11,13 +11,12 @@ type Data = {
 };
 
 interface Props {
-  per: number;
   onClick: Function;
   list: Data;
   index: number;
 }
 
-export default function SeaCard({ list, per, onClick, index }: Props) {
+export default function SeaCard({ list, onClick, index }: Props) {
   const imgUrl = (mbti: string) => {
     const url = `https://d27aaiwdisjvn.cloudfront.net/${mbti}`;
     return url;
@@ -28,15 +27,17 @@ export default function SeaCard({ list, per, onClick, index }: Props) {
       <Image src={imgUrl(list?.mbti)} alt='Sea' />
       <ContentBox>
         <div className='layout'>
-          <div className='titleLayout'>
-            <MedalIcon index={index + 1} />
+          <div className='title-layout'>
+            <MedalIcon index={index + 1} fontSize={10} width={24} paddingBottom={2} />
 
             <p className='text'>{list?.beach}</p>
           </div>
-          <p className='persentage'>{per}%</p>
+          <p className='persentage'>{((list.mbti_cnt / list.total_user_cnt) * 100).toFixed(1)}%</p>
         </div>
 
-        <div>{list?.beach_cat.map((value: string) => <Tag tagIndex={1} text={value} />)}</div>
+        <div>
+          {list?.beach_cat.map((value: string, idx: number) => <Tag key={value} tagIndex={idx} text={value} />)}
+        </div>
       </ContentBox>
     </Card>
   );
@@ -44,9 +45,10 @@ export default function SeaCard({ list, per, onClick, index }: Props) {
 
 const Card = styled.div`
   display: flex;
-  width: 100%;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
+  height: 100%;
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 2px 4px 2px rgba(145, 205, 248, 0.2);
@@ -75,7 +77,7 @@ const ContentBox = styled.div`
     align-self: stretch;
   }
 
-  .titleLayout {
+  .title-layout {
     display: flex;
     align-items: center;
     gap: 8px;

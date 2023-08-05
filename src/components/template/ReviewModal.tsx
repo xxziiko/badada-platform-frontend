@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useReview } from '@shared/store';
 import ReviewButton from '@components/atoms/ReviewButton';
@@ -20,9 +20,10 @@ interface Body {
 export default function ReviewModal({ onClose }: Props) {
   const { isBadClicked, isGoodClicked, setIsBadClicked, setIsGoodClicked } = useReview();
   const [input, setInput] = useState('');
+  const [isDisable, setIsDisable] = useState(true);
   const [body, setBody] = useState<Body>({
     feedback: '',
-    choice: [],
+    choice: [0, 0, 0, 0, 0],
   });
 
   const badTextList = [
@@ -44,9 +45,18 @@ export default function ReviewModal({ onClose }: Props) {
   const handleClickBadButton = () => {
     setIsBadClicked();
     setInput('');
+
+    if (body.feedback === 'bad') {
+      setBody({
+        feedback: '',
+        choice: [0, 0, 0, 0, 0],
+      });
+      return;
+    }
+
     setBody({
       feedback: 'bad',
-      choice: [],
+      choice: [0, 0, 0, 0, 0],
     });
   };
 
@@ -55,7 +65,7 @@ export default function ReviewModal({ onClose }: Props) {
     setInput('');
     setBody({
       feedback: 'good',
-      choice: [],
+      choice: [0, 0, 0, 0, 0],
     });
   };
 
@@ -65,18 +75,27 @@ export default function ReviewModal({ onClose }: Props) {
       choice: [...body.choice, text],
     };
 
-    postFeedback(postBody);
+    // console.log('postBody', postBody);
+
+    postFeedback(postBody).then(
+      (res) => {
+        onClose();
+        console.log('res', res.data);
+      },
+      (err) => {
+        // console.log(err.data.message)
+      },
+    );
   };
 
   const setArray = (id: number | string) => {
     const array: (number | string)[] = [...body.choice];
-    const index = array.indexOf(id);
 
-    if (index !== -1) {
-      array.splice(index, 1);
-      return array;
+    if (array[Number(id)] === 0) {
+      array.splice(Number(id), 1, 1);
+    } else {
+      array.splice(Number(id), 1, 0);
     }
-    array.push(id);
 
     return array;
   };
@@ -89,6 +108,12 @@ export default function ReviewModal({ onClose }: Props) {
       choice,
     });
   };
+
+  useEffect(() => {
+    // TODO: post 예외처리...
+    const index = body.choice.includes(1);
+    if (index || body.feedback !== '' || input !== '') setIsDisable(false);
+  }, [body, input]);
 
   return (
     <Modal onClose={onClose}>
@@ -110,7 +135,7 @@ export default function ReviewModal({ onClose }: Props) {
           onChange={(e) => setInput(e.target.value)}
         />
 
-        <DefaultButton text='평가 보내기' onClick={() => handleSubmitFeedback(input)} />
+        <DefaultButton text='평가 보내기' onClick={() => handleSubmitFeedback(input)} disable={isDisable} />
       </ModalInner>
     </Modal>
   );
@@ -121,7 +146,7 @@ const ModalInner = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0 20px 40px;
-  max-width: 333px;
+  width: 333px;
   gap: 30px;
   align-self: stretch;
 `;
