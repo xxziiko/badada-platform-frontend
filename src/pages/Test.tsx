@@ -1,73 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { resultStore } from '@shared/store';
 import PageLayout from '@components/layouts/PageLayout';
 import TestTemplate from '@components/template/TestTemplate';
-import { callGetQnaApi } from '@api/apis';
 
-const data = [
-  {
-    id: 1,
-    question: '올해 여름 휴가로 바다를 가고 싶은 당신, 누구와 가고 싶나요?',
-    answer: [
-      { id: 1, content: '단 둘이 간다' },
-      { id: 2, content: '여럿이 가야 재밌지, 친구들과 함께 간다.' },
-    ],
-  },
-  {
-    id: 2,
-    question: '2번 질문',
-    answer: [
-      { id: 3, content: '2번 답안 - 1' },
-      { id: 4, content: '2번 답안 - 2' },
-    ],
-  },
-  {
-    id: 3,
-    question: '3번 질문',
-    answer: [
-      { id: 5, content: '3번 답안 - 1' },
-      { id: 6, content: '3번 답안 - 2' },
-    ],
-  },
-  {
-    id: 4,
-    question: '4번 질문',
-    answer: [
-      { id: 7, content: '4번 답안 - 1' },
-      { id: 8, content: '4번 답안 - 2' },
-    ],
-  },
-];
+import { getQna, sendResult } from '@api/services';
 
 export default function Test() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const { setResult } = resultStore();
+  const [qnaList, setQnaList] = useState([]);
+  const [answers, setAnswer] = useState<number[]>([]);
+  const [step, setStep] = useState(0);
 
   const navigate = useNavigate();
+  const pageNumber = 12;
 
-  const handleOnSelect = () => {
-    if (currentStep === data.length - 1) {
-      setTimeout(() => {
-        navigate('/process');
-      }, 200);
+  const navigateToProcess = () => {
+    setTimeout(() => {
+      navigate('/process');
+    }, 200);
+  };
+
+  const updateAnswers = (index: number, elementId: number) => {
+    if (step === pageNumber) return null;
+
+    const updatedAnswers: number[] = [...answers];
+    updatedAnswers[index] = elementId;
+    return setAnswer(updatedAnswers);
+  };
+
+  const handleOnSelect = (index: number, elementId: number) => {
+    if (step === qnaList.length - 1) {
+      navigateToProcess();
     }
-    return setCurrentStep(currentStep + 1);
+    updateAnswers(index, elementId);
+    return setStep(step + 1);
+  };
+
+  const getQnaList = () => {
+    return getQna().then((data) => setQnaList(data));
+  };
+
+  const sendAnswers = () => {
+    return sendResult(answers);
   };
 
   useEffect(() => {
-    // callGetQnaApi();
+    const isLastPage = step === pageNumber;
+    if (isLastPage) sendAnswers().then((response) => setResult(response.data));
+  }, [step]);
+
+  useEffect(() => {
+    getQnaList();
   }, []);
 
   return (
     <PageLayout includeLogo>
       <TestTemplate
-        step={currentStep}
-        data={currentStep === data.length ? data[currentStep - 1] : data[currentStep]}
-        onSelect={() => {
-          handleOnSelect();
+        index={step}
+        // 마지막 데이터 + 1을 해서 프로그레스바가 넘어가는 모션을 보여줄 시간 벌기, 그 동안은 마지막 데이터 보여주기
+        data={step === qnaList.length ? qnaList[step - 1] : qnaList[step]}
+        onSelect={(index: number, elementId: number) => {
+          handleOnSelect(index, elementId);
         }}
         onPrevButtonClick={() => {
-          setCurrentStep(currentStep - 1);
+          setStep(step - 1);
         }}
       />
     </PageLayout>
