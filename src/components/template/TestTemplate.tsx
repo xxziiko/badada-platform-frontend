@@ -20,6 +20,7 @@ export default function TestTemplate({ index, data, onSelect, onPrevButtonClick 
       <QuestionTextWrapper>
         <QuestionText dangerouslySetInnerHTML={{ __html: data?.content ? (data.content as string) : '' }} />
       </QuestionTextWrapper>
+
       <div>
         {data?.answer &&
           data.answer.map((element) => (

@@ -28,7 +28,7 @@ export default function ErrorTemplate() {
             style={{ backgroundColor: `${colors.error}` }}
           />
 
-          <button type='button' className='textButton'>
+          <button type='button' className='text-button'>
             제보하기
           </button>
         </ButtonBox>
@@ -104,7 +104,7 @@ const ButtonBox = styled.div`
   gap: 40px;
   align-self: stretch;
 
-  .textButton {
+  .text-button {
     color: #353535;
     font-family: Pretendard;
     font-size: 16px;

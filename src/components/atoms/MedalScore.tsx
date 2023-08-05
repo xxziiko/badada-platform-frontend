@@ -21,7 +21,7 @@ export default function MedalScore({ score, handleMoveToAllSea }: Props) {
     >
       <span className='score-sea-title'>내 바다 순위</span>
       <div className='medal-icon-img'>
-        <MedalIcon index={score.scoreIndex} width={90} fontSize={32} />
+        <MedalIcon index={score.scoreIndex} />
       </div>
       <span className='score-sea-name'>
         {score.total}명 중 {score.score}명

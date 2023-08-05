@@ -55,4 +55,8 @@ const Round = styled.div`
   gap: 10px;
   border-radius: 100px;
   background: #ececec;
+
+  &:active {
+    opacity: 0.5;
+  }
 `;

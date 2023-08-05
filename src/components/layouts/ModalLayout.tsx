@@ -18,15 +18,24 @@ export default function ModalLayout({ children, onClose, headerBackground }: Pro
 
   return (
     <Background onClick={() => onClose()}>
-      <Layout>
-        <ButtonBox $headerBackground={headerBackground}>
-          <button type='button' onClick={() => onClose()} className='button'>
-            <CloseIcon />
-          </button>
-        </ButtonBox>
+      <Wrapper>
+        <Layout>
+          <ButtonBox $headerBackground={headerBackground}>
+            <button type='button' onClick={() => onClose()} className='button'>
+              <CloseIcon />
+            </button>
+          </ButtonBox>
 
-        <div className='content'>{children}</div>
-      </Layout>
+          {headerBackground && (
+            <HeaderBox>
+              <p className='header'>전체 바다 순위</p>
+              <p className='text'>실시간 바다의 순위를 확인해보세요!</p>
+            </HeaderBox>
+          )}
+
+          <div className='content'>{children}</div>
+        </Layout>
+      </Wrapper>
     </Background>
   );
 }
@@ -44,13 +53,16 @@ const Background = styled.div`
   z-index: 999;
 `;
 
+const Wrapper = styled.div`
+  max-width: 752px;
+  padding: 0 5vw;
+`;
+
 const Layout = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 333px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 2px 4px 2px rgba(145, 205, 248, 0.25);
@@ -60,7 +72,7 @@ const Layout = styled.div`
 
   .content {
     width: 100%;
-    max-height: 650px;
+    max-height: 75vh;
     overflow: auto;
   }
 `;
@@ -79,5 +91,36 @@ const ButtonBox = styled.div<{ $headerBackground?: string }>`
     border: none;
     background-color: transparent;
     box-shadow: none;
+  }
+`;
+
+const HeaderBox = styled.div`
+  position: sticky;
+  top: 0;
+  display: flex;
+  padding: 0 30px 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 4px;
+  background-color: ${({ theme }) => theme.colors.lightblue};
+  z-index: 999;
+
+  .header {
+    color: #21608d;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .text {
+    color: #91cdf8;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
 `;

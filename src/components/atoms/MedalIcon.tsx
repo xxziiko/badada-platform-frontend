@@ -4,9 +4,10 @@ interface Props {
   index: number;
   width?: number;
   fontSize?: number;
+  paddingBottom?: number;
 }
 
-export default function MedalIcon({ index, width = 24, fontSize = 10 }: Props) {
+export default function MedalIcon({ index, width = 90, fontSize = 32, paddingBottom = 10 }: Props) {
   const ImgUrl = (number: number) => {
     switch (number) {
       case 1:
@@ -22,24 +23,25 @@ export default function MedalIcon({ index, width = 24, fontSize = 10 }: Props) {
 
   return (
     <div>
-      <Icon $imgurl={ImgUrl(index)} $width={width} $fontSize={fontSize}>
+      <Icon $imgurl={ImgUrl(index)} $width={width} $fontSize={fontSize} $paddingBottom={paddingBottom}>
         <p className='number'>{index}</p>
       </Icon>
     </div>
   );
 }
 
-const Icon = styled.div<{ $imgurl?: string; $width?: number; $fontSize?: number }>`
+const Icon = styled.div<{ $imgurl?: string; $width?: number; $fontSize?: number; $paddingBottom?: number }>`
   display: flex;
   width: ${(props) => props.$width}px;
   height: ${(props) => props.$width}px;
   background: center/100% url(${(props) => props.$imgurl});
+
   .number {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-bottom: 10px;
+    padding-bottom: ${(props) => props.$paddingBottom}px;
     padding-right: 1px;
     color: ${({ theme }) => theme.colors.white};
     font-family: Audiowide;
