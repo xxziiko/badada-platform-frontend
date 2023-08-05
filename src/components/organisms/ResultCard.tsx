@@ -19,26 +19,24 @@ interface Props {
   seaContent?: seaObject;
   recommendationReason?: string[];
   tagText?: string[];
-  totalPerson?: number;
-  percent?: number;
   handleWorstSea: Function;
   handleImgCopy: Function;
   handleLinkCopy: Function;
   handleMoveToAllSea: Function;
   score: scoreObject;
+  worstSea: { worstSeaText: string; worstSeaMbti: string };
 }
 
 export default function ResultCard({
   seaContent,
   recommendationReason,
   tagText,
-  totalPerson,
-  percent,
   handleWorstSea,
   handleImgCopy,
   handleLinkCopy,
   handleMoveToAllSea,
   score,
+  worstSea,
 }: Props) {
   return (
     <ResultCardWrapper>
@@ -80,11 +78,10 @@ export default function ResultCard({
       </div>
       <div className='summary-box-wrapper'>
         <SummaryBox
-          totalPerson={totalPerson}
-          percent={percent}
           handleWorstSea={handleWorstSea}
           handleMoveToAllSea={handleMoveToAllSea}
           score={score}
+          worstSea={worstSea}
         />
       </div>
       <div className='link-box-wrapper'>

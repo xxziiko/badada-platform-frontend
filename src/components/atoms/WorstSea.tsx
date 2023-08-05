@@ -2,16 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  text?: string;
+  worstSea: { worstSeaText: string; worstSeaMbti: string };
   handleWorstSea: Function;
 }
 
-export default function WorstSea({ text = '서포리 해변', handleWorstSea }: Props) {
+export default function WorstSea({ worstSea, handleWorstSea }: Props) {
   return (
     <WorstSeaWrapper>
       <span className='WorstSeaTitle'>최악의 바다</span>
-      <img src='/img/worstSea.png' alt='worstSeaImg' className='worstSeaImg' />
-      <span className='worstSeaName'>{text}</span>
+      <img
+        src={`https://d27aaiwdisjvn.cloudfront.net/${worstSea?.worstSeaMbti}`}
+        alt='worstSeaImg'
+        className='worstSeaImg'
+      />
+      <span className='worstSeaName'>{worstSea.worstSeaText}</span>
       <button
         className='worstSeaBtn'
         type='button'

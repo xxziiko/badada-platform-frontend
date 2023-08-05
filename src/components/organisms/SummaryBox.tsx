@@ -11,24 +11,17 @@ type scoreObject = {
 };
 
 interface Props {
-  totalPerson?: number;
-  percent?: number;
   handleWorstSea: Function;
   handleMoveToAllSea: Function;
   score: scoreObject;
+  worstSea: { worstSeaText: string; worstSeaMbti: string };
 }
 
-export default function SummaryBox({
-  totalPerson = 100,
-  percent = 63,
-  handleWorstSea,
-  handleMoveToAllSea,
-  score,
-}: Props) {
+export default function SummaryBox({ handleWorstSea, handleMoveToAllSea, score, worstSea }: Props) {
   return (
     <SummaryBoxWrapper>
       <MedalScore score={score} handleMoveToAllSea={handleMoveToAllSea} />
-      <WorstSea handleWorstSea={handleWorstSea} />
+      <WorstSea handleWorstSea={handleWorstSea} worstSea={worstSea} />
     </SummaryBoxWrapper>
   );
 }
