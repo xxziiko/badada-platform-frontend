@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import DefaultButton from '@components/atoms/DefaultButton';
-import ImageBackground from '@components/template/ImageBackground';
+import VideoBackground from '@components/template/VideoBackground';
 import PageLayout from '@components/layouts/PageLayout';
 
 export default function Main() {
@@ -11,7 +11,7 @@ export default function Main() {
 
   return (
     <PageLayout customStyles={false}>
-      <ImageBackground>
+      <VideoBackground>
         <MainPage>
           <MainText>
             <p>
@@ -26,7 +26,7 @@ export default function Main() {
             바다를 알려드릴게요
           </MainSubText>
         </MainPage>
-      </ImageBackground>
+      </VideoBackground>
     </PageLayout>
   );
 }

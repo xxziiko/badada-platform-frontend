@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import ImageBackground from '@components/template/ImageBackground';
+import VideoBackground from '@components/template/VideoBackground';
 import DefaultTemplate from '@components/layouts/PageLayout';
 
 export default function Process() {
@@ -18,7 +18,7 @@ export default function Process() {
 
   return (
     <DefaultTemplate customStyles={false}>
-      <ImageBackground>
+      <VideoBackground>
         <ProcessPage>
           <h1>
             결과 <br />
@@ -37,7 +37,7 @@ export default function Process() {
             찾고 있어요
           </p>
         </ProcessPage>
-      </ImageBackground>
+      </VideoBackground>
     </DefaultTemplate>
   );
 }
