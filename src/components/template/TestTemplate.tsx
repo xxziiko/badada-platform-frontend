@@ -17,7 +17,7 @@ interface Props {
 export default function TestTemplate({ index, data, onSelect, onPrevButtonClick }: Props) {
   return (
     <TestTemplateWrapper>
-      <ProgressBar idx={index + 1} />
+      <ProgressBar questionNumber={data?.id} idx={index + 1} />
       <QuestionTextWrapper>
         <QuestionText dangerouslySetInnerHTML={{ __html: data?.content ? (data.content as string) : '' }} />
       </QuestionTextWrapper>

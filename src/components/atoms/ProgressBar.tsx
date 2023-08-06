@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 interface Props {
+  questionNumber: any;
   idx: number;
 }
 
@@ -8,11 +9,11 @@ const StateOfProgressBar = ({ idx }: { idx: number }) => {
   return <Bar color='secondary' width={`${idx * 7.69}%`} />;
 };
 
-export default function ProgressBar({ idx }: Props) {
+export default function ProgressBar({ questionNumber, idx }: Props) {
   return (
     <Box>
       <TitleBox>
-        <Text>Q{idx}</Text>
+        <Text>Q{questionNumber}</Text>
       </TitleBox>
 
       <Bar width='100%'>
