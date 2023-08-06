@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import domtoimage from 'dom-to-image';
 import ResultCard from '@components/organisms/ResultCard';
@@ -10,7 +10,6 @@ import Toast from '@components/atoms/ Toast';
 import PageLayout from '@components/layouts/PageLayout';
 import TotalSeaModal from '@components/template/TotalSeaModal';
 import ReviewModal from '@components/template/ReviewModal';
-import { resultStore } from '@shared/store';
 
 import { colors } from '@styles/theme';
 import { callGetSeaApi } from '@api/apis';
@@ -26,6 +25,7 @@ type seaData = {
   user_cnt: { mbit_cnt: number; total_user_cnt: number };
   bad_beach: string[];
   mbti: string;
+  rank: number;
 };
 
 export default function Result() {
@@ -42,21 +42,19 @@ export default function Result() {
     user_cnt: { mbit_cnt: 0, total_user_cnt: 0 },
     bad_beach: ['', ''],
     mbti: '',
+    rank: 0,
   });
-  const { result } = resultStore();
+  const { mbti } = useParams();
   const navigate = useNavigate();
 
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const handleWorstSea = () => {
-    callGetSeaApi(seaData?.bad_beach[1])
-      .then((response: any) => {
-        const { data } = response;
-        setSeaData(data);
-      })
-      .catch((error: any) => {
-        console.error('An error occurred:', error);
-      });
+  const handleWorstSea = (worstSeaMbti: string) => {
+    navigate(`/result/${worstSeaMbti}`);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   const handleMoveToAllSea = () => {
@@ -137,11 +135,17 @@ export default function Result() {
   }, [isScrolledHalf]);
 
   useEffect(() => {
-    if (result) {
-      console.log(result);
-      setSeaData((prevSeaData) => ({ ...prevSeaData, ...result }));
+    if (mbti) {
+      callGetSeaApi(mbti)
+        .then((response: any) => {
+          const { data } = response;
+          setSeaData(data);
+        })
+        .catch((error: any) => {
+          navigate('/error');
+        });
     }
-  }, []);
+  }, [mbti]);
 
   return (
     <PageLayout includeLogo={false} customStyles={false}>
@@ -159,8 +163,13 @@ export default function Result() {
             handleImgCopy={handleImgCopy}
             handleLinkCopy={handleLinkCopy}
             handleMoveToAllSea={handleMoveToAllSea}
-            score={{ total: seaData?.user_cnt?.total_user_cnt, score: seaData?.user_cnt?.mbit_cnt, scoreIndex: 1 }}
+            score={{
+              total: seaData?.user_cnt?.total_user_cnt,
+              score: seaData?.user_cnt?.mbit_cnt,
+              scoreIndex: seaData?.rank,
+            }}
             worstSea={{ worstSeaText: seaData?.bad_beach[0], worstSeaMbti: seaData?.bad_beach[1] }}
+            mbti={seaData?.mbti}
           />
         </div>
         <div className='re-start-btn'>
@@ -218,6 +227,7 @@ const ResultPage = styled.div<{ $resultSeaImg?: string }>`
   .result-card-wrapper {
     margin-top: 160px;
     z-index: 10;
+    padding: 0 30px;
   }
   .all-sea-btn {
     width: 100%;
@@ -227,7 +237,7 @@ const ResultPage = styled.div<{ $resultSeaImg?: string }>`
   .re-start-btn {
     width: 100%;
     padding: 0 30px;
-    margin: 20px 0 40px 0;
+    margin: 40px 0 40px 0;
   }
   .banner-wrapper {
     width: 100%;

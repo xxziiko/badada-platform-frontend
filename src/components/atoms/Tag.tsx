@@ -11,7 +11,7 @@ export default function Tag({ text = '조용한', tagIndex = 1 }: Props) {
 }
 
 const TagWrapper = styled.span<{ $tagIndex: number }>`
-  margin-right: 8px;
+  margin: 10px 8px 0 0;
   padding: 4px 10px;
   border-radius: 4px;
   background: ${({ theme, $tagIndex }) =>

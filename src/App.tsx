@@ -11,12 +11,15 @@ import Test from '@pages/Test';
 import Result from '@pages/Result';
 import Process from '@pages/Process';
 import Error from '@pages/Error';
+import { analytics } from '@shared/analytics';
 
 const ErrorFallBack = () => {
   return <Error />;
 };
 
 function App() {
+  analytics.init();
+  analytics.track('New Event');
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
@@ -25,7 +28,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Main />} />
             <Route path='/test' element={<Test />} />
-            <Route path='/result' element={<Result />} />
+            <Route path='/result/:mbti' element={<Result />} />
             <Route path='/process' element={<Process />} />
             <Route path='/error' element={<Error />} />
           </Routes>

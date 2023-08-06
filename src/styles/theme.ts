@@ -43,7 +43,7 @@ export const animation = {
 };
 
 export const media = {
-  mobile: '400px',
+  mobile: '480px',
 };
 
 export type ColorsTypes = typeof colors;

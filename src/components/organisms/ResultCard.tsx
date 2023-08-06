@@ -25,6 +25,7 @@ interface Props {
   handleMoveToAllSea: Function;
   score: scoreObject;
   worstSea: { worstSeaText: string; worstSeaMbti: string };
+  mbti: string;
 }
 
 export default function ResultCard({
@@ -37,6 +38,7 @@ export default function ResultCard({
   handleMoveToAllSea,
   score,
   worstSea,
+  mbti,
 }: Props) {
   return (
     <ResultCardWrapper>
@@ -77,17 +79,17 @@ export default function ResultCard({
             })}
           </div>
         </div>
-      </div>
-      <div className='summary-box-wrapper'>
-        <SummaryBox
-          handleWorstSea={handleWorstSea}
-          handleMoveToAllSea={handleMoveToAllSea}
-          score={score}
-          worstSea={worstSea}
-        />
+        <div className='summary-box-wrapper'>
+          <SummaryBox
+            handleWorstSea={handleWorstSea}
+            handleMoveToAllSea={handleMoveToAllSea}
+            score={score}
+            worstSea={worstSea}
+          />
+        </div>
       </div>
       <div className='link-box-wrapper'>
-        <LinkBox handleImgCopy={handleImgCopy} handleLinkCopy={handleLinkCopy} />
+        <LinkBox handleImgCopy={handleImgCopy} handleLinkCopy={handleLinkCopy} mbti={mbti} />
       </div>
     </ResultCardWrapper>
   );
@@ -102,6 +104,7 @@ const ResultCardWrapper = styled.div`
   box-shadow: 0px 2px 4px 2px rgba(145, 205, 248, 0.2);
   .copy-img {
     background: ${({ theme }) => theme.colors.white};
+    border-radius: 8px;
   }
   .sea-content-wrapper {
     display: flex;
@@ -127,22 +130,23 @@ const ResultCardWrapper = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 10px;
+      flex-wrap: wrap;
     }
     .sea-content-list-wrapper {
       margin-top: 20px;
       .sea-content-list-item {
         display: flex;
         justify-content: space-between;
-        width: 293px;
         margin-bottom: 10px;
+        .blue-circle-wrapper {
+          margin-right: 6px;
+        }
         .sea-content-item-wrapper {
-          width: 281px;
           color: ${({ theme }) => theme.colors.darkgray};
-          font-size: 14px;
+          font-size: 16px;
           font-style: normal;
           font-weight: 400;
-          line-height: 20px; /* 142.857% */
+          line-height: 24px; /* 150% */
         }
       }
     }
@@ -165,17 +169,16 @@ const ResultCardWrapper = styled.div`
       .sea-content-list-item {
         display: flex;
         justify-content: space-between;
-        width: 293px;
         margin-bottom: 10px;
-        .blueCircleWrapper {
+        .blue-circle-wrapper {
+          margin-right: 6px;
         }
         .sea-content-item-wrapper {
-          width: 281px;
           color: ${({ theme }) => theme.colors.darkgray};
-          font-size: 14px;
+          font-size: 16px;
           font-style: normal;
           font-weight: 400;
-          line-height: 20px; /* 142.857% */
+          line-height: 24px; /* 150% */
         }
       }
     }
