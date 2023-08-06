@@ -6,9 +6,10 @@ interface Props {
   children: ReactNode;
   onClose: Function;
   headerBackground?: string;
+  ref: React.RefObject<HTMLDivElement>;
 }
 
-export default function ModalLayout({ children, onClose, headerBackground }: Props) {
+export default function ModalLayout({ children, onClose, headerBackground, ref }: Props) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -19,7 +20,7 @@ export default function ModalLayout({ children, onClose, headerBackground }: Pro
   return (
     <Background onClick={() => onClose()}>
       <Wrapper>
-        <Layout>
+        <div className='modal-inner' ref={ref}>
           <ButtonBox $headerBackground={headerBackground}>
             <button type='button' onClick={() => onClose()} className='button'>
               <CloseIcon />
@@ -34,7 +35,7 @@ export default function ModalLayout({ children, onClose, headerBackground }: Pro
           )}
 
           <div className='content'>{children}</div>
-        </Layout>
+        </div>
       </Wrapper>
     </Background>
   );
@@ -56,19 +57,19 @@ const Background = styled.div`
 const Wrapper = styled.div`
   max-width: 752px;
   padding: 0 5vw;
-`;
 
-const Layout = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: 0px 2px 4px 2px rgba(145, 205, 248, 0.25);
-  animation: ${({ theme }) => css`
-    ${theme.animation.fadeIn} 1s, ${theme.animation.slideInFromBottom} 0.6s
-  `};
+  .modal-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.colors.white};
+    box-shadow: 0px 2px 4px 2px rgba(145, 205, 248, 0.25);
+    animation: ${({ theme }) => css`
+      ${theme.animation.fadeIn} 1s, ${theme.animation.slideInFromBottom} 0.6s
+    `};
+  }
 
   .content {
     width: 100%;
@@ -76,6 +77,8 @@ const Layout = styled.div`
     overflow: auto;
   }
 `;
+
+const Layout = styled.div<{ ref: HTMLDivElement }>``;
 
 const ButtonBox = styled.div<{ $headerBackground?: string }>`
   display: flex;

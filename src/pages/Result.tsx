@@ -68,7 +68,7 @@ export default function Result() {
   const handleImgCopy = () => {
     const element = document.getElementById('page-to-save'); // 캡처할 요소의 ID로 대체하세요.
     if (element) {
-      domtoimage.toPng(element).then((dataUrl) => {
+      domtoimage.toPng(element, { cacheBust: true }).then((dataUrl) => {
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = 'result-sea.png'; // 원하는 파일명으로 대체하세요.
@@ -123,6 +123,21 @@ export default function Result() {
       setIsScrolledHalf(true);
     }
   };
+
+  const handleClickOutside = (event: any) => {
+    if (modalRef && modalRef.current && !modalRef.current.contains(event.target)) {
+      setOpenTotalSeaModal(false);
+      setOpenReviewModal(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     // 스크롤 이벤트 리스너 등록
@@ -192,12 +207,8 @@ export default function Result() {
           </div>
         )}
       </ResultPage>
-      {openTotalSeaModal && (
-        <div ref={modalRef}>
-          <TotalSeaModal onClose={handleMoveToAllSea} />
-        </div>
-      )}
-      {openReviewModal && <ReviewModal onClose={handleReviewModal} />}
+      {openTotalSeaModal && <TotalSeaModal onClose={handleMoveToAllSea} ref={modalRef} />}
+      {openReviewModal && <ReviewModal onClose={handleReviewModal} ref={modalRef} />}
     </PageLayout>
   );
 }
