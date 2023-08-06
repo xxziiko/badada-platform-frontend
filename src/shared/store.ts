@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { Result } from './interface';
 
 interface ReviewState {
   isBadClicked: boolean;
@@ -8,8 +9,8 @@ interface ReviewState {
 }
 
 interface ResultState {
-  result: object;
-  setResult: (result: object) => void;
+  result: Result | null;
+  setResult: (result: Result) => void;
 }
 
 export const useReview = create<ReviewState>((set) => ({
@@ -20,8 +21,8 @@ export const useReview = create<ReviewState>((set) => ({
 }));
 
 export const resultStore = create<ResultState>((set) => ({
-  result: {},
-  setResult: (result: object) => {
+  result: null,
+  setResult: (result: Result) => {
     set((state) => ({ ...state, result: { ...result } }));
   },
 }));
