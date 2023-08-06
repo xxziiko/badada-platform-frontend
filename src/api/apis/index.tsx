@@ -17,6 +17,9 @@ export const callGetRankApi = (): Promise<AxiosResponse<Data>> => {
   return AxiosInstance.get<Data>('/rank/');
 };
 
+export const callGetSeaApi = (mbti: string) => {
+  return AxiosInstance.get(`/mbti/${mbti}/`);
+};
 // callPostFeedbackApi
 export const callPostFeedbackApi = (body: any) => {
   // console.log('body', body);

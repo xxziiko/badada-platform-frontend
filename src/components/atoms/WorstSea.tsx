@@ -2,23 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  text?: string;
+  worstSea: { worstSeaText: string; worstSeaMbti: string };
   handleWorstSea: Function;
 }
 
-export default function WorstSea({ text = '서포리 해변', handleWorstSea }: Props) {
+export default function WorstSea({ worstSea, handleWorstSea }: Props) {
   return (
-    <WorstSeaWrapper>
+    <WorstSeaWrapper
+      onClick={() => {
+        handleWorstSea();
+      }}
+    >
       <span className='WorstSeaTitle'>최악의 바다</span>
-      <img src='/img/worstSea.png' alt='worstSeaImg' className='worstSeaImg' />
-      <span className='worstSeaName'>{text}</span>
-      <button
-        className='worstSeaBtn'
-        type='button'
-        onClick={() => {
-          handleWorstSea();
-        }}
-      >
+      <img
+        src={`https://d27aaiwdisjvn.cloudfront.net/${worstSea?.worstSeaMbti}`}
+        alt='worstSeaImg'
+        className='worstSeaImg'
+      />
+      <span className='worstSeaName'>{worstSea.worstSeaText}</span>
+      <button className='worstSeaBtn' type='button'>
         자세히 보기
       </button>
     </WorstSeaWrapper>
@@ -30,6 +32,7 @@ const WorstSeaWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 90px;
+  cursor: pointer;
   .WorstSeaTitle {
     color: ${({ theme }) => theme.colors.darkMatter};
     font-size: 18px;
@@ -60,6 +63,5 @@ const WorstSeaWrapper = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    cursor: pointer;
   }
 `;

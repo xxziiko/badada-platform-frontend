@@ -19,72 +19,71 @@ interface Props {
   seaContent?: seaObject;
   recommendationReason?: string[];
   tagText?: string[];
-  totalPerson?: number;
-  percent?: number;
   handleWorstSea: Function;
   handleImgCopy: Function;
   handleLinkCopy: Function;
   handleMoveToAllSea: Function;
   score: scoreObject;
+  worstSea: { worstSeaText: string; worstSeaMbti: string };
 }
 
 export default function ResultCard({
   seaContent,
   recommendationReason,
   tagText,
-  totalPerson,
-  percent,
   handleWorstSea,
   handleImgCopy,
   handleLinkCopy,
   handleMoveToAllSea,
   score,
+  worstSea,
 }: Props) {
   return (
     <ResultCardWrapper>
-      <div className='sea-content-wrapper'>
-        <span className='your-sea'>당신의 바다는</span>
-        <span className='sea-name'>{seaContent?.seaName}</span>
-        <div className='tag-wrapper'>
-          {tagText?.map((tagData, tagIndex) => {
-            return <Tag text={tagData} tagIndex={tagIndex} />;
-          })}
-        </div>
-        <div className='sea-content-list-wrapper'>
-          {seaContent?.seaContent?.map((seaContentData, seaContentIndex) => {
-            return (
-              <div className='sea-content-list-item'>
-                <div className='blue-circle-wrapper'>
-                  <BlueCircle />
+      <div className='copy-img' id='page-to-save'>
+        <div className='sea-content-wrapper'>
+          <span className='your-sea'>당신의 바다는</span>
+          <span className='sea-name'>{seaContent?.seaName}</span>
+          <div className='tag-wrapper'>
+            {tagText?.map((tagData, tagIndex) => {
+              return <Tag text={tagData} tagIndex={tagIndex} key={tagIndex} />;
+            })}
+          </div>
+          <div className='sea-content-list-wrapper'>
+            {seaContent?.seaContent?.map((seaContentData, seaContentIndex) => {
+              return (
+                <div className='sea-content-list-item' key={seaContentIndex}>
+                  <div className='blue-circle-wrapper'>
+                    <BlueCircle />
+                  </div>
+                  <div className='sea-content-item-wrapper'>{seaContentData}</div>
                 </div>
-                <div className='sea-content-item-wrapper'>{seaContentData}</div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
-      <div className='recommend-wrapper'>
-        <span className='recommend-title'>당신에게 추천하는 이유</span>
-        <div className='recommend-list-wrapper'>
-          {recommendationReason?.map((recommendData, recommendIndex) => {
-            return (
-              <div className='sea-content-list-item'>
-                <div className='blue-circle-wrapper'>
-                  <BlueCircle />
+        <div className='recommend-wrapper'>
+          <span className='recommend-title'>당신에게 추천하는 이유</span>
+          <div className='recommend-list-wrapper'>
+            {recommendationReason?.map((recommendData, recommendIndex) => {
+              return (
+                <div className='sea-content-list-item' key={recommendIndex}>
+                  <div className='blue-circle-wrapper'>
+                    <BlueCircle />
+                  </div>
+                  <div className='sea-content-item-wrapper'>{recommendData}</div>
                 </div>
-                <div className='sea-content-item-wrapper'>{recommendData}</div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className='summary-box-wrapper'>
         <SummaryBox
-          totalPerson={totalPerson}
-          percent={percent}
           handleWorstSea={handleWorstSea}
           handleMoveToAllSea={handleMoveToAllSea}
           score={score}
+          worstSea={worstSea}
         />
       </div>
       <div className='link-box-wrapper'>
@@ -97,10 +96,13 @@ export default function ResultCard({
 const ResultCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 333px;
+  width: 100%;
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 2px 4px 2px rgba(145, 205, 248, 0.2);
+  .copy-img {
+    background: ${({ theme }) => theme.colors.white};
+  }
   .sea-content-wrapper {
     display: flex;
     flex-direction: column;
