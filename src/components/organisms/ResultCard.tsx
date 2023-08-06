@@ -25,6 +25,7 @@ interface Props {
   handleMoveToAllSea: Function;
   score: scoreObject;
   worstSea: { worstSeaText: string; worstSeaMbti: string };
+  mbti: string;
 }
 
 export default function ResultCard({
@@ -37,6 +38,7 @@ export default function ResultCard({
   handleMoveToAllSea,
   score,
   worstSea,
+  mbti,
 }: Props) {
   return (
     <ResultCardWrapper>
@@ -77,17 +79,17 @@ export default function ResultCard({
             })}
           </div>
         </div>
-      </div>
-      <div className='summary-box-wrapper'>
-        <SummaryBox
-          handleWorstSea={handleWorstSea}
-          handleMoveToAllSea={handleMoveToAllSea}
-          score={score}
-          worstSea={worstSea}
-        />
+        <div className='summary-box-wrapper'>
+          <SummaryBox
+            handleWorstSea={handleWorstSea}
+            handleMoveToAllSea={handleMoveToAllSea}
+            score={score}
+            worstSea={worstSea}
+          />
+        </div>
       </div>
       <div className='link-box-wrapper'>
-        <LinkBox handleImgCopy={handleImgCopy} handleLinkCopy={handleLinkCopy} />
+        <LinkBox handleImgCopy={handleImgCopy} handleLinkCopy={handleLinkCopy} mbti={mbti} />
       </div>
     </ResultCardWrapper>
   );

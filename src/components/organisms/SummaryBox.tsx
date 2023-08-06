@@ -21,7 +21,12 @@ export default function SummaryBox({ handleWorstSea, handleMoveToAllSea, score, 
   return (
     <SummaryBoxWrapper>
       <MedalScore score={score} handleMoveToAllSea={handleMoveToAllSea} />
-      <WorstSea handleWorstSea={handleWorstSea} worstSea={worstSea} />
+      <WorstSea
+        handleWorstSea={() => {
+          handleWorstSea(worstSea.worstSeaMbti);
+        }}
+        worstSea={worstSea}
+      />
     </SummaryBoxWrapper>
   );
 }
