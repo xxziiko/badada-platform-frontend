@@ -56,7 +56,7 @@ export default function Test() {
   }, []);
 
   return (
-    <PageLayout includeLogo>
+    <PageLayout includeLogo={false}>
       <TestTemplate
         index={step}
         // 마지막 데이터 + 1을 해서 프로그레스바가 넘어가는 모션을 보여줄 시간 벌기, 그 동안은 마지막 데이터 보여주기

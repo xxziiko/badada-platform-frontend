@@ -30,7 +30,8 @@ const TemplateContainer = styled.section`
 
 const TemplateWrapper = styled.div<{ $customStyles: boolean }>`
   position: relative;
-  width: ${({ theme }) => theme.pageStyles.width};
+  width: 100vw;
+  max-width: ${({ theme }) => theme.pageStyles.maxWidth};
   min-height: ${({ theme }) => theme.pageStyles.minHeight};
   box-shadow: ${({ theme }) => theme.shadow.page};
   //TODO: result page 스크롤 버그 때문에 result page 에서는 slide 적용 안됨

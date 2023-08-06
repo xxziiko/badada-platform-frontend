@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import LargeButton from '@components/atoms/LargeButton';
 import PrevButton from '@components/atoms/PrevButton';
 import ProgressBar from '@components/atoms/ProgressBar';
+import Logo from '@components/atoms/Logo';
 // import DefaultButton from '@components/atoms/DefaultButton';
 
 interface Props {
@@ -39,6 +40,9 @@ export default function TestTemplate({ index, data, onSelect, onPrevButtonClick 
           }}
         />
       )}
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
     </TestTemplateWrapper>
   );
 }
@@ -64,4 +68,9 @@ const QuestionText = styled.h2`
   span {
     color: ${({ theme }) => theme.colors.secondary};
   }
+`;
+
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `;
