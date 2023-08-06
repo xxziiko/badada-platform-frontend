@@ -21,6 +21,7 @@ export default function Banner() {
         </span>
       </div>
       <div className='banner-campaign'>
+        <span className='banner-text'>지구와 우리를 위협하는 쓰레기, 이대로 괜찮을까요?</span>
         <button className='banner-campaign-btn' type='button' onClick={handleMoveToCampaign}>
           캠페인 참여하기
         </button>
@@ -57,17 +58,29 @@ const BannerWrapper = styled.div`
   }
   .banner-campaign {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: flex-end;
     width: 100%;
-    height: 155px;
+    height: 145px;
     background:
-      url('/img/campaignImg.png'),
-      lightgray 50% / cover no-repeat;
+      url('/img/campaignImg.jpeg'),
+      lightgray 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    .banner-text {
+      color: ${({ theme }) => theme.colors.white};
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+      text-align: center;
+    }
     .banner-campaign-btn {
       width: 141px;
       height: 39px;
-      margin-bottom: 20px;
+      margin: 10px 0 20px 0;
       border-radius: 50px;
       border: 1px solid ${({ theme }) => theme.colors.white};
       color: ${({ theme }) => theme.colors.white};

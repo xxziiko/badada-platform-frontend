@@ -35,4 +35,7 @@ const SummaryBoxWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 240px;
+  @media (max-width: 360px) {
+    width: 100%;
+  }
 `;

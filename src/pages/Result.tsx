@@ -231,6 +231,7 @@ const ResultPage = styled.div<{ $resultSeaImg?: string }>`
   .result-card-wrapper {
     margin-top: 160px;
     z-index: 10;
+    padding: 0 30px;
   }
   .all-sea-btn {
     width: 100%;
