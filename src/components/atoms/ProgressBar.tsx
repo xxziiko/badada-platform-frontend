@@ -15,7 +15,7 @@ export default function ProgressBar({ idx }: Props) {
         <Text>Q{idx}</Text>
       </TitleBox>
 
-      <Bar width='333px'>
+      <Bar width='100%'>
         <StateOfProgressBar idx={idx} />
       </Bar>
     </Box>
