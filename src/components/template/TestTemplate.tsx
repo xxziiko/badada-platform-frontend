@@ -54,14 +54,13 @@ const TestTemplateWrapper = styled.div`
 const QuestionTextWrapper = styled.div`
   display: flex;
   align-items: center;
-  /* height: 230px; */
-  height: 320px;
+  height: 180px;
 `;
 
 const QuestionText = styled.h2`
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 600;
-  line-height: 32px;
+  line-height: 34px;
   span {
     color: ${({ theme }) => theme.colors.secondary};
   }

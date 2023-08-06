@@ -3,7 +3,7 @@ import { DefaultTheme, keyframes } from 'styled-components';
 export const pageStyles = {
   width: '393px',
   minWidth: '393px',
-  minHeight: '950px',
+  minHeight: '664px',
   padding: '40px 30px',
 };
 
