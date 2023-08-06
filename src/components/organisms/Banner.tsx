@@ -70,6 +70,7 @@ const BannerWrapper = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     .banner-text {
+      margin: 0 4px;
       color: ${({ theme }) => theme.colors.white};
       font-size: 14px;
       font-style: normal;
@@ -80,7 +81,7 @@ const BannerWrapper = styled.div`
     .banner-campaign-btn {
       width: 141px;
       height: 39px;
-      margin: 10px 0 20px 0;
+      margin: 10px 0 0 0;
       border-radius: 50px;
       border: 1px solid ${({ theme }) => theme.colors.white};
       color: ${({ theme }) => theme.colors.white};

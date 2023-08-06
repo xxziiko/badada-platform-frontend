@@ -10,7 +10,6 @@ import Toast from '@components/atoms/ Toast';
 import PageLayout from '@components/layouts/PageLayout';
 import TotalSeaModal from '@components/template/TotalSeaModal';
 import ReviewModal from '@components/template/ReviewModal';
-import { resultStore } from '@shared/store';
 
 import { colors } from '@styles/theme';
 import { callGetSeaApi } from '@api/apis';
@@ -45,7 +44,6 @@ export default function Result() {
     mbti: '',
     rank: 0,
   });
-  const { result } = resultStore();
   const { mbti } = useParams();
   const navigate = useNavigate();
 
@@ -148,8 +146,6 @@ export default function Result() {
         });
     }
   }, [mbti]);
-
-  console.log(seaData);
 
   return (
     <PageLayout includeLogo={false} customStyles={false}>
