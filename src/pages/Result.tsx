@@ -68,7 +68,7 @@ export default function Result() {
   const handleImgCopy = () => {
     const element = document.getElementById('page-to-save'); // 캡처할 요소의 ID로 대체하세요.
     if (element) {
-      domtoimage.toPng(element).then((dataUrl) => {
+      domtoimage.toPng(element, { cacheBust: true }).then((dataUrl) => {
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = 'result-sea.png'; // 원하는 파일명으로 대체하세요.
