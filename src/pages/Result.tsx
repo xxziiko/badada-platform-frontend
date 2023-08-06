@@ -124,6 +124,21 @@ export default function Result() {
     }
   };
 
+  const handleClickOutside = (event: any) => {
+    if (modalRef && modalRef.current && !modalRef.current.contains(event.target)) {
+      setOpenTotalSeaModal(false);
+      setOpenReviewModal(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     // 스크롤 이벤트 리스너 등록
     window.addEventListener('scroll', handleScroll);
@@ -192,12 +207,8 @@ export default function Result() {
           </div>
         )}
       </ResultPage>
-      {openTotalSeaModal && (
-        <div ref={modalRef}>
-          <TotalSeaModal onClose={handleMoveToAllSea} />
-        </div>
-      )}
-      {openReviewModal && <ReviewModal onClose={handleReviewModal} />}
+      {openTotalSeaModal && <TotalSeaModal onClose={handleMoveToAllSea} ref={modalRef} />}
+      {openReviewModal && <ReviewModal onClose={handleReviewModal} ref={modalRef} />}
     </PageLayout>
   );
 }

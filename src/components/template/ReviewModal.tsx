@@ -6,22 +6,19 @@ import DefaultButton from '@components/atoms/DefaultButton';
 import ReviewTagBox from '@components/organisms/ReviewTagBox';
 import Modal from '@components/layouts/ModalLayout';
 
-import { callPostFeedbackApi } from '@api/apis';
+import { sendPostFeedback } from '@api/services';
+import { FeedbackBody } from '@shared/interface';
 
 interface Props {
   onClose: Function;
+  ref: React.RefObject<HTMLDivElement>;
 }
 
-interface Body {
-  feedback: string;
-  choice: (number | string)[];
-}
-
-export default function ReviewModal({ onClose }: Props) {
+export default function ReviewModal({ onClose, ref }: Props) {
   const { isBadClicked, isGoodClicked, setIsBadClicked, setIsGoodClicked } = useReview();
   const [input, setInput] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-  const [body, setBody] = useState<Body>({
+  const [body, setBody] = useState<FeedbackBody>({
     feedback: '',
     choice: [0, 0, 0, 0, 0],
   });
@@ -76,16 +73,9 @@ export default function ReviewModal({ onClose }: Props) {
     };
 
     // console.log('postBody', postBody);
-
-    callPostFeedbackApi(postBody).then(
-      (res) => {
-        onClose();
-        console.log('res', res.data);
-      },
-      (err) => {
-        // console.log(err.data.message)
-      },
-    );
+    sendPostFeedback(postBody).then((res) => {
+      if (res) onClose();
+    });
   };
 
   const setArray = (id: number | string) => {
@@ -116,7 +106,7 @@ export default function ReviewModal({ onClose }: Props) {
   }, [body, input]);
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} ref={ref}>
       <ModalInner onClick={(e) => e.stopPropagation()}>
         <Title>콘텐츠는 마음에 드셨나요?</Title>
 
@@ -146,7 +136,8 @@ const ModalInner = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0 20px 40px;
-  width: 333px;
+  max-width: 333px;
+  width: 85vw;
   gap: 30px;
   align-self: stretch;
 `;
