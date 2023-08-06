@@ -28,7 +28,11 @@ export default function ErrorTemplate() {
             style={{ backgroundColor: `${colors.error}` }}
           />
 
-          <button type='button' className='text-button'>
+          <button
+            type='button'
+            className='text-button'
+            onClick={() => window.open('https://open.kakao.com/o/sYlYAfyf')}
+          >
             제보하기
           </button>
         </ButtonBox>
