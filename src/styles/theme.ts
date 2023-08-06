@@ -2,8 +2,8 @@ import { DefaultTheme, keyframes } from 'styled-components';
 
 export const pageStyles = {
   width: '393px',
-  minWidth: '393px',
-  minHeight: '950px',
+  maxWidth: '752px',
+  minHeight: '664px',
   padding: '40px 30px',
 };
 
@@ -28,9 +28,6 @@ export const colors = {
 
 export const fontSize = {
   h1: '60px',
-  title: 20,
-  subTitle: 16,
-  text: 14,
 };
 
 export const shadow = {

@@ -52,7 +52,7 @@ const LayoutBox = styled.div`
 
 const ErrorBanner = styled.div`
   display: flex;
-  width: 393px;
+  width: 100%;
   padding: 40px 30px;
   flex-direction: column;
   align-items: flex-start;
@@ -82,10 +82,10 @@ const ErrorBanner = styled.div`
 
 const Section = styled.section`
   display: flex;
-  padding-top: 100px;
+  padding: 100px 30px 0px 30px;
   flex-direction: column;
   align-items: center;
-  width: 332px;
+  width: 100%;
   gap: 100px;
   flex: 1 0 0;
 

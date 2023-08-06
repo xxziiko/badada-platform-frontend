@@ -1,24 +1,27 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import ImageBackground from '@components/template/ImageBackground';
+import { resultStore } from '@shared/store';
+
+import VideoBackground from '@components/template/VideoBackground';
 import DefaultTemplate from '@components/layouts/PageLayout';
 
 export default function Process() {
+  const { result } = resultStore();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (navigate) {
+    if (navigate && result) {
       setTimeout(() => {
-        navigate('/result');
+        navigate(`/result/${result.mbti}`);
       }, 1800);
     }
-  }, [navigate]);
+  }, [navigate, result]);
 
   return (
     <DefaultTemplate customStyles={false}>
-      <ImageBackground>
+      <VideoBackground>
         <ProcessPage>
           <h1>
             결과 <br />
@@ -37,7 +40,7 @@ export default function Process() {
             찾고 있어요
           </p>
         </ProcessPage>
-      </ImageBackground>
+      </VideoBackground>
     </DefaultTemplate>
   );
 }

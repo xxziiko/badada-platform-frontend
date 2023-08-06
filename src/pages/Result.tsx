@@ -219,7 +219,7 @@ const ResultPage = styled.div<{ $resultSeaImg?: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: ${({ theme }) => theme.pageStyles.width};
+  width: 100%;
   height: ${({ theme }) => theme.pageStyles.height};
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     width: 100vw;

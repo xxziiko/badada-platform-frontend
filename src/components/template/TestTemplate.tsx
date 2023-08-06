@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import LargeButton from '@components/atoms/LargeButton';
 import PrevButton from '@components/atoms/PrevButton';
 import ProgressBar from '@components/atoms/ProgressBar';
+import Logo from '@components/atoms/Logo';
 // import DefaultButton from '@components/atoms/DefaultButton';
 
 interface Props {
@@ -16,7 +17,7 @@ interface Props {
 export default function TestTemplate({ index, data, onSelect, onPrevButtonClick }: Props) {
   return (
     <TestTemplateWrapper>
-      <ProgressBar idx={index + 1} />
+      <ProgressBar questionNumber={data?.id} idx={index + 1} />
       <QuestionTextWrapper>
         <QuestionText dangerouslySetInnerHTML={{ __html: data?.content ? (data.content as string) : '' }} />
       </QuestionTextWrapper>
@@ -39,6 +40,9 @@ export default function TestTemplate({ index, data, onSelect, onPrevButtonClick 
           }}
         />
       )}
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
     </TestTemplateWrapper>
   );
 }
@@ -54,15 +58,19 @@ const TestTemplateWrapper = styled.div`
 const QuestionTextWrapper = styled.div`
   display: flex;
   align-items: center;
-  /* height: 230px; */
-  height: 320px;
+  height: 180px;
 `;
 
 const QuestionText = styled.h2`
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 600;
-  line-height: 32px;
+  line-height: 34px;
   span {
     color: ${({ theme }) => theme.colors.secondary};
   }
+`;
+
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `;
