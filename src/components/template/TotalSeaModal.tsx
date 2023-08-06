@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, forwardRef } from 'react';
 import styled from 'styled-components';
 import SeaCard from '@components/organisms/SeaCard';
 import Modal from '../layouts/ModalLayout';
@@ -10,10 +10,9 @@ import { Rank } from '@shared/interface';
 
 interface Props {
   onClose: Function;
-  ref: React.RefObject<HTMLDivElement>;
 }
 
-export default function TotalSeaModal({ onClose, ref }: Props) {
+const TotalSeaModal = forwardRef<HTMLDivElement, Props>(({ onClose }, ref) => {
   const navigate = useNavigate();
   const [cardData, setCardData] = useState([]);
 
@@ -39,7 +38,7 @@ export default function TotalSeaModal({ onClose, ref }: Props) {
       </CardBox>
     </Modal>
   );
-}
+});
 
 const CardBox = styled.div`
   display: flex;
@@ -50,3 +49,5 @@ const CardBox = styled.div`
   gap: 20px;
   align-self: stretch;
 `;
+
+export default TotalSeaModal;

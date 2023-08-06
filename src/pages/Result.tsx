@@ -129,6 +129,9 @@ export default function Result() {
       setOpenTotalSeaModal(false);
       setOpenReviewModal(false);
     }
+
+    // setOpenTotalSeaModal(true);
+    // setOpenReviewModal(true);
   };
 
   useEffect(() => {
