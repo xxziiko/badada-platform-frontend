@@ -19,16 +19,16 @@ export default function LinkBox({ handleImgCopy, handleLinkCopy, mbti }: Props) 
         description: '#바다여행 #바다추천 #성향테스트',
         imageUrl: `https://d27aaiwdisjvn.cloudfront.net/${mbti}`,
         link: {
-          mobileWebUrl: 'http://localhost:3000',
-          webUrl: 'http://localhost:3000',
+          mobileWebUrl: `https://gibal.net/result/${mbti}`,
+          webUrl: `https://gibal.net/result/${mbti}`,
         },
       },
       buttons: [
         {
           title: '바다 테스트 하러가기',
           link: {
-            mobileWebUrl: 'http://localhost:3000',
-            webUrl: 'http://localhost:3000',
+            mobileWebUrl: `https://gibal.net/`,
+            webUrl: `https://gibal.net/`,
           },
         },
       ],
