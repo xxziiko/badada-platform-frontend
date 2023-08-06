@@ -28,9 +28,6 @@ export const colors = {
 
 export const fontSize = {
   h1: '60px',
-  title: 20,
-  subTitle: 16,
-  text: 14,
 };
 
 export const shadow = {
