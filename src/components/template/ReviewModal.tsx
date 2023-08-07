@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useReview } from '@shared/store';
 import ReviewButton from '@components/atoms/ReviewButton';
@@ -11,10 +11,9 @@ import { FeedbackBody } from '@shared/interface';
 
 interface Props {
   onClose: Function;
-  ref: React.RefObject<HTMLDivElement>;
 }
 
-export default function ReviewModal({ onClose, ref }: Props) {
+const ReviewModal = forwardRef<HTMLDivElement, Props>(({ onClose }, ref) => {
   const { isBadClicked, isGoodClicked, setIsBadClicked, setIsGoodClicked } = useReview();
   const [input, setInput] = useState('');
   const [isDisable, setIsDisable] = useState(true);
@@ -129,7 +128,7 @@ export default function ReviewModal({ onClose, ref }: Props) {
       </ModalInner>
     </Modal>
   );
-}
+});
 
 const ModalInner = styled.div`
   display: flex;
@@ -173,3 +172,5 @@ const Input = styled.textarea`
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadow.input};
 `;
+
+export default ReviewModal;

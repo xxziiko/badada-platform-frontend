@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, forwardRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { ReactComponent as CloseIcon } from '@assets/CloseIcon.svg';
 
@@ -6,10 +6,9 @@ interface Props {
   children: ReactNode;
   onClose: Function;
   headerBackground?: string;
-  ref: React.RefObject<HTMLDivElement>;
 }
 
-export default function ModalLayout({ children, onClose, headerBackground, ref }: Props) {
+const ModalLayout = forwardRef<HTMLDivElement, Props>(({ children, onClose, headerBackground }, ref) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -18,7 +17,7 @@ export default function ModalLayout({ children, onClose, headerBackground, ref }
   }, []);
 
   return (
-    <Background onClick={() => onClose()}>
+    <Background>
       <Wrapper>
         <div className='modal-inner' ref={ref}>
           <ButtonBox $headerBackground={headerBackground}>
@@ -39,7 +38,7 @@ export default function ModalLayout({ children, onClose, headerBackground, ref }
       </Wrapper>
     </Background>
   );
-}
+});
 
 const Background = styled.div`
   display: flex;
@@ -77,8 +76,6 @@ const Wrapper = styled.div`
     overflow: auto;
   }
 `;
-
-const Layout = styled.div<{ ref: HTMLDivElement }>``;
 
 const ButtonBox = styled.div<{ $headerBackground?: string }>`
   display: flex;
@@ -127,3 +124,5 @@ const HeaderBox = styled.div`
     line-height: normal;
   }
 `;
+
+export default ModalLayout;
