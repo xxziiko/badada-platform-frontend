@@ -1,7 +1,7 @@
-import { useEffect, useState, forwardRef } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import SeaCard from '@components/organisms/SeaCard';
-import Modal from '../layouts/ModalLayout';
+import Modal from '@components/layouts/ModalLayout';
 import { useNavigate } from 'react-router-dom';
 import { colors } from '@styles/theme';
 
@@ -12,13 +12,14 @@ interface Props {
   onClose: Function;
 }
 
-const TotalSeaModal = forwardRef<HTMLDivElement, Props>(({ onClose }, ref) => {
+export default function TotalSeaModal({ onClose }: Props) {
   const navigate = useNavigate();
   const [cardData, setCardData] = useState([]);
 
-  const goToResult = (mbti: string) => {
-    navigate(`/result/${mbti}`);
+  const goToResult = (beachEng: string) => {
+    navigate(`/result/${beachEng}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    onClose();
   };
 
   useEffect(() => {
@@ -30,15 +31,15 @@ const TotalSeaModal = forwardRef<HTMLDivElement, Props>(({ onClose }, ref) => {
   }, []);
 
   return (
-    <Modal onClose={onClose} headerBackground={colors.lightblue} ref={ref}>
+    <Modal onClose={onClose} headerBackground={colors.lightblue}>
       <CardBox>
         {cardData?.map((list: Rank, idx: number) => (
-          <SeaCard key={list?.mbti} list={list} onClick={goToResult} index={idx} />
+          <SeaCard key={list?.beach_eng} list={list} onClick={goToResult} index={idx} />
         ))}
       </CardBox>
     </Modal>
   );
-});
+}
 
 const CardBox = styled.div`
   display: flex;
@@ -49,5 +50,3 @@ const CardBox = styled.div`
   gap: 20px;
   align-self: stretch;
 `;
-
-export default TotalSeaModal;
