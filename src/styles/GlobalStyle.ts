@@ -28,6 +28,10 @@ const GlobalStyle = createGlobalStyle`
     button {
         cursor: pointer;
     }
+    span, p {
+        word-wrap: break-word;
+        word-break: keep-all;
+    }
 `;
 
 export default GlobalStyle;

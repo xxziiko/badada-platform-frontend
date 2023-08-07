@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import { resultStore } from '@shared/store';
 
 import VideoBackground from '@components/template/VideoBackground';
-import DefaultTemplate from '@components/layouts/PageLayout';
+import PageLayout from '@components/layouts/PageLayout';
 
 export default function Process() {
   const { result } = resultStore();
@@ -20,7 +20,7 @@ export default function Process() {
   }, [navigate, result]);
 
   return (
-    <DefaultTemplate customStyles={false}>
+    <PageLayout includeLogo={false}>
       <VideoBackground>
         <ProcessPage>
           <h1>
@@ -41,7 +41,7 @@ export default function Process() {
           </p>
         </ProcessPage>
       </VideoBackground>
-    </DefaultTemplate>
+    </PageLayout>
   );
 }
 

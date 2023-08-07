@@ -50,5 +50,4 @@ const Button = styled.button<{ $isClicked: boolean }>`
 
 const ButtonContent = styled.span`
   width: 100%;
-  word-wrap: break-word;
 `;
