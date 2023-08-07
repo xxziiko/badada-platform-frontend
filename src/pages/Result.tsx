@@ -173,12 +173,12 @@ export default function Result() {
               score: seaData?.user_cnt?.mbti_cnt,
               scoreIndex: seaData?.rank,
             }}
-            worstSea={{ worstSeaText: seaData?.bad_beach[0], worstSeaMbti: seaData?.bad_beach[1] }}
+            worstSea={{ worstSeaText: seaData?.bad_beach[0], worstSeaEng: seaData?.bad_beach[1] }}
             mbti={seaData?.mbti}
             beachEng={seaData?.beach_eng}
           />
         </div>
-        <div className='re-start -btn'>
+        <div className='re-start-btn'>
           <DefaultButton text='바다 찾기 다시하기' onClick={handleReStart} />
         </div>
         <div className='banner-wrapper'>
