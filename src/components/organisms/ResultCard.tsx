@@ -24,7 +24,7 @@ interface Props {
   handleLinkCopy: Function;
   handleMoveToAllSea: Function;
   score: scoreObject;
-  worstSea: { worstSeaText: string; worstSeaMbti: string };
+  worstSea: { worstSeaText: string; worstSeaEng: string };
   mbti: string;
   beachEng: string;
 }
@@ -87,7 +87,6 @@ export default function ResultCard({
             handleMoveToAllSea={handleMoveToAllSea}
             score={score}
             worstSea={worstSea}
-            beachEng={beachEng}
           />
         </div>
       </div>
