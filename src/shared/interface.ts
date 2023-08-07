@@ -13,6 +13,7 @@ export interface FeedbackBody {
 
 export type Result = {
   beach: string;
+  beach_eng: string;
   location: string;
   mbti: string;
   beach_attr: Array<string>;
