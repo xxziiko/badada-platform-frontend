@@ -163,7 +163,7 @@ export default function Result() {
   }, [mbti]);
 
   return (
-    <PageLayout includeLogo={false} customStyles={false}>
+    <PageLayout includeLogo={false}>
       <ResultPage $resultSeaImg={`https://d27aaiwdisjvn.cloudfront.net/${seaData?.mbti}`}>
         <div className='result-sea-img' />
         <div className='result-card-wrapper'>

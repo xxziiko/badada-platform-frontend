@@ -10,7 +10,7 @@ export default function Main() {
   const navigate = useNavigate();
 
   return (
-    <PageLayout customStyles={false}>
+    <PageLayout includeLogo={false}>
       <VideoBackground>
         <MainPage>
           <MainText>
