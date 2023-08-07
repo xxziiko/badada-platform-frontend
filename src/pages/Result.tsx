@@ -53,10 +53,6 @@ export default function Result() {
 
   const handleWorstSea = (worstSeaMbti: string) => {
     navigate(`/result/${worstSeaMbti}`);
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
   };
 
   const handleMoveToAllSea = () => {
@@ -146,11 +142,12 @@ export default function Result() {
         .catch((error: any) => {
           navigate('/error');
         });
+      window.scrollTo(0, 0);
     }
   }, [beachEng]);
 
   return (
-    <PageLayout includeLogo={false}>
+    <PageLayout includeLogo={false} key={seaData.beach}>
       <ResultPage $resultSeaImg={`https://d27aaiwdisjvn.cloudfront.net/${seaData?.beach_eng}`}>
         <div className='result-sea-img' />
         <div className='result-card-wrapper'>
