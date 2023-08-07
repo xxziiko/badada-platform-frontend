@@ -17,8 +17,10 @@ import { callGetSeaApi } from '@api/apis';
 // FIXME: key error 확인
 // TODO: DefaultTemplate, Defaultbutton 적용 관련 확인 부탁함다
 
+// TODO: type 빼놓기
 type seaData = {
   beach: string;
+  beach_eng: string;
   beach_attr: [];
   beach_rec: [];
   beach_cat: [];
@@ -36,15 +38,17 @@ export default function Result() {
   const [isScrolledHalf, setIsScrolledHalf] = useState(false);
   const [seaData, setSeaData] = useState<seaData>({
     beach: '',
+    beach_eng: '',
     beach_attr: [],
     beach_rec: [],
     beach_cat: [],
     user_cnt: { mbit_cnt: 0, total_user_cnt: 0 },
+
     bad_beach: ['', ''],
     mbti: '',
     rank: 0,
   });
-  const { mbti } = useParams();
+  const { beachEng } = useParams();
   const navigate = useNavigate();
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -153,8 +157,8 @@ export default function Result() {
   }, [isScrolledHalf]);
 
   useEffect(() => {
-    if (mbti) {
-      callGetSeaApi(mbti)
+    if (beachEng) {
+      callGetSeaApi(beachEng)
         .then((response: any) => {
           const { data } = response;
           setSeaData(data);
@@ -163,11 +167,11 @@ export default function Result() {
           navigate('/error');
         });
     }
-  }, [mbti]);
+  }, [beachEng]);
 
   return (
     <PageLayout includeLogo={false}>
-      <ResultPage $resultSeaImg={`https://d27aaiwdisjvn.cloudfront.net/${seaData?.mbti}`}>
+      <ResultPage $resultSeaImg={`https://d27aaiwdisjvn.cloudfront.net/${seaData?.beach_eng}`}>
         <div className='result-sea-img' />
         <div className='result-card-wrapper'>
           <ResultCard

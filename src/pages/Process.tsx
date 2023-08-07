@@ -14,7 +14,7 @@ export default function Process() {
   useEffect(() => {
     if (navigate && result) {
       setTimeout(() => {
-        navigate(`/result/${result.mbti}`);
+        navigate(`/result/${result.beach_eng}`);
       }, 1800);
     }
   }, [navigate, result]);
