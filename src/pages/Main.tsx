@@ -38,9 +38,6 @@ const MainPage = styled.section`
   align-items: center;
   padding: 0 50px;
   height: 100%;
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    width: 100vw;
-  }
 `;
 
 const MainText = styled.h1`

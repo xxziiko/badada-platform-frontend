@@ -228,9 +228,7 @@ const ResultPage = styled.div<{ $resultSeaImg?: string }>`
   align-items: center;
   width: 100%;
   height: ${({ theme }) => theme.pageStyles.height};
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    width: 100vw;
-  }
+
   .result-sea-img {
     position: absolute;
     width: 100%;

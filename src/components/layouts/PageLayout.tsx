@@ -44,7 +44,7 @@ const TemplateWrapper = styled.div<{ $minHeight: number | null }>`
   min-height: ${({ theme, $minHeight }) => ($minHeight !== null ? `${$minHeight}px` : theme.pageStyles.minHeight)};
   box-shadow: ${({ theme }) => theme.shadow.page};
   animation: ${({ theme }) => css`
-    ${theme.animation.fadeIn} 1s
+    ${theme.animation.slideInFromBottom} 1s
   `};
 `;
 
