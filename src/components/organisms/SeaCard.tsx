@@ -1,30 +1,23 @@
 import styled from 'styled-components';
 import Tag from '@components/atoms/Tag';
 import MedalIcon from '@components/atoms/MedalIcon';
-
-type Data = {
-  beach: string;
-  beach_cat: string[];
-  mbti: string;
-  mbti_cnt: number;
-  total_user_cnt: number;
-};
+import { Rank } from '@shared/interface';
 
 interface Props {
   onClick: Function;
-  list: Data;
+  list: Rank;
   index: number;
 }
 
 export default function SeaCard({ list, onClick, index }: Props) {
-  const imgUrl = (mbti: string) => {
-    const url = `https://d27aaiwdisjvn.cloudfront.net/${mbti}`;
+  const imgUrl = (beachEng: string) => {
+    const url = `https://d27aaiwdisjvn.cloudfront.net/${beachEng}`;
     return url;
   };
 
   return (
-    <Card onClick={() => onClick(list.mbti)}>
-      <Image src={imgUrl(list?.mbti)} alt='Sea' />
+    <Card onClick={() => onClick(list.beach_eng)}>
+      <Image src={imgUrl(list?.beach_eng)} alt='Sea' />
       <ContentBox>
         <div className='layout'>
           <div className='title-layout'>
