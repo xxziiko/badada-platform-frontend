@@ -58,9 +58,7 @@ const ErrorBanner = styled.div`
   align-items: flex-start;
   gap: 4px;
   background: rgba(215, 0, 0, 0.25);
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    width: 100vw;
-  }
+
   .header {
     color: #af0000;
     font-family: Pretendard;

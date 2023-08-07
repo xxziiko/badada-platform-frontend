@@ -1,10 +1,8 @@
 import { DefaultTheme, keyframes } from 'styled-components';
 
 export const pageStyles = {
-  width: '393px',
   maxWidth: '752px',
   minHeight: '664px',
-  padding: '40px 30px',
 };
 
 export const colors = {
@@ -38,12 +36,8 @@ export const shadow = {
 
 export const animation = {
   fadeIn: keyframes`from { opacity: 0 } to { opacity: 1 }`,
-  slideInFromBottom: keyframes`from { transform: translateY(40px) } to { transform: translateY(0) }`,
+  slideInFromBottom: keyframes`0% { transform: translateY(0); opacity: 0; } 20% { transform: translateY(40px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; }`,
   bounceUp: keyframes`0% { transform: translateY(0) } 50% { transform: translateY(-20px) } 100% { transform: translateY(0) }`,
-};
-
-export const media = {
-  mobile: '480px',
 };
 
 export type ColorsTypes = typeof colors;
@@ -55,7 +49,6 @@ const theme: DefaultTheme = {
   fontSize,
   shadow,
   animation,
-  media,
 };
 
 export default theme;

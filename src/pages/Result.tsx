@@ -24,7 +24,7 @@ type seaData = {
   beach_attr: [];
   beach_rec: [];
   beach_cat: [];
-  user_cnt: { mbit_cnt: number; total_user_cnt: number };
+  user_cnt: { mbti_cnt: number; total_user_cnt: number };
   bad_beach: string[];
   mbti: string;
   rank: number;
@@ -42,7 +42,7 @@ export default function Result() {
     beach_attr: [],
     beach_rec: [],
     beach_cat: [],
-    user_cnt: { mbit_cnt: 0, total_user_cnt: 0 },
+    user_cnt: { mbti_cnt: 0, total_user_cnt: 0 },
 
     bad_beach: ['', ''],
     mbti: '',
@@ -187,7 +187,7 @@ export default function Result() {
             handleMoveToAllSea={handleMoveToAllSea}
             score={{
               total: seaData?.user_cnt?.total_user_cnt,
-              score: seaData?.user_cnt?.mbit_cnt,
+              score: seaData?.user_cnt?.mbti_cnt,
               scoreIndex: seaData?.rank,
             }}
             worstSea={{ worstSeaText: seaData?.bad_beach[0], worstSeaMbti: seaData?.bad_beach[1] }}
@@ -228,9 +228,7 @@ const ResultPage = styled.div<{ $resultSeaImg?: string }>`
   align-items: center;
   width: 100%;
   height: ${({ theme }) => theme.pageStyles.height};
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    width: 100vw;
-  }
+
   .result-sea-img {
     position: absolute;
     width: 100%;
