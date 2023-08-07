@@ -28,7 +28,7 @@ export default function LinkBox({ handleImgCopy, handleLinkCopy, mbti }: Props) 
       },
       buttons: [
         {
-          title: '바다 테스트 하러가기',
+          title: '테스트 하러가기',
           link: {
             mobileWebUrl: `https://gibal.net/`,
             webUrl: `https://gibal.net/`,
