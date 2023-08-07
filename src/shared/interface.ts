@@ -2,6 +2,7 @@ export interface Rank {
   beach: string;
   beach_cat: string[];
   mbti: string;
+  beach_eng: string;
   mbti_cnt: number;
   total_user_cnt: number;
 }
@@ -13,6 +14,7 @@ export interface FeedbackBody {
 
 export type Result = {
   beach: string;
+  beach_eng: string;
   location: string;
   mbti: string;
   beach_attr: Array<string>;

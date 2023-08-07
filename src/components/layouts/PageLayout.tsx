@@ -1,18 +1,24 @@
-import Logo from '@components/atoms/Logo';
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { isMobile } from 'react-device-detect';
+
+import Logo from '@components/atoms/Logo';
 
 interface Props {
   children: React.ReactNode;
   includeLogo?: boolean;
-  customStyles?: boolean;
 }
 
-export default function PageLayout({ children, includeLogo = true, customStyles = true }: Props) {
+export default function PageLayout({ children, includeLogo = true }: Props) {
+  const minHeight = (() => {
+    if (isMobile) return window?.screen?.height;
+    return null;
+  })();
+
   return (
     <TemplateContainer>
-      <TemplateWrapper $customStyles={customStyles}>
-        <ChildrenWrapper $customStyles={customStyles}>{children}</ChildrenWrapper>
+      <TemplateWrapper $minHeight={minHeight}>
+        <ChildrenWrapper>{children}</ChildrenWrapper>
         {includeLogo && (
           <LogoWrapper>
             <Logo />
@@ -28,36 +34,27 @@ const TemplateContainer = styled.section`
   justify-content: center;
 `;
 
-const TemplateWrapper = styled.div<{ $customStyles: boolean }>`
+const TemplateWrapper = styled.div<{ $minHeight: number | null }>`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100vw;
   max-width: ${({ theme }) => theme.pageStyles.maxWidth};
-  min-height: ${({ theme }) => theme.pageStyles.minHeight};
+  min-height: ${({ theme, $minHeight }) => ($minHeight !== null ? `${$minHeight}px` : theme.pageStyles.minHeight)};
   box-shadow: ${({ theme }) => theme.shadow.page};
-  //TODO: result page 스크롤 버그 때문에 result page 에서는 slide 적용 안됨
-  animation: ${({ theme, $customStyles }) =>
-    $customStyles
-      ? css`
-          ${theme.animation.fadeIn} 1s, ${theme.animation.slideInFromBottom} 0.6s
-        `
-      : css`
-          ${theme.animation.fadeIn} 1s
-        `};
-
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    width: 100vw;
-  }
+  animation: ${({ theme }) => css`
+    ${theme.animation.slideInFromBottom} 1s
+  `};
 `;
 
-const ChildrenWrapper = styled.div<{ $customStyles: boolean }>`
-  padding: ${({ theme, $customStyles }) => ($customStyles ? theme.pageStyles.padding : '')};
+const ChildrenWrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
 
 const LogoWrapper = styled.div`
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
 `;

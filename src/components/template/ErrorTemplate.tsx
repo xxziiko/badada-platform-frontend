@@ -45,7 +45,7 @@ const LayoutBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 40px;
+  width: 100%;
   height: 100%;
   flex: 1 0 0;
 `;
@@ -58,9 +58,7 @@ const ErrorBanner = styled.div`
   align-items: flex-start;
   gap: 4px;
   background: rgba(215, 0, 0, 0.25);
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    width: 100vw;
-  }
+
   .header {
     color: #af0000;
     font-family: Pretendard;
@@ -82,8 +80,9 @@ const ErrorBanner = styled.div`
 
 const Section = styled.section`
   display: flex;
-  padding: 100px 30px 0px 30px;
+  padding: 0 30px;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
   gap: 100px;

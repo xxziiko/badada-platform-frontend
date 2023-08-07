@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import domtoimage from 'dom-to-image';
@@ -18,12 +18,14 @@ import { analytics } from '@shared/analytics';
 // FIXME: key error 확인
 // TODO: DefaultTemplate, Defaultbutton 적용 관련 확인 부탁함다
 
+// TODO: type 빼놓기
 type seaData = {
   beach: string;
+  beach_eng: string;
   beach_attr: [];
   beach_rec: [];
   beach_cat: [];
-  user_cnt: { mbit_cnt: number; total_user_cnt: number };
+  user_cnt: { mbti_cnt: number; total_user_cnt: number };
   bad_beach: string[];
   mbti: string;
   rank: number;
@@ -37,26 +39,22 @@ export default function Result() {
   const [isScrolledHalf, setIsScrolledHalf] = useState(false);
   const [seaData, setSeaData] = useState<seaData>({
     beach: '',
+    beach_eng: '',
     beach_attr: [],
     beach_rec: [],
     beach_cat: [],
-    user_cnt: { mbit_cnt: 0, total_user_cnt: 0 },
+    user_cnt: { mbti_cnt: 0, total_user_cnt: 0 },
+
     bad_beach: ['', ''],
     mbti: '',
     rank: 0,
   });
-  const { mbti } = useParams();
+  const { beachEng } = useParams();
   const navigate = useNavigate();
-
-  const modalRef = useRef<HTMLDivElement>(null);
 
   const handleWorstSea = (worstSeaMbti: string) => {
     analytics.track('click_worst_sea');
     navigate(`/result/${worstSeaMbti}`);
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
   };
 
   const handleMoveToAllSea = () => {
@@ -130,24 +128,6 @@ export default function Result() {
     }
   };
 
-  const handleClickOutside = (event: any) => {
-    if (modalRef && modalRef.current && !modalRef.current.contains(event.target)) {
-      setOpenTotalSeaModal(false);
-      setOpenReviewModal(false);
-    }
-
-    // setOpenTotalSeaModal(true);
-    // setOpenReviewModal(true);
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   useEffect(() => {
     // 스크롤 이벤트 리스너 등록
     window.addEventListener('scroll', handleScroll);
@@ -159,8 +139,8 @@ export default function Result() {
   }, [isScrolledHalf]);
 
   useEffect(() => {
-    if (mbti) {
-      callGetSeaApi(mbti)
+    if (beachEng) {
+      callGetSeaApi(beachEng)
         .then((response: any) => {
           const { data } = response;
           setSeaData(data);
@@ -168,12 +148,13 @@ export default function Result() {
         .catch((error: any) => {
           navigate('/error');
         });
+      window.scrollTo(0, 0);
     }
-  }, [mbti]);
+  }, [beachEng]);
 
   return (
-    <PageLayout includeLogo={false} customStyles={false}>
-      <ResultPage $resultSeaImg={`https://d27aaiwdisjvn.cloudfront.net/${seaData?.mbti}`}>
+    <PageLayout includeLogo={false} key={seaData.beach}>
+      <ResultPage $resultSeaImg={`https://d27aaiwdisjvn.cloudfront.net/${seaData?.beach_eng}`}>
         <div className='result-sea-img' />
         <div className='result-card-wrapper'>
           <ResultCard
@@ -189,11 +170,12 @@ export default function Result() {
             handleMoveToAllSea={handleMoveToAllSea}
             score={{
               total: seaData?.user_cnt?.total_user_cnt,
-              score: seaData?.user_cnt?.mbit_cnt,
+              score: seaData?.user_cnt?.mbti_cnt,
               scoreIndex: seaData?.rank,
             }}
             worstSea={{ worstSeaText: seaData?.bad_beach[0], worstSeaMbti: seaData?.bad_beach[1] }}
             mbti={seaData?.mbti}
+            beachEng={seaData?.beach_eng}
           />
         </div>
         <div className='re-start -btn'>
@@ -216,8 +198,8 @@ export default function Result() {
           </div>
         )}
       </ResultPage>
-      {openTotalSeaModal && <TotalSeaModal onClose={handleMoveToAllSea} ref={modalRef} />}
-      {openReviewModal && <ReviewModal onClose={handleReviewModal} ref={modalRef} />}
+      {openTotalSeaModal && <TotalSeaModal onClose={handleMoveToAllSea} />}
+      <ReviewModal onClose={handleReviewModal} isOpen={openReviewModal} />
     </PageLayout>
   );
 }
@@ -230,9 +212,7 @@ const ResultPage = styled.div<{ $resultSeaImg?: string }>`
   align-items: center;
   width: 100%;
   height: ${({ theme }) => theme.pageStyles.height};
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    width: 100vw;
-  }
+
   .result-sea-img {
     position: absolute;
     width: 100%;

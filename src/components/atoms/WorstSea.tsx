@@ -4,9 +4,10 @@ import styled from 'styled-components';
 interface Props {
   worstSea: { worstSeaText: string; worstSeaMbti: string };
   handleWorstSea: Function;
+  beachEng: string;
 }
 
-export default function WorstSea({ worstSea, handleWorstSea }: Props) {
+export default function WorstSea({ worstSea, handleWorstSea, beachEng }: Props) {
   return (
     <WorstSeaWrapper
       onClick={() => {
@@ -14,11 +15,7 @@ export default function WorstSea({ worstSea, handleWorstSea }: Props) {
       }}
     >
       <span className='WorstSeaTitle'>최악의 바다</span>
-      <img
-        src={`https://d27aaiwdisjvn.cloudfront.net/${worstSea?.worstSeaMbti}`}
-        alt='worstSeaImg'
-        className='worstSeaImg'
-      />
+      <img src={`https://d27aaiwdisjvn.cloudfront.net/${beachEng}`} alt='worstSeaImg' className='worstSeaImg' />
       <span className='worstSeaName'>{worstSea.worstSeaText}</span>
       <button className='worstSeaBtn' type='button'>
         자세히 보기

@@ -15,9 +15,10 @@ interface Props {
   handleMoveToAllSea: Function;
   score: scoreObject;
   worstSea: { worstSeaText: string; worstSeaMbti: string };
+  beachEng: string;
 }
 
-export default function SummaryBox({ handleWorstSea, handleMoveToAllSea, score, worstSea }: Props) {
+export default function SummaryBox({ handleWorstSea, handleMoveToAllSea, score, worstSea, beachEng }: Props) {
   return (
     <SummaryBoxWrapper>
       <MedalScore score={score} handleMoveToAllSea={handleMoveToAllSea} />
@@ -26,6 +27,7 @@ export default function SummaryBox({ handleWorstSea, handleMoveToAllSea, score, 
           handleWorstSea(worstSea.worstSeaMbti);
         }}
         worstSea={worstSea}
+        beachEng={beachEng}
       />
     </SummaryBoxWrapper>
   );

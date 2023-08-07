@@ -1,4 +1,4 @@
-import React, { ReactNode, forwardRef, useEffect } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { ReactComponent as CloseIcon } from '@assets/CloseIcon.svg';
 
@@ -8,18 +8,29 @@ interface Props {
   headerBackground?: string;
 }
 
-const ModalLayout = forwardRef<HTMLDivElement, Props>(({ children, onClose, headerBackground }, ref) => {
+export default function ModalLayout({ children, onClose, headerBackground }: Props) {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: any) => {
+    if (modalRef && modalRef.current && !modalRef.current.contains(event.target)) {
+      onClose();
+    }
+  };
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    document.addEventListener('mousedown', handleClickOutside);
+
     return () => {
       document.body.style.overflow = 'unset';
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
   return (
     <Background>
       <Wrapper>
-        <div className='modal-inner' ref={ref}>
+        <div className='modal-inner' ref={modalRef}>
           <ButtonBox $headerBackground={headerBackground}>
             <button type='button' onClick={() => onClose()} className='button'>
               <CloseIcon />
@@ -38,7 +49,7 @@ const ModalLayout = forwardRef<HTMLDivElement, Props>(({ children, onClose, head
       </Wrapper>
     </Background>
   );
-});
+}
 
 const Background = styled.div`
   display: flex;
@@ -66,7 +77,7 @@ const Wrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.white};
     box-shadow: 0px 2px 4px 2px rgba(145, 205, 248, 0.25);
     animation: ${({ theme }) => css`
-      ${theme.animation.fadeIn} 1s, ${theme.animation.slideInFromBottom} 0.6s
+      ${theme.animation.slideInFromBottom} 0.6s
     `};
   }
 
@@ -124,5 +135,3 @@ const HeaderBox = styled.div`
     line-height: normal;
   }
 `;
-
-export default ModalLayout;

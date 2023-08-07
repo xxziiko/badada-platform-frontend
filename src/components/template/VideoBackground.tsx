@@ -1,3 +1,4 @@
+import Logo from '@components/atoms/Logo';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -9,12 +10,15 @@ export default function VideoBackground({ children }: Props) {
   return (
     <BackgroundWrapper>
       <div className='video-wrapper'>
-        <video muted autoPlay loop>
+        <video muted autoPlay loop controls={false}>
           <source src='videos/wave.mp4' type='video/mp4' />
           <strong>Your browser does not support the video tag.</strong>
         </video>
       </div>
       {children}
+      <div className='logo-wrapper'>
+        <Logo />
+      </div>
     </BackgroundWrapper>
   );
 }
@@ -39,5 +43,12 @@ const BackgroundWrapper = styled.div`
       width: 100%;
       object-fit: cover;
     }
+  }
+
+  .logo-wrapper {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `;

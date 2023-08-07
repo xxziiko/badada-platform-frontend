@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import LargeButton from '@components/atoms/LargeButton';
 import PrevButton from '@components/atoms/PrevButton';
 import ProgressBar from '@components/atoms/ProgressBar';
-import Logo from '@components/atoms/Logo';
-// import DefaultButton from '@components/atoms/DefaultButton';
 
 interface Props {
   index: number;
@@ -27,7 +25,6 @@ export default function TestTemplate({ index, data, onSelect, onPrevButtonClick 
           data.answer.map((element) => (
             <div className='selectButton-wrapper' key={element.id}>
               <LargeButton text={element?.content} onClick={() => onSelect(index, element.id)} />
-              {/* <DefaultButton text={element?.content} onClick={() => onSelect()} /> */}
             </div>
           ))}
       </div>
@@ -40,16 +37,13 @@ export default function TestTemplate({ index, data, onSelect, onPrevButtonClick 
           }}
         />
       )}
-      <LogoWrapper>
-        <Logo />
-      </LogoWrapper>
     </TestTemplateWrapper>
   );
 }
 
 const TestTemplateWrapper = styled.div`
+  padding: 40px 30px 0px 30px;
   height: 100%;
-
   .selectButton-wrapper {
     margin-bottom: 10px;
   }
