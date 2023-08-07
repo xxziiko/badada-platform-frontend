@@ -5,7 +5,12 @@ import styled, { css } from 'styled-components';
 import { resultStore } from '@shared/store';
 
 import VideoBackground from '@components/template/VideoBackground';
+
+import DefaultTemplate from '@components/layouts/PageLayout';
+
 import PageLayout from '@components/layouts/PageLayout';
+import { analytics } from '@shared/analytics';
+
 
 export default function Process() {
   const { result } = resultStore();
@@ -19,6 +24,7 @@ export default function Process() {
     }
   }, [navigate, result]);
 
+  analytics.track('page_process');
   return (
     <PageLayout includeLogo={false}>
       <VideoBackground>

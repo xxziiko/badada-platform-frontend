@@ -13,6 +13,7 @@ import ReviewModal from '@components/template/ReviewModal';
 
 import { colors } from '@styles/theme';
 import { callGetSeaApi } from '@api/apis';
+import { analytics } from '@shared/analytics';
 
 // FIXME: key error 확인
 // TODO: DefaultTemplate, Defaultbutton 적용 관련 확인 부탁함다
@@ -52,18 +53,22 @@ export default function Result() {
   const navigate = useNavigate();
 
   const handleWorstSea = (worstSeaMbti: string) => {
+    analytics.track('click_worst_sea');
     navigate(`/result/${worstSeaMbti}`);
   };
 
   const handleMoveToAllSea = () => {
+    analytics.track('click_all_sea');
     setOpenTotalSeaModal(!openTotalSeaModal);
   };
 
   const handleReStart = () => {
+    analytics.track('click_re_start_test');
     navigate('/');
   };
 
   const handleImgCopy = () => {
+    analytics.track('click_image_copy');
     const element = document.getElementById('page-to-save'); // 캡처할 요소의 ID로 대체하세요.
     if (element) {
       domtoimage.toPng(element, { cacheBust: true }).then((dataUrl) => {
@@ -94,6 +99,7 @@ export default function Result() {
   };
 
   const handleLinkCopy = () => {
+    analytics.track('click_link_copy');
     // 현재 페이지의 URL 가져오기
     const currentUrl = window.location.href;
 
@@ -172,7 +178,7 @@ export default function Result() {
             beachEng={seaData?.beach_eng}
           />
         </div>
-        <div className='re-start-btn'>
+        <div className='re-start -btn'>
           <DefaultButton text='바다 찾기 다시하기' onClick={handleReStart} />
         </div>
         <div className='banner-wrapper'>

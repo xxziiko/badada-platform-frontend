@@ -3,6 +3,7 @@ import { ReactComponent as LinkImg } from '@assets/LinkImg.svg';
 import { ReactComponent as LinkCopy } from '@assets/LinkCopy.svg';
 import { ReactComponent as LinkKakao } from '@assets/LinkKakao.svg';
 import styled from 'styled-components';
+import { analytics } from '@shared/analytics';
 
 interface Props {
   handleImgCopy: Function;
@@ -12,6 +13,8 @@ interface Props {
 
 export default function LinkBox({ handleImgCopy, handleLinkCopy, beachEng }: Props) {
   const handleKakao = () => {
+    analytics.track('click_kakao_share');
+
     window.Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
@@ -25,7 +28,7 @@ export default function LinkBox({ handleImgCopy, handleLinkCopy, beachEng }: Pro
       },
       buttons: [
         {
-          title: '바다 테스트 하러가기',
+          title: '테스트 하러가기',
           link: {
             mobileWebUrl: `https://gibal.net/`,
             webUrl: `https://gibal.net/`,

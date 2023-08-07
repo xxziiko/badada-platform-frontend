@@ -7,6 +7,7 @@ import { colors } from '@styles/theme';
 
 import { getRank } from '@api/services';
 import { Rank } from '@shared/interface';
+import { analytics } from '@shared/analytics';
 
 interface Props {
   onClose: Function;
@@ -16,8 +17,11 @@ export default function TotalSeaModal({ onClose }: Props) {
   const navigate = useNavigate();
   const [cardData, setCardData] = useState([]);
 
+
   const goToResult = (beachEng: string) => {
+      analytics.track('click_total_sea_item');
     navigate(`/result/${beachEng}`);
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
     onClose();
   };

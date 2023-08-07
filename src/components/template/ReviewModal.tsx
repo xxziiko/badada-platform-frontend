@@ -9,6 +9,7 @@ import Modal from '@components/layouts/ModalLayout';
 
 import { sendPostFeedback } from '@api/services';
 import { FeedbackBody } from '@shared/interface';
+import { analytics } from '@shared/analytics';
 
 interface Props {
   onClose: Function;
@@ -113,6 +114,7 @@ export default function ReviewModal({ onClose, isOpen }: Props) {
     if (index || body.feedback !== '' || input !== '') setIsDisable(false);
   }, [body, input]);
 
+  analytics.track('open_modal_review');
   return (
     <div>
       {!getIsPrevOpen && isOpen && state && (

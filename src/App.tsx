@@ -19,7 +19,6 @@ const ErrorFallBack = () => {
 
 function App() {
   analytics.init();
-  analytics.track('New Event');
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>

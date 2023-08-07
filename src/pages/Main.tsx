@@ -5,10 +5,11 @@ import styled from 'styled-components';
 import DefaultButton from '@components/atoms/DefaultButton';
 import VideoBackground from '@components/template/VideoBackground';
 import PageLayout from '@components/layouts/PageLayout';
+import { analytics } from '@shared/analytics';
 
 export default function Main() {
   const navigate = useNavigate();
-
+  analytics.track('page_main');
   return (
     <PageLayout includeLogo={false}>
       <VideoBackground>
