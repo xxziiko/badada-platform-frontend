@@ -6,11 +6,8 @@ import { resultStore } from '@shared/store';
 
 import VideoBackground from '@components/template/VideoBackground';
 
-import DefaultTemplate from '@components/layouts/PageLayout';
-
 import PageLayout from '@components/layouts/PageLayout';
 import { analytics } from '@shared/analytics';
-
 
 export default function Process() {
   const { result } = resultStore();
