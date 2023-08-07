@@ -169,6 +169,7 @@ export default function Result() {
             }}
             worstSea={{ worstSeaText: seaData?.bad_beach[0], worstSeaMbti: seaData?.bad_beach[1] }}
             mbti={seaData?.mbti}
+            beachEng={seaData?.beach_eng}
           />
         </div>
         <div className='re-start-btn'>

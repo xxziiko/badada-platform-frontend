@@ -7,20 +7,20 @@ import styled from 'styled-components';
 interface Props {
   handleImgCopy: Function;
   handleLinkCopy: Function;
-  mbti: string;
+  beachEng: string;
 }
 
-export default function LinkBox({ handleImgCopy, handleLinkCopy, mbti }: Props) {
+export default function LinkBox({ handleImgCopy, handleLinkCopy, beachEng }: Props) {
   const handleKakao = () => {
     window.Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
         title: '제 바다를 소개할게요. 당신도 나와 같은 바다라면 같이 여행 갈래요?',
         description: '#바다여행 #바다추천 #성향테스트',
-        imageUrl: `https://d27aaiwdisjvn.cloudfront.net/${mbti}`,
+        imageUrl: `https://d27aaiwdisjvn.cloudfront.net/${beachEng}`,
         link: {
-          mobileWebUrl: `https://gibal.net/result/${mbti}`,
-          webUrl: `https://gibal.net/result/${mbti}`,
+          mobileWebUrl: `https://gibal.net/result/${beachEng}`,
+          webUrl: `https://gibal.net/result/${beachEng}`,
         },
       },
       buttons: [
