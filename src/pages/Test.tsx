@@ -6,6 +6,7 @@ import PageLayout from '@components/layouts/PageLayout';
 import TestTemplate from '@components/template/TestTemplate';
 
 import { getQna, sendResult } from '@api/services';
+import { analytics } from '@shared/analytics';
 
 export default function Test() {
   const { setResult } = resultStore();
@@ -54,7 +55,7 @@ export default function Test() {
   useEffect(() => {
     getQnaList();
   }, []);
-
+  analytics.track('page_test', { step });
   return (
     <PageLayout includeLogo={false}>
       <TestTemplate

@@ -6,8 +6,8 @@ class Analytics {
   init() {
     amplitude.init('9a062239aac9365d47f9aab9e84abf18');
   }
-  track(event: string) {
-    amplitude.track(event);
+  track(event: string, props?: Record<string, any>) {
+    amplitude.track(event, props);
   }
 }
 

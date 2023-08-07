@@ -8,6 +8,7 @@ import Modal from '@components/layouts/ModalLayout';
 
 import { sendPostFeedback } from '@api/services';
 import { FeedbackBody } from '@shared/interface';
+import { analytics } from '@shared/analytics';
 
 interface Props {
   onClose: Function;
@@ -104,6 +105,7 @@ const ReviewModal = forwardRef<HTMLDivElement, Props>(({ onClose }, ref) => {
     if (index || body.feedback !== '' || input !== '') setIsDisable(false);
   }, [body, input]);
 
+  analytics.track('open_modal_review');
   return (
     <Modal onClose={onClose} ref={ref}>
       <ModalInner onClick={(e) => e.stopPropagation()}>

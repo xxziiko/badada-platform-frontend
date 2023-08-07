@@ -1,8 +1,10 @@
+import { analytics } from '@shared/analytics';
 import React from 'react';
 import styled from 'styled-components';
 
 export default function Banner() {
   const handleMoveToCampaign = () => {
+    analytics.track('click_campaign_banner');
     window.open('https://earthplogging.com/', '_blank');
   };
 

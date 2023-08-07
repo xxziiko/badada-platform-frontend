@@ -7,6 +7,7 @@ import { colors } from '@styles/theme';
 
 import { getRank } from '@api/services';
 import { Rank } from '@shared/interface';
+import { analytics } from '@shared/analytics';
 
 interface Props {
   onClose: Function;
@@ -17,6 +18,7 @@ const TotalSeaModal = forwardRef<HTMLDivElement, Props>(({ onClose }, ref) => {
   const [cardData, setCardData] = useState([]);
 
   const goToResult = (mbti: string) => {
+    analytics.track('click_total_sea_item');
     navigate(`/result/${mbti}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
