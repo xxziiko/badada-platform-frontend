@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import domtoimage from 'dom-to-image';
 import ResultCard from '@components/organisms/ResultCard';
@@ -50,8 +50,6 @@ export default function Result() {
   });
   const { beachEng } = useParams();
   const navigate = useNavigate();
-
-  const modalRef = useRef<HTMLDivElement>(null);
 
   const handleWorstSea = (worstSeaMbti: string) => {
     navigate(`/result/${worstSeaMbti}`);
@@ -124,24 +122,6 @@ export default function Result() {
     }
   };
 
-  const handleClickOutside = (event: any) => {
-    if (modalRef && modalRef.current && !modalRef.current.contains(event.target)) {
-      setOpenTotalSeaModal(false);
-      setOpenReviewModal(false);
-    }
-
-    // setOpenTotalSeaModal(true);
-    // setOpenReviewModal(true);
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   useEffect(() => {
     // 스크롤 이벤트 리스너 등록
     window.addEventListener('scroll', handleScroll);
@@ -211,8 +191,8 @@ export default function Result() {
           </div>
         )}
       </ResultPage>
-      {openTotalSeaModal && <TotalSeaModal onClose={handleMoveToAllSea} ref={modalRef} />}
-      {openReviewModal && <ReviewModal onClose={handleReviewModal} ref={modalRef} />}
+      {openTotalSeaModal && <TotalSeaModal onClose={handleMoveToAllSea} />}
+      <ReviewModal onClose={handleReviewModal} isOpen={openReviewModal} />
     </PageLayout>
   );
 }

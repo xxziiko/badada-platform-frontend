@@ -14,7 +14,7 @@ export default function Process() {
   useEffect(() => {
     if (navigate && result) {
       setTimeout(() => {
-        navigate(`/result/${result.beach_eng}`);
+        navigate(`/result/${result.beach_eng}`, { state: '/process' });
       }, 1800);
     }
   }, [navigate, result]);
