@@ -34,7 +34,6 @@ export default function Banner() {
 
 const BannerWrapper = styled.div`
   width: 100%;
-  height: 300px;
   .banner-instagram {
     display: flex;
     align-items: center;
