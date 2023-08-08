@@ -119,7 +119,7 @@ export default function Result() {
     const position = window.scrollY;
 
     // 화면 전체의 3/1 지점
-    const halfHeight = window.innerHeight / 3;
+    const halfHeight = window.innerHeight / 2;
 
     // 스크롤이 화면 전체 높이의 절반을 넘어서면 isScrolledHalf 값을 true로 변경합니다.
     if (position > halfHeight && !isScrolledHalf) {
@@ -151,6 +151,8 @@ export default function Result() {
       window.scrollTo(0, 0);
     }
   }, [beachEng]);
+
+  if (!seaData) return <div />;
 
   return (
     <PageLayout includeLogo={false} key={seaData.beach}>

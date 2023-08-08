@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ReactComponent as LinkImg } from '@assets/LinkImg.svg';
 import { ReactComponent as LinkCopy } from '@assets/LinkCopy.svg';
 import { ReactComponent as LinkKakao } from '@assets/LinkKakao.svg';
@@ -12,30 +13,38 @@ interface Props {
 }
 
 export default function LinkBox({ handleImgCopy, handleLinkCopy, beachEng }: Props) {
-  const handleKakao = () => {
-    analytics.track('click_kakao_share');
+  const navigate = useNavigate();
 
-    window.Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: '제 바다를 소개할게요. 당신도 나와 같은 바다라면 같이 여행 갈래요?',
-        description: '#바다여행 #바다추천 #성향테스트',
-        imageUrl: `https://d27aaiwdisjvn.cloudfront.net/${beachEng}`,
-        link: {
-          mobileWebUrl: `https://gibal.net/result/${beachEng}`,
-          webUrl: `https://gibal.net/result/${beachEng}`,
-        },
-      },
-      buttons: [
-        {
-          title: '테스트 하러가기',
+  const handleKakao = () => {
+    if (window.Kakao) {
+      // Kakao SDK가 로드된 후에 실행할 코드
+      analytics.track('click_kakao_share');
+
+      window.Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '제 바다를 소개할게요. 당신도 나와 같은 바다라면 같이 여행 갈래요?',
+          description: '#바다여행 #바다추천 #성향테스트',
+          imageUrl: `https://d27aaiwdisjvn.cloudfront.net/${beachEng}`,
           link: {
-            mobileWebUrl: `https://gibal.net/`,
-            webUrl: `https://gibal.net/`,
+            mobileWebUrl: `https://badada.gibal.net/result/${beachEng}`,
+            webUrl: `https://badada.gibal.net/result/${beachEng}`,
           },
         },
-      ],
-    });
+        buttons: [
+          {
+            title: '테스트 하러가기',
+            link: {
+              mobileWebUrl: `https://badada.gibal.net/`,
+              webUrl: `https://badada.gibal.net/`,
+            },
+          },
+        ],
+      });
+    } else {
+      // Kakao SDK가 로드되지 않은 경우 처리
+      navigate('/error');
+    }
   };
   return (
     <LinkBoxWrapper>

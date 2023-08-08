@@ -19,7 +19,7 @@ export default function Banner() {
           <br />
           추첨을 통해 <span className='banner-instagram-coffee'>스타벅스 기프티콘</span>을 드립니다!
           <br />
-          (총 5명 / ~ 5월 31일)
+          (총 5명 / 8월 08일 ~ 8월 31일)
         </span>
       </div>
       <div className='banner-campaign'>
