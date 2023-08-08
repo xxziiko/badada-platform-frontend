@@ -68,6 +68,7 @@ export default function ReviewModal({ onClose, isOpen }: Props) {
   };
 
   const handleSubmitFeedback = (text: string) => {
+    analytics.track('click_submit_review', { feedback: body.feedback, choice: [body.choice] });
     const postBody = {
       feedback: body.feedback,
       choice: [...body.choice, text],
