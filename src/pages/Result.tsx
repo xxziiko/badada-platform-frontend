@@ -118,10 +118,10 @@ export default function Result() {
   const handleScroll = () => {
     const position = window.scrollY;
 
-    // 화면 전체의 3/1 지점
-    const halfHeight = window.innerHeight / 2;
+    // 화면 전체의 6/4 지점
+    const halfHeight = (document.body.scrollHeight - 1000) * (5 / 7);
 
-    // 스크롤이 화면 전체 높이의 절반을 넘어서면 isScrolledHalf 값을 true로 변경합니다.
+    // 스크롤이 화면 전체 높이의 6/4를 넘어서면 isScrolledHalf 값을 true로 변경합니다.
     if (position > halfHeight && !isScrolledHalf) {
       setOpenReviewModal(true);
       setIsScrolledHalf(true);

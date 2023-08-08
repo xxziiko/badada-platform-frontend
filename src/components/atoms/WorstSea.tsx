@@ -53,8 +53,7 @@ const WorstSeaWrapper = styled.div`
     line-height: normal;
   }
   .worstSeaBtn {
-    width: 65px;
-    height: 16px;
+    padding: 2px 8px;
     margin-top: 4px;
     border-radius: 50px;
     background: #21608d;

@@ -10,7 +10,7 @@ export default function VideoBackground({ children }: Props) {
   return (
     <BackgroundWrapper>
       <div className='video-wrapper'>
-        <video muted autoPlay loop controls={false}>
+        <video muted autoPlay loop playsInline controls={false}>
           <source src='videos/wave.mp4' type='video/mp4' />
           <strong>Your browser does not support the video tag.</strong>
         </video>
