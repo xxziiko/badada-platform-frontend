@@ -64,5 +64,5 @@
     "eslint-plugin-react": "^7.32.2",
     "prettier": "3.0.0"
   },
-  "proxy": "https://badada.gibal.net/"
+  "proxy": "http://43.201.71.59:30088/"
 }

@@ -26,8 +26,8 @@ export default function KakaoShare() {
               {
                 title: '바다 테스트 하러가기',
                 link: {
-                  mobileWebUrl: 'http://localhost:3000',
-                  webUrl: 'http://localhost:3000',
+                  mobileWebUrl: 'https://gibal.net/',
+                  webUrl: 'https://gibal.net/',
                 },
               },
             ],
