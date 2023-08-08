@@ -4,7 +4,8 @@ import * as amplitude from '@amplitude/analytics-browser';
 
 class Analytics {
   init() {
-    amplitude.init('9a062239aac9365d47f9aab9e84abf18');
+    const analyticsKey = process.env.REACT_APP_ANALYTICS_KEY as string;
+    amplitude.init(analyticsKey);
   }
   track(event: string, props?: Record<string, any>) {
     amplitude.track(event, props);

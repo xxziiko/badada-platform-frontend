@@ -97,7 +97,6 @@ const LinkBoxWrapper = styled.div`
   .link-item-wrapper {
     display: flex;
     justify-content: space-between;
-    width: 196px;
     margin-top: 20px;
     .sharedIconWrapper {
       cursor: pointer;
