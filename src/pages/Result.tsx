@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import domtoimage from 'dom-to-image';
 import ResultCard from '@components/organisms/ResultCard';
 import DefaultButton from '@components/atoms/DefaultButton';
@@ -10,8 +10,6 @@ import Toast from '@components/atoms/ Toast';
 import PageLayout from '@components/layouts/PageLayout';
 import TotalSeaModal from '@components/template/TotalSeaModal';
 import ReviewModal from '@components/template/ReviewModal';
-
-import { colors } from '@styles/theme';
 import { callGetSeaApi } from '@api/apis';
 import { analytics } from '@shared/analytics';
 
@@ -37,6 +35,7 @@ export default function Result() {
   const [isImgCapture, setIsImgCapture] = useState(false);
   const [isLinkCopy, setIsLinkCopy] = useState(false);
   const [isScrolledHalf, setIsScrolledHalf] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [seaData, setSeaData] = useState<seaData>({
     beach: '',
     beach_eng: '',
@@ -69,6 +68,8 @@ export default function Result() {
 
   const handleImgCopy = () => {
     analytics.track('click_image_copy');
+    setIsLoading(true);
+
     const element = document.getElementById('page-to-save'); // 캡처할 요소의 ID로 대체하세요.
     if (element) {
       domtoimage.toPng(element, { cacheBust: true }).then((dataUrl) => {
@@ -77,11 +78,14 @@ export default function Result() {
         link.download = 'result-sea.png'; // 원하는 파일명으로 대체하세요.
         link.click();
         setIsImgCapture(true);
+        setIsLoading(false);
+
+        setTimeout(() => {
+          setIsImgCapture(false);
+          setIsLoading(false);
+        }, 2000);
       });
     }
-    setTimeout(() => {
-      setIsImgCapture(false);
-    }, 4000);
   };
 
   const copyToClipboard = (text: string) => {
@@ -128,6 +132,38 @@ export default function Result() {
     }
   };
 
+  const handleKakao = () => {
+    if (window.Kakao) {
+      // Kakao SDK가 로드된 후에 실행할 코드
+      analytics.track('click_kakao_share');
+
+      window.Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: `나의 바다 ${seaData.beach}, 당신도 나와 같은 바다라면 같이 여행 갈래요?`,
+          description: '#바다추천 #성향테스트 #바다여행',
+          imageUrl: `https://d27aaiwdisjvn.cloudfront.net/${seaData.beach_eng}`,
+          link: {
+            mobileWebUrl: `https://badada.gibal.net/result/${seaData.beach_eng}`,
+            webUrl: `https://badada.gibal.net/result/${seaData.beach_eng}`,
+          },
+        },
+        buttons: [
+          {
+            title: '테스트 하러가기',
+            link: {
+              mobileWebUrl: `https://badada.gibal.net/`,
+              webUrl: `https://badada.gibal.net/`,
+            },
+          },
+        ],
+      });
+    } else {
+      // Kakao SDK가 로드되지 않은 경우 처리
+      navigate('/error');
+    }
+  };
+
   useEffect(() => {
     // 스크롤 이벤트 리스너 등록
     window.addEventListener('scroll', handleScroll);
@@ -151,6 +187,7 @@ export default function Result() {
       window.scrollTo(0, 0);
     }
   }, [beachEng]);
+  const getIsPrevOpen = window.localStorage.getItem('isPrevPath');
 
   if (!seaData) return <div />;
 
@@ -169,6 +206,7 @@ export default function Result() {
             handleWorstSea={handleWorstSea}
             handleImgCopy={handleImgCopy}
             handleLinkCopy={handleLinkCopy}
+            handleKakao={handleKakao}
             handleMoveToAllSea={handleMoveToAllSea}
             score={{
               total: seaData?.user_cnt?.total_user_cnt,
@@ -176,8 +214,6 @@ export default function Result() {
               scoreIndex: seaData?.rank,
             }}
             worstSea={{ worstSeaText: seaData?.bad_beach[0], worstSeaEng: seaData?.bad_beach[1] }}
-            mbti={seaData?.mbti}
-            beachEng={seaData?.beach_eng}
           />
         </div>
         <div className='re-start-btn'>
@@ -189,19 +225,24 @@ export default function Result() {
         <div className='logo-wrapper'>
           <Logo />
         </div>
+        {isLoading && (
+          <div className='img-capture'>
+            <Toast text='저장중' isLoadingState />
+          </div>
+        )}
         {isImgCapture && (
           <div className='img-capture'>
-            <Toast text='이미지가 캡쳐되었습니다' />
+            <Toast text='이미지가 캡쳐되었습니다' isLoadingState={false} />
           </div>
         )}
         {isLinkCopy && (
           <div className='link-copy'>
-            <Toast text='링크가 복사되었습니다' />
+            <Toast text='링크가 복사되었습니다' isLoadingState={false} />
           </div>
         )}
       </ResultPage>
       {openTotalSeaModal && <TotalSeaModal onClose={handleMoveToAllSea} />}
-      <ReviewModal onClose={handleReviewModal} isOpen={openReviewModal} />
+      {!getIsPrevOpen && <ReviewModal onClose={handleReviewModal} isOpen={openReviewModal} />}
     </PageLayout>
   );
 }

@@ -25,7 +25,6 @@ export default function ReviewModal({ onClose, isOpen }: Props) {
     choice: [0, 0, 0, 0, 0],
   });
   const { state } = useLocation();
-  const getIsPrevOpen = window.localStorage.getItem('isPrevPath');
 
   const badTextList = [
     { id: 0, text: '결과가 마음에 안들어요' },
@@ -45,7 +44,6 @@ export default function ReviewModal({ onClose, isOpen }: Props) {
 
   const handleClickBadButton = () => {
     setIsBadClicked();
-    setInput('');
 
     if (body.feedback === 'bad') {
       setBody({
@@ -63,7 +61,6 @@ export default function ReviewModal({ onClose, isOpen }: Props) {
 
   const handleClickGoodButton = () => {
     setIsGoodClicked();
-    setInput('');
     setBody({
       feedback: 'good',
       choice: [0, 0, 0, 0, 0],
@@ -117,7 +114,7 @@ export default function ReviewModal({ onClose, isOpen }: Props) {
   analytics.track('open_modal_review');
   return (
     <div>
-      {!getIsPrevOpen && isOpen && state && (
+      {isOpen && state && (
         <Modal onClose={onClose}>
           <ModalInner onClick={(e) => e.stopPropagation()}>
             <Title>콘텐츠는 마음에 드셨나요?</Title>

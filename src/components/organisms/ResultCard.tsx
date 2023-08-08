@@ -1,9 +1,8 @@
-import React from 'react';
-import Tag from '@components/atoms/Tag';
-import { ReactComponent as BlueCircle } from '@assets/BlueCircle.svg';
 import styled from 'styled-components';
+import Tag from '@components/atoms/Tag';
 import SummaryBox from './SummaryBox';
 import LinkBox from '@components/atoms/LinkBox';
+import { ReactComponent as BlueCircle } from '@assets/BlueCircle.svg';
 
 type seaObject = {
   seaName?: string;
@@ -23,10 +22,9 @@ interface Props {
   handleImgCopy: Function;
   handleLinkCopy: Function;
   handleMoveToAllSea: Function;
+  handleKakao: Function;
   score: scoreObject;
   worstSea: { worstSeaText: string; worstSeaEng: string };
-  mbti: string;
-  beachEng: string;
 }
 
 export default function ResultCard({
@@ -37,10 +35,9 @@ export default function ResultCard({
   handleImgCopy,
   handleLinkCopy,
   handleMoveToAllSea,
+  handleKakao,
   score,
   worstSea,
-  mbti,
-  beachEng,
 }: Props) {
   return (
     <ResultCardWrapper>
@@ -91,7 +88,7 @@ export default function ResultCard({
         </div>
       </div>
       <div className='link-box-wrapper'>
-        <LinkBox handleImgCopy={handleImgCopy} handleLinkCopy={handleLinkCopy} beachEng={beachEng} />
+        <LinkBox handleImgCopy={handleImgCopy} handleLinkCopy={handleLinkCopy} handleKakao={handleKakao} />
       </div>
     </ResultCardWrapper>
   );
