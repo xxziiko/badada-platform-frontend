@@ -102,13 +102,14 @@ const ResultCardWrapper = styled.div`
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 2px 4px 2px rgba(145, 205, 248, 0.2);
   .copy-img {
+    padding-top: 20px;
     background: ${({ theme }) => theme.colors.white};
     border-radius: 8px;
   }
   .sea-content-wrapper {
     display: flex;
     flex-direction: column;
-    margin: 20px 20px 40px 20px;
+    margin: 0 20px 40px 20px;
     .your-sea {
       color: ${({ theme }) => theme.colors.secondary};
       text-align: center;
@@ -154,7 +155,7 @@ const ResultCardWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0 20px 40px 20px;
+    margin: 0 20px 60px 20px;
     .recommend-title {
       color: ${({ theme }) => theme.colors.darkMatter};
       text-align: center;
@@ -185,7 +186,7 @@ const ResultCardWrapper = styled.div`
   .summary-box-wrapper {
     display: flex;
     justify-content: center;
-    margin: 0 20px 40px 20px;
+    margin: 0 20px 60px 20px;
   }
   .link-box-wrapper {
     display: flex;

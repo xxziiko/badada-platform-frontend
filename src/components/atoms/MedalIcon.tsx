@@ -47,7 +47,7 @@ const Icon = styled.div<{ $imgurl?: string; $width?: number; $fontSize?: number;
     font-family: Audiowide;
     font-size: ${(props) => props.$fontSize}px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: normal;
     z-index: 999;
   }

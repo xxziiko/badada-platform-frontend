@@ -35,6 +35,7 @@ export default function Result() {
   const [isImgCapture, setIsImgCapture] = useState(false);
   const [isLinkCopy, setIsLinkCopy] = useState(false);
   const [isScrolledHalf, setIsScrolledHalf] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [seaData, setSeaData] = useState<seaData>({
     beach: '',
     beach_eng: '',
@@ -67,6 +68,8 @@ export default function Result() {
 
   const handleImgCopy = () => {
     analytics.track('click_image_copy');
+    setIsLoading(true);
+
     const element = document.getElementById('page-to-save'); // 캡처할 요소의 ID로 대체하세요.
     if (element) {
       domtoimage.toPng(element, { cacheBust: true }).then((dataUrl) => {
@@ -75,11 +78,14 @@ export default function Result() {
         link.download = 'result-sea.png'; // 원하는 파일명으로 대체하세요.
         link.click();
         setIsImgCapture(true);
+        setIsLoading(false);
+
+        setTimeout(() => {
+          setIsImgCapture(false);
+          setIsLoading(false);
+        }, 2000);
       });
     }
-    setTimeout(() => {
-      setIsImgCapture(false);
-    }, 4000);
   };
 
   const copyToClipboard = (text: string) => {
@@ -219,14 +225,19 @@ export default function Result() {
         <div className='logo-wrapper'>
           <Logo />
         </div>
+        {isLoading && (
+          <div className='img-capture'>
+            <Toast text='저장중' isLoadingState />
+          </div>
+        )}
         {isImgCapture && (
           <div className='img-capture'>
-            <Toast text='이미지가 캡쳐되었습니다' />
+            <Toast text='이미지가 캡쳐되었습니다' isLoadingState={false} />
           </div>
         )}
         {isLinkCopy && (
           <div className='link-copy'>
-            <Toast text='링크가 복사되었습니다' />
+            <Toast text='링크가 복사되었습니다' isLoadingState={false} />
           </div>
         )}
       </ResultPage>
