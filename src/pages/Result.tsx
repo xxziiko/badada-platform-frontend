@@ -181,6 +181,7 @@ export default function Result() {
       window.scrollTo(0, 0);
     }
   }, [beachEng]);
+  const getIsPrevOpen = window.localStorage.getItem('isPrevPath');
 
   if (!seaData) return <div />;
 
@@ -230,7 +231,7 @@ export default function Result() {
         )}
       </ResultPage>
       {openTotalSeaModal && <TotalSeaModal onClose={handleMoveToAllSea} />}
-      <ReviewModal onClose={handleReviewModal} isOpen={openReviewModal} />
+      {!getIsPrevOpen && <ReviewModal onClose={handleReviewModal} isOpen={openReviewModal} />}
     </PageLayout>
   );
 }
