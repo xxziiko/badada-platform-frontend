@@ -30,6 +30,7 @@ type seaData = {
 };
 
 export default function Result() {
+  analytics.track('page_result');
   const [openTotalSeaModal, setOpenTotalSeaModal] = useState(false);
   const [openReviewModal, setOpenReviewModal] = useState(false);
   const [isImgCapture, setIsImgCapture] = useState(false);
