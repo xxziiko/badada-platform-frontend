@@ -14,7 +14,7 @@ export default function KakaoShare() {
           window.Kakao.Share.sendDefault({
             objectType: 'feed',
             content: {
-              title: '제 바다를 소개할게요. 당신도 나와 같은 바다라면 같이 여행 갈래요?',
+              title: '제 바다를 소개할게요. 당신도 나와 같은 바다라면 같이 갈래요?',
               description: '#바다여행 #바다추천 #성향테스트',
               imageUrl: 'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
               link: {
