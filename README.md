@@ -1,46 +1,32 @@
-# Getting Started with Create React App
+## 바다다
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br/>
+<div  align="center">
+<img width="183" alt="스크린샷 2023-10-15 오후 4 48 45" src="https://github.com/xxziiko/badada-platform-frontend/assets/97842933/b8c4d55f-7254-4bf3-88fc-d2368fdb8b8b">
+<img width="183" alt="스크린샷 2023-10-15 오후 4 48 54" src="https://github.com/xxziiko/badada-platform-frontend/assets/97842933/94e16a6b-98be-42d2-b1a9-c8e73a901007">
+<img width="183" alt="스크린샷 2023-10-15 오후 4 49 21" src="https://github.com/xxziiko/badada-platform-frontend/assets/97842933/fa9bf1a1-5c45-4f79-97b6-07264d9b6fe1">
+<img width="183" alt="스크린샷 2023-10-15 오후 5 17 00" src="https://github.com/xxziiko/badada-platform-frontend/assets/97842933/bc886847-15af-4827-be56-afb3ab7e2549">
+</div>
 
-## Available Scripts
 
-In the project directory, you can run:
+## Introduction 
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 테스트를 통해 분석한 사용자의 성향에 맞는 바다를 추천해주는 바이럴 프로젝트
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 휴가 시즌을 맞이하여 바다 추천 및 국내의 다양한 바다 소개의 목적
 
-### `yarn test`
+- 개발기간 : 2023.07 ~ 2023.08
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- front-end 3명, back-end 1명, 인프라 1명
 
-### `yarn build`
+- 기획부터 개발까지 참여
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 사용 기술
+- TypeScript 4.4.2
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React 18.2.0
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- styled-components 6.0.4
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- zustand 4.3.9
